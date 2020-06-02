@@ -1,1 +1,6 @@
+# cmake stuff
 build/
+cmake-build-debug/
+
+# jetbrains ide
+.idea/

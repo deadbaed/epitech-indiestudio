@@ -1,6 +1,13 @@
+# binaries
+bin/
+
 # cmake stuff
 build/
 cmake-build-debug/
 
 # jetbrains ide
 .idea/
+
+# vim
+*~
+[._]*.un~

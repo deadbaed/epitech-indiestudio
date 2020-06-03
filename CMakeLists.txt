@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
 # define path to external libraries (cmake modules)
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/lib")
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 set(Irrlicht_DIR "${CMAKE_MODULE_PATH}/Irrlicht")
 
 # use the cmake modules
@@ -32,6 +32,6 @@ target_link_libraries(bomberman ${Irrlicht_LIBRARIES})
 IF (WIN32)
     add_custom_command(TARGET bomberman POST_BUILD                 # post-build event for target
             COMMAND ${CMAKE_COMMAND} -E copy_if_different          # which executes "cmake - E copy_if_different..."
-            "${PROJECT_SOURCE_DIR}/lib/Irrlicht/Irrlicht.dll"      # input file
+            "${Irrlicht_DIR}/Irrlicht.dll"                         # input file
             $<TARGET_FILE_DIR:bomberman>)                          # output is the same output as target
 ENDIF()

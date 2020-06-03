@@ -28,10 +28,7 @@ add_executable(bomberman ${SRCS})
 # define the external libraries to use
 target_link_libraries(bomberman ${Irrlicht_LIBRARIES})
 
-# build the binary inside the bin directory
-set_target_properties(bomberman PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/bin)
-
-# windows only: copy the irrlicht dll inside the bin directory
+# windows only: copy the irrlicht dll inside current directory
 IF (WIN32)
     add_custom_command(TARGET bomberman POST_BUILD                 # post-build event for target
             COMMAND ${CMAKE_COMMAND} -E copy_if_different          # which executes "cmake - E copy_if_different..."

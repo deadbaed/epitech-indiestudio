@@ -10,7 +10,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED on)
 # define path to external libraries (cmake modules)
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 set(Irrlicht_DIR "${CMAKE_MODULE_PATH}/Irrlicht")
-set(SFML_DIR "${CMAKE_MODULE_PATH}/SFML-2.5.0/lib/cmake/SFML")
+
+# Windows: give path to the local SFML
+IF(WIN32)
+    set(SFML_DIR "${CMAKE_MODULE_PATH}/SFML-2.5.0/lib/cmake/SFML")
+ENDIF()
 
 # use the cmake modules
 find_package(Irrlicht REQUIRED)

@@ -2,7 +2,7 @@
 
 epitech second year project
 
-## credits
+## authors
 
 - Baptiste Mottin
 - Peter Bessone
@@ -15,8 +15,6 @@ epitech second year project
 
 - Irrlicht (version 1.8.4)
 - SFML (version 2.5.0)
-
-please note that only the audio component is used from the SFML.
 
 ### install instructions
 

@@ -44,8 +44,8 @@ IF (NOT Irrlicht_INCLUDE_DIRS OR NOT Irrlicht_LIBRARIES)
       /usr/lib/x86_64-linux-gnu/    # Some more Linux library path
       /usr/local/lib/               # Some more Linux library path
       /usr/local/lib64/             # Some more Linux library path
-      ${CMAKE_MODULE_PATH}/         # Expected to contain the path to this file for Windows10
-      ${Irrlicht_DIR}/              # Irrlicht root directory (if provided)
+      ${CMAKE_MODULE_PATH}/lib/     # Expected to contain the path to this file for Windows10
+      ${Irrlicht_DIR}/lib/          # Irrlicht root directory (if provided)
   )
 ENDIF (NOT Irrlicht_INCLUDE_DIRS OR NOT Irrlicht_LIBRARIES)
 

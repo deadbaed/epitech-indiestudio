@@ -1,8 +1,6 @@
 name: CMake
 
-on:
-  push:
-    branches: master
+on: push
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -55,6 +53,7 @@ jobs:
   push:
     needs: build
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v2
       - name: fetch all commits

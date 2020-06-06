@@ -1,7 +1,10 @@
 cmake_minimum_required(VERSION 3.11)
 
-# Name of the projet
+# project name
 project(bomberman)
+
+# define assets path
+set(ASSETS_PATH ${CMAKE_CURRENT_LIST_DIR}/assets)
 
 # c++ standard
 set(CMAKE_CXX_STANDARD 11)
@@ -34,6 +37,19 @@ add_executable(${PROJECT_NAME} ${SRCS})
 target_link_libraries(${PROJECT_NAME} ${Irrlicht_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} sfml-system sfml-audio)
 
+# windows: define external libs dll location
+IF(WIN32)
+    set(DLL_IRRLICHT ${Irrlicht_DIR}/lib/Irrlicht.dll)
+    set(DLL_OPENAL32 ${SFML_DIR}/../../../bin/openal32.dll)
+    set(DLL_SFML_AUDIO_D ${SFML_DIR}/../../../bin/sfml-audio-d-2.dll)
+    set(DLL_SFML_SYSTEM_D ${SFML_DIR}/../../../bin/sfml-system-d-2.dll)
+    set(DLL_SFML_AUDIO ${SFML_DIR}/../../../bin/sfml-audio-2.dll)
+    set(DLL_SFML_SYSTEM ${SFML_DIR}/../../../bin/sfml-system-2.dll)
+
+    file(GLOB DLL_FILES_D ${DLL_IRRLICHT} ${DLL_OPENAL32} ${DLL_SFML_AUDIO_D} ${DLL_SFML_SYSTEM_D})
+    file(GLOB DLL_FILES ${DLL_IRRLICHT} ${DLL_OPENAL32} ${DLL_SFML_AUDIO} ${DLL_SFML_SYSTEM})
+ENDIF(WIN32)
+
 # windows only: copy the dlls
 IF(WIN32)
     # Debug
@@ -53,3 +69,18 @@ IF(WIN32)
     ENDIF(CMAKE_BUILD_TYPE STREQUAL Release)
 
 ENDIF(WIN32)
+
+# CPack
+
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+install(FILES ${DLL_FILES} DESTINATION bin)
+install(DIRECTORY ${ASSETS_PATH}/ DESTINATION assets)
+
+set(CPACK_PACKAGE_NAME "IndieStudio")
+set(CPACK_PACKAGE_VENDOR "Club Baby Pro")
+set(CPACK_PACKAGE_VERSION "1.0.0")
+set(CPACK_PACKAGE_VERSION_MAJOR "1")
+set(CPACK_PACKAGE_VERSION_MINOR "0")
+set(CPACK_PACKAGE_VERSION_PATCH "0")
+set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_LIST_DIR}/CPack/license.txt)
+include(CPack)

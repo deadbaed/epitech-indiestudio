@@ -1,0 +1,14 @@
+IndieStudio
+===========
+
+(c) 2020 Club Baby Pro
+
+Authors
+=======
+
+- Baptiste Mottin
+- Peter Bessone
+- Philippe Loctaux
+- Pierre Barillec
+- Remi Balbous
+- Victor Simon

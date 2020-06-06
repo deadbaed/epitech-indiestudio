@@ -28,29 +28,28 @@ set(SRCS
         src/main.cpp)
 
 # define the binary output
-add_executable(bomberman ${SRCS})
+add_executable(${PROJECT_NAME} ${SRCS})
 
 # define the external libraries to use
-target_link_libraries(bomberman ${Irrlicht_LIBRARIES})
-target_link_libraries(bomberman sfml-system sfml-audio)
+target_link_libraries(${PROJECT_NAME} ${Irrlicht_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} sfml-system sfml-audio)
 
 # windows only: copy the dlls
 IF(WIN32)
-    # Irrlicht
-    add_custom_command(TARGET bomberman POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${Irrlicht_DIR}/lib/Irrlicht.dll" $<TARGET_FILE_DIR:bomberman>)
-
-    # SFML Debug
+    # Debug
     IF(CMAKE_BUILD_TYPE STREQUAL Debug)
-        add_custom_command(TARGET bomberman POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/sfml-audio-d-2.dll" $<TARGET_FILE_DIR:bomberman>)
-        add_custom_command(TARGET bomberman POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/sfml-system-d-2.dll" $<TARGET_FILE_DIR:bomberman>)
-        add_custom_command(TARGET bomberman POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/openal32.dll" $<TARGET_FILE_DIR:bomberman>)
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${Irrlicht_DIR}/lib/Irrlicht.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/sfml-audio-d-2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/sfml-system-d-2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/openal32.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
     ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
 
-    # SFML Release
+    # Release
     IF(CMAKE_BUILD_TYPE STREQUAL Release)
-        add_custom_command(TARGET bomberman POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/sfml-audio-2.dll" $<TARGET_FILE_DIR:bomberman>)
-        add_custom_command(TARGET bomberman POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/sfml-system-2.dll" $<TARGET_FILE_DIR:bomberman>)
-        add_custom_command(TARGET bomberman POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/openal32.dll" $<TARGET_FILE_DIR:bomberman>)
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${Irrlicht_DIR}/lib/Irrlicht.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/sfml-audio-2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/sfml-system-2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/openal32.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
     ENDIF(CMAKE_BUILD_TYPE STREQUAL Release)
 
 ENDIF(WIN32)

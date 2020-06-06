@@ -72,10 +72,12 @@ ENDIF(WIN32)
 
 # CPack
 
+# Location of files
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 install(FILES ${DLL_FILES} DESTINATION bin)
 install(DIRECTORY ${ASSETS_PATH}/ DESTINATION assets)
 
+# Configuration
 set(CPACK_PACKAGE_NAME "IndieStudio")
 set(CPACK_PACKAGE_VENDOR "Club Baby Pro")
 set(CPACK_PACKAGE_VERSION "1.0.0")
@@ -83,4 +85,15 @@ set(CPACK_PACKAGE_VERSION_MAJOR "1")
 set(CPACK_PACKAGE_VERSION_MINOR "0")
 set(CPACK_PACKAGE_VERSION_PATCH "0")
 set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_LIST_DIR}/CPack/license.txt)
+
+# Windows Start Menu shortcut to launch the game
+set(CPACK_NSIS_CREATE_ICONS_EXTRA
+        "CreateShortCut '$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\IndieStudio.lnk' '$INSTDIR\\\\bin\\\\bomberman.exe'"
+        )
+
+# Delete the shortcut when using the uninstaller
+set(CPACK_NSIS_DELETE_ICONS_EXTRA
+        "Delete '$SMPROGRAMS\\\\$START_MENU\\\\IndieStudio.lnk'"
+        )
+
 include(CPack)

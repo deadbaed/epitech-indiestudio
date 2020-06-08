@@ -25,7 +25,10 @@ include_directories(${Irrlicht_INCLUDE_DIRS})
 
 # define sources to use
 set(SRCS
-        src/main.cpp)
+    src/main.cpp src/GameObject.cpp src/Player.cpp src/GameScene.cpp src/IrrlichtController.cpp src/GameSceneManager.cpp src/GameSceneManager.cpp src/TestGameScene.cpp
+)
+include_directories(./include)
+
 
 # define the binary output
 add_executable(bomberman ${SRCS})

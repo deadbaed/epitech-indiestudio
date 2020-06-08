@@ -9,6 +9,9 @@
 #define IRRLICHTCONTROLLER_HPP_
 
 #include <irrlicht.h>
+#include "MyEventReceiver.hpp"
+#define WIDTH 1280
+#define HEIGHT 720
 
 class IrrlichtController {
     public:
@@ -21,6 +24,8 @@ class IrrlichtController {
         irr::scene::ISceneManager *_scene_mgr;
         irr::video::IVideoDriver *_driver;
         irr::gui::IGUIEnvironment *_env;
+        SAppContext _context;
+        IEventReceiver *_receiver;
 };
 
 #endif /* !IRRLICHTCONTROLLER_HPP_ */

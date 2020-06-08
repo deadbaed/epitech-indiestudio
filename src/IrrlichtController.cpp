@@ -18,6 +18,12 @@ void IrrlichtController::Init(irr::video::E_DRIVER_TYPE driver_type, int width, 
     _driver = _device->getVideoDriver();
     _scene_mgr = _device->getSceneManager();
     _env = _device->getGUIEnvironment();
+    _context.device = this->_device;
+    _context.Position.X = -1;
+    _context.Position.Y = -1;
+    _context.settings = false;
+    this->_receiver = new MyEventReceiver(_context);
+    _device->setEventReceiver(_receiver);
 }
 
 bool IrrlichtController::isRunning(void)

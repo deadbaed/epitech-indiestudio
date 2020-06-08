@@ -29,12 +29,12 @@ void GameScene::Init(void)
     keyMap[3].Action = irr::EKA_STRAFE_RIGHT;           // a droite
     keyMap[3].KeyCode = irr::KEY_KEY_D;                 // d
     keyMap[4].Action = irr::EKA_JUMP_UP;                // saut
-    keyMap[4].KeyCode = irr::KEY_SPACE; 
+    keyMap[4].KeyCode = irr::KEY_SPACE;
 
     _ctrl->_scene_mgr->addCameraSceneNodeFPS(0, 100.0f, 0.1f, -1, keyMap, 5);
     irr::scene::ICameraSceneNode *camera = _ctrl->_scene_mgr->getActiveCamera();
-  camera->setPosition((irr::core::vector3df){0, 45, 0});
-  camera->setRotation((irr::core::vector3df){90, 180, 0});
+    camera->setPosition(irr::core::vector3df(0, 45, 0));
+    camera->setRotation(irr::core::vector3df(90, 180, 0));
 }
 
 void GameScene::AddGameObject(const std::shared_ptr<GameObject> &obj)
@@ -60,6 +60,7 @@ void GameScene::Render(void)
     for (auto i = _obj_list.begin(); i != _obj_list.end(); i++)
         i->get()->Render();
     _ctrl->_scene_mgr->drawAll();
+
 }
 
 void GameScene::Delete(void)

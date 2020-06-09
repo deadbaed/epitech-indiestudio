@@ -7,7 +7,7 @@ project(bomberman)
 set(ASSETS_PATH ${CMAKE_CURRENT_LIST_DIR}/assets)
 
 # c++ standard
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
 # define path to external libraries (cmake modules)
@@ -26,14 +26,6 @@ find_package(SFML 2.5 COMPONENTS system audio REQUIRED)
 # define the include path
 include_directories(${Irrlicht_INCLUDE_DIRS})
 
-# define sources to use
-set(SRCS
-        Application/main.cpp GameObject/GameObject.cpp Player/Player.cpp GameScene/GameScene.cpp Controller/IrrlichtController.cpp GameScene/GameSceneManager.cpp GameScene/TestGameScene.cpp Menu/Menu.cpp Button/Button.cpp EventReceiver/MyEventReceiver.cpp Settings/Settings.cpp GameScene/TestGameSceneTest.cpp Music/Music.cpp Music/Music.hpp)
-include_directories(./include)
-
-# define the binary output
-add_executable(${PROJECT_NAME} ${SRCS})
-
 # define the internal libraries to use
 add_subdirectory(Music)
 add_subdirectory(EventReceiver)
@@ -43,10 +35,28 @@ add_subdirectory(GameObject)
 add_subdirectory(GameScene)
 add_subdirectory(Menu)
 add_subdirectory(Settings)
+add_subdirectory(Player)
+
+# define sources to use
+set(SRCS Application/main.cpp)
+
+# define the binary output
+add_executable(${PROJECT_NAME} ${SRCS})
+
+# define the internal libraries to use
+target_link_libraries(${PROJECT_NAME} music)
+target_link_libraries(${PROJECT_NAME} event_receiver)
+target_link_libraries(${PROJECT_NAME} button)
+target_link_libraries(${PROJECT_NAME} controller)
+target_link_libraries(${PROJECT_NAME} game_object)
+target_link_libraries(${PROJECT_NAME} game_scene)
+target_link_libraries(${PROJECT_NAME} menu)
+target_link_libraries(${PROJECT_NAME} settings)
+target_link_libraries(${PROJECT_NAME} player)
 
 # define the external libraries to use
-#target_link_libraries(${PROJECT_NAME} ${Irrlicht_LIBRARIES})
-#target_link_libraries(${PROJECT_NAME} sfml-system sfml-audio)
+target_link_libraries(${PROJECT_NAME} ${Irrlicht_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} sfml-system sfml-audio)
 
 # windows: define external libs dll location
 IF(WIN32)

@@ -1,7 +1,7 @@
 # cmake stuff
 build/
 cmake-build-*/
-Makefile
+
 # jetbrains ide
 .idea/
 

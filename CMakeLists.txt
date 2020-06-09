@@ -28,7 +28,7 @@ include_directories(${Irrlicht_INCLUDE_DIRS})
 
 # define sources to use
 set(SRCS
-    src/main.cpp src/GameObject.cpp src/Player.cpp src/GameScene.cpp src/IrrlichtController.cpp src/GameSceneManager.cpp src/TestGameScene.cpp src/Menu.cpp src/Button.cpp src/MyEventReceiver.cpp src/Settings.cpp src/TestGameSceneTest.cpp src/Music.cpp include/Music.hpp)
+    src/main.cpp GameObject/GameObject.cpp Player/Player.cpp GameScene/GameScene.cpp Controller/IrrlichtController.cpp GameScene/GameSceneManager.cpp GameScene/TestGameScene.cpp Menu/Menu.cpp Button/Button.cpp EventReceiver/MyEventReceiver.cpp Settings/Settings.cpp GameScene/TestGameSceneTest.cpp Music/Music.cpp Music/Music.hpp)
 include_directories(./include)
 
 

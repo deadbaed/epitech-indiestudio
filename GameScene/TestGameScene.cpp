@@ -6,7 +6,7 @@
 */
 
 #include "TestGameScene.hpp"
-#include "Player.hpp"
+#include "../Player/Player.hpp"
 
 TestGameScene::TestGameScene(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameScene(ctrl, name)
 {

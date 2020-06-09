@@ -5,16 +5,16 @@
 ** main
 */
 
-#include "GameObject.hpp"
-#include "GameScene.hpp"
-#include "GameSceneManager.hpp"
-#include "IrrlichtController.hpp"
-#include "Player.hpp"
-#include "TestGameScene.hpp"
-#include "MyEventReceiver.hpp"
-#include "Menu.hpp"
-#include "Settings.hpp"
-#include "TestGameSceneTest.hpp"
+#include "../GameObject/GameObject.hpp"
+#include "../GameScene/GameScene.hpp"
+#include "../GameScene/GameSceneManager.hpp"
+#include "../Controller/IrrlichtController.hpp"
+#include "../Player/Player.hpp"
+#include "../GameScene/TestGameScene.hpp"
+#include "../EventReceiver/MyEventReceiver.hpp"
+#include "../Menu/Menu.hpp"
+#include "../Settings/Settings.hpp"
+#include "../GameScene/TestGameSceneTest.hpp"
 
 int main(void)
 {

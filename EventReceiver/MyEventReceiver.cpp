@@ -3,7 +3,7 @@
 //
 
 #include "MyEventReceiver.hpp"
-#include "Button.hpp"
+#include "../Button/Button.hpp"
 
 bool MyEventReceiver::OnEvent(const SEvent &event) {
     if (event.EventType == EET_GUI_EVENT) {

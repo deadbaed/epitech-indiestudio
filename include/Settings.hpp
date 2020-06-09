@@ -5,9 +5,9 @@
 #ifndef BOMBERMAN_SETTINGS_HPP
 #define BOMBERMAN_SETTINGS_HPP
 
-#include <SFML/Audio.hpp>
 #include "Button.hpp"
 #include "GameScene.hpp"
+#include "Music.hpp"
 
 using namespace irr;
 using namespace core;
@@ -24,16 +24,14 @@ class Settings : public GameScene {
         void Render(void);
         void increase_volume(void);
         void decrease_volume(void);
-        float get_volume(void);
-        //void stopMusic(sf::Music *music);
     private:
         std::unique_ptr<Button> _buttonPlus;
         std::unique_ptr<Button> _buttonMinus;
         std::unique_ptr<Button> _buttonCredits;
         std::unique_ptr<Button> _buttonHelp;
         std::unique_ptr<Button> _buttonBack;
-        //sf::Music _music;
-        float _volume;
+        std::unique_ptr<Music> _Music;
+        ITexture *_background;
 };
 
 

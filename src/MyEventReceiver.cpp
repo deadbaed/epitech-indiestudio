@@ -21,6 +21,9 @@ bool MyEventReceiver::OnEvent(const SEvent &event) {
                     case GUI_ID_EXIT_BUTTON:
                         Context.device->closeDevice();
                         return true;
+                    case GUI_ID_BACK_BUTTON:
+                        Context.sceneName = "menuScene";
+                        return true;
                     default:
                         return false;
                 }

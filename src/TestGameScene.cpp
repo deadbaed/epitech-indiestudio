@@ -13,7 +13,6 @@ TestGameScene::TestGameScene(const std::shared_ptr<IrrlichtController> &ctrl, co
 
 }
 
-
 void TestGameScene::Init(void)
 {
     irr::SKeyMap keyMap[5];                             // re-assigne les commandes
@@ -34,8 +33,8 @@ void TestGameScene::Init(void)
     camera->setRotation(irr::core::vector3df(90, 180, 0));
     std::shared_ptr<Player> p = std::make_shared<Player>(_ctrl, "p1");
     std::shared_ptr<Player> p2 = std::make_shared<Player>(_ctrl, "p2");
-    p->Init("./assets/player_1.obj");
-    p2->Init("./assets/player_2.obj");
+    p->Init("../assets/player_1.obj");
+    p2->Init("../assets/player_2.obj");
     p->SetPosition(irr::core::vector3df(0, 0, 0));
     p2->SetPosition(irr::core::vector3df(30, 0, 0));
 

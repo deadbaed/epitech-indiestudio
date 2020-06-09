@@ -14,6 +14,7 @@ class Menu : public GameScene {
         void Init(void);
         void Update(void);
         void Render(void);
+        void Clear(void);
     private:
         std::unique_ptr<Button> _buttonSettings;
         std::unique_ptr<Button> _buttonPlay;

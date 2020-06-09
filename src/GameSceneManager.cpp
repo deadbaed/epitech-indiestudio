@@ -44,7 +44,11 @@ void GameSceneManager::Update(void)
     } catch (const std::exception &e) {
         return;
     }
-    IGameObject *p = scene->GetGameObject("p1");
+    if (this->_ctrl->_context.sceneName != _current_scene->GetId()) {
+        this->_current_scene->Clear();
+        LoadScene(this->_ctrl->_context.sceneName);
+    }
+
 }
 
 GameSceneManager::~GameSceneManager()

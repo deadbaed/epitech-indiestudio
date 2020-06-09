@@ -22,6 +22,7 @@ void IrrlichtController::Init(irr::video::E_DRIVER_TYPE driver_type, int width, 
     _context.Position.X = -1;
     _context.Position.Y = -1;
     _context.settings = false;
+    _context.sceneName = "menuScene";
     this->_receiver = new MyEventReceiver(_context);
     _device->setEventReceiver(_receiver);
 }

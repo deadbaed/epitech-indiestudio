@@ -14,18 +14,16 @@
 #include <irrlicht.h>
 #include "IGameObject.hpp"
 #include "IrrlichtController.hpp"
-#include "MyEventReceiver.hpp"
-
-#include "IGameScene.hpp"
 #include "GameObject.hpp"
-//#include "GameSceneManager.hpp"
+#include "IGameScene.hpp"
+
 class GameScene : public IGameScene {
     public:
         GameScene(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
         virtual void Init(void);
         virtual void Update(void);
         virtual void Render(void);
-        virtual void Delete(void);
+        virtual void Clear(void);
         virtual const std::string &GetId(void);
         virtual IGameObject *GetGameObject(std::string id);
         virtual void AddGameObject(const std::shared_ptr<IGameObject> &obj);

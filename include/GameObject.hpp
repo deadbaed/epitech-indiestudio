@@ -11,7 +11,6 @@
 #include <irrlicht.h>
 #include <string>
 #include <memory>
-#include "GameObject.hpp"
 #include "IGameObject.hpp"
 #include "IrrlichtController.hpp"
 

@@ -13,9 +13,10 @@ bool MyEventReceiver::OnEvent(const SEvent &event) {
             case EGET_BUTTON_CLICKED:
                 switch (id) {
                     case GUI_ID_PLAY_BUTTON:
+                        Context.sceneName = "gameScene";
                         return true;
                     case GUI_ID_SETTINGS_BUTTON:
-                        Context.settings = true;
+                        Context.sceneName = "settingsScene";
                         return true;
                     case GUI_ID_EXIT_BUTTON:
                         Context.device->closeDevice();

@@ -67,7 +67,7 @@ void GameScene::Render(void)
 
 }
 
-void GameScene::Delete(void)
+void GameScene::Clear(void)
 {
 
 }
@@ -95,4 +95,3 @@ void GameScene::SetBackgroundColor(const irr::video::SColor color)
 {
     _background_color = color;
 }
-

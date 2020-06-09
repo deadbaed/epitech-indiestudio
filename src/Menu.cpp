@@ -27,3 +27,8 @@ void Menu::Render(void)
 {
     _ctrl->_env->drawAll();
 }
+
+void Menu::Clear(void)
+{
+    this->_ctrl->_env->clear();
+}

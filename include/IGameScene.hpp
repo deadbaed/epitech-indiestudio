@@ -19,7 +19,7 @@ class IGameScene {
         virtual void Init(void) = 0;
         virtual void Update(void) = 0;
         virtual void Render(void) = 0;
-        virtual void Delete(void) = 0;
+        virtual void Clear(void) = 0;
         virtual const std::string &GetId(void) = 0;
         virtual IGameObject *GetGameObject(std::string id) = 0;
         virtual void AddGameObject(const std::shared_ptr<IGameObject> &obj) = 0;

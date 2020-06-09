@@ -30,8 +30,8 @@ void TestGameScene::Init(void)
 
     _ctrl->_scene_mgr->addCameraSceneNodeFPS(0, 100.0f, 0.1f, -1, keyMap, 5);
     irr::scene::ICameraSceneNode *camera = _ctrl->_scene_mgr->getActiveCamera();
-    camera->setPosition((irr::core::vector3df)(0, 45, 0));
-    camera->setRotation((irr::core::vector3df){90, 180, 0});
+    camera->setPosition(irr::core::vector3df(0, 45, 0));
+    camera->setRotation(irr::core::vector3df(90, 180, 0));
     std::shared_ptr<Player> p = std::make_shared<Player>(_ctrl, "p1");
     std::shared_ptr<Player> p2 = std::make_shared<Player>(_ctrl, "p2");
     p->Init("./assets/player_1.obj");

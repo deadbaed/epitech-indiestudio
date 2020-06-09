@@ -15,7 +15,6 @@
 #include "Menu.hpp"
 #include "Settings.hpp"
 #include "TestGameSceneTest.hpp"
-#include <unistd.h>
 
 int main(void)
 {

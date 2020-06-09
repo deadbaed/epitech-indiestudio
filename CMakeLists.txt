@@ -42,6 +42,7 @@ add_subdirectory(Controller)
 add_subdirectory(GameObject)
 add_subdirectory(GameScene)
 add_subdirectory(Menu)
+add_subdirectory(Settings)
 
 # define the external libraries to use
 #target_link_libraries(${PROJECT_NAME} ${Irrlicht_LIBRARIES})

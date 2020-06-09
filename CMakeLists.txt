@@ -7,7 +7,7 @@ project(bomberman)
 set(ASSETS_PATH ${CMAKE_CURRENT_LIST_DIR}/assets)
 
 # c++ standard
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
 # define path to external libraries (cmake modules)
@@ -28,7 +28,9 @@ include_directories(${Irrlicht_INCLUDE_DIRS})
 
 # define sources to use
 set(SRCS
-        src/main.cpp)
+    src/main.cpp src/GameObject.cpp src/Player.cpp src/GameScene.cpp src/IrrlichtController.cpp src/GameSceneManager.cpp src/TestGameScene.cpp src/Menu.cpp src/Button.cpp src/MyEventReceiver.cpp src/Settings.cpp src/TestGameSceneTest.cpp src/Music.cpp include/Music.hpp)
+include_directories(./include)
+
 
 # define the binary output
 add_executable(${PROJECT_NAME} ${SRCS})

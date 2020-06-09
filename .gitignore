@@ -1,12 +1,13 @@
 # cmake stuff
 build/
 cmake-build-*/
-
+Makefile
 # jetbrains ide
 .idea/
 
 # visual studio
 .vs/
+.vscode/
 
 # vim
 *~

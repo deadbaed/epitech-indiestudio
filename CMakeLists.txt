@@ -31,13 +31,17 @@ set(SRCS
         Application/main.cpp GameObject/GameObject.cpp Player/Player.cpp GameScene/GameScene.cpp Controller/IrrlichtController.cpp GameScene/GameSceneManager.cpp GameScene/TestGameScene.cpp Menu/Menu.cpp Button/Button.cpp EventReceiver/MyEventReceiver.cpp Settings/Settings.cpp GameScene/TestGameSceneTest.cpp Music/Music.cpp Music/Music.hpp)
 include_directories(./include)
 
-
 # define the binary output
 add_executable(${PROJECT_NAME} ${SRCS})
 
+# define the internal libraries to use
+add_subdirectory(Music)
+add_subdirectory(EventReceiver)
+add_subdirectory(Button)
+
 # define the external libraries to use
-target_link_libraries(${PROJECT_NAME} ${Irrlicht_LIBRARIES})
-target_link_libraries(${PROJECT_NAME} sfml-system sfml-audio)
+#target_link_libraries(${PROJECT_NAME} ${Irrlicht_LIBRARIES})
+#target_link_libraries(${PROJECT_NAME} sfml-system sfml-audio)
 
 # windows: define external libs dll location
 IF(WIN32)

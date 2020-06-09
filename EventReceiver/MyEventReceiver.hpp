@@ -31,4 +31,13 @@ class MyEventReceiver : public IEventReceiver {
         SAppContext &Context;
 };
 
+enum ButtonType {
+    GUI_ID_PLAY_BUTTON,
+    GUI_ID_SETTINGS_BUTTON,
+    GUI_ID_EXIT_BUTTON,
+    GUI_ID_PLUS_BUTTON,
+    GUI_ID_MINUS_BUTTON,
+    GUI_ID_BACK_BUTTON
+};
+
 #endif //BOMBERMAN_MYEVENTRECEIVER_HPP

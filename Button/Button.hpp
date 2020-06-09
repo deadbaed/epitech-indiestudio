@@ -17,15 +17,6 @@ using namespace video;
 using namespace io;
 using namespace gui;
 
-enum ButtonType {
-    GUI_ID_PLAY_BUTTON,
-    GUI_ID_SETTINGS_BUTTON,
-    GUI_ID_EXIT_BUTTON,
-    GUI_ID_PLUS_BUTTON,
-    GUI_ID_MINUS_BUTTON,
-    GUI_ID_BACK_BUTTON
-};
-
 class Button {
     public:
         Button(IrrlichtDevice *device, vector2d<int> size, vector2d<int> pos, ButtonType type, std::string path1);

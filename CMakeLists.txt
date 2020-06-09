@@ -38,6 +38,7 @@ add_executable(${PROJECT_NAME} ${SRCS})
 add_subdirectory(Music)
 add_subdirectory(EventReceiver)
 add_subdirectory(Button)
+add_subdirectory(Controller)
 
 # define the external libraries to use
 #target_link_libraries(${PROJECT_NAME} ${Irrlicht_LIBRARIES})

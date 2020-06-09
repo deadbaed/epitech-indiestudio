@@ -13,5 +13,7 @@ set(SRCS IrrlichtController.cpp IrrlichtController.hpp)
 # define the binary output
 add_library(${PROJECT_NAME} ${SRCS})
 
+include_directories(${event_receiver_SOURCE_DIR})
+
 # define the external libraries to use
 target_link_libraries(${PROJECT_NAME} event_receiver)

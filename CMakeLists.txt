@@ -32,30 +32,12 @@ add_subdirectory(EventReceiver)
 add_subdirectory(Button)
 add_subdirectory(Controller)
 add_subdirectory(GameObject)
+add_subdirectory(Player)
 add_subdirectory(GameScene)
 add_subdirectory(Menu)
 add_subdirectory(Settings)
-add_subdirectory(Player)
-
-#set(HEADER_FILES
-#        ${music_SOURCE_DIR}/Music.hpp
-#        ${event_receiver_SOURCE_DIR}/MyEventReceiver.hpp
-#        ${button_SOURCE_DIR}/Button.hpp
-#        ${controller_SOURCE_DIR}/IrrlichtController.hpp
-#        ${game_object_SOURCE_DIR}/IGameObject.hpp
-#        ${game_object_SOURCE_DIR}/GameObject.hpp
-#        ${game_scene_SOURCE_DIR}/IGameScene.hpp
-#        ${game_scene_SOURCE_DIR}/GameScene.hpp
-#        ${game_scene_SOURCE_DIR}/GameSceneManager.hpp
-#        ${game_scene_SOURCE_DIR}/TestGameScene.hpp
-#        ${game_scene_SOURCE_DIR}/TestGameSceneTest.hpp
-#        ${menu_SOURCE_DIR}/Menu.hpp
-#        ${settings_SOURCE_DIR}/Settings.hpp
-#        ${player_SOURCE_DIR}/Player.hpp
-#        )
 
 # define sources to use
-#set(SRCS Application/main.cpp ${HEADER_FILES})
 set(SRCS Application/main.cpp)
 
 # define the binary output
@@ -67,10 +49,10 @@ include_directories(${event_receiver_SOURCE_DIR})
 include_directories(${button_SOURCE_DIR})
 include_directories(${controller_SOURCE_DIR})
 include_directories(${game_object_SOURCE_DIR})
+include_directories(${player_SOURCE_DIR})
 include_directories(${game_scene_SOURCE_DIR})
 include_directories(${menu_SOURCE_DIR})
 include_directories(${settings_SOURCE_DIR})
-include_directories(${player_SOURCE_DIR})
 
 # define the internal libraries to use
 target_link_libraries(${PROJECT_NAME} music)

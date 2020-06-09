@@ -12,7 +12,7 @@
 #include <string>
 #include <memory>
 #include "IGameObject.hpp"
-#include "../Controller/IrrlichtController.hpp"
+#include "IrrlichtController.hpp"
 
 class GameObject : public IGameObject {
     public:

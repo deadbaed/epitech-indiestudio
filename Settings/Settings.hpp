@@ -5,9 +5,9 @@
 #ifndef BOMBERMAN_SETTINGS_HPP
 #define BOMBERMAN_SETTINGS_HPP
 
-#include "../Button/Button.hpp"
-#include "../GameScene/GameScene.hpp"
-#include "../Music/Music.hpp"
+#include "Button.hpp"
+#include "GameScene.hpp"
+#include "Music.hpp"
 
 using namespace irr;
 using namespace core;

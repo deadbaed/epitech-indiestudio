@@ -12,9 +12,9 @@
 #include <memory>
 #include <string>
 #include <irrlicht.h>
-#include "../GameObject/IGameObject.hpp"
-#include "../Controller/IrrlichtController.hpp"
-#include "../GameObject/GameObject.hpp"
+#include "IGameObject.hpp"
+#include "IrrlichtController.hpp"
+#include "GameObject.hpp"
 #include "IGameScene.hpp"
 
 class GameScene : public IGameScene {

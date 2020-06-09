@@ -10,8 +10,8 @@
 
 #include <string>
 #include <memory>
-#include "../GameObject/IGameObject.hpp"
-#include "../GameObject/GameObject.hpp"
+#include "IGameObject.hpp"
+#include "GameObject.hpp"
 
 class IGameScene {
     public:

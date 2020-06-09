@@ -9,7 +9,7 @@
 #define IRRLICHTCONTROLLER_HPP_
 
 #include <irrlicht.h>
-#include "../EventReceiver/MyEventReceiver.hpp"
+#include "MyEventReceiver.hpp"
 
 #define WIDTH 1280
 #define HEIGHT 720

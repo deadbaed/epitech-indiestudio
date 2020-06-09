@@ -8,7 +8,7 @@
 #include <irrlicht.h>
 #include <string>
 #include <memory>
-#include "../EventReceiver/MyEventReceiver.hpp"
+#include "MyEventReceiver.hpp"
 
 using namespace irr;
 using namespace core;

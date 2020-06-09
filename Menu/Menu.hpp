@@ -5,8 +5,8 @@
 #ifndef BOMBERMAN_MENU_HPP
 #define BOMBERMAN_MENU_HPP
 
-#include "../GameScene/GameScene.hpp"
-#include "../Button/Button.hpp"
+#include "GameScene.hpp"
+#include "Button.hpp"
 
 class Menu : public GameScene {
     public:

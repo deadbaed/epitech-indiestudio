@@ -8,7 +8,7 @@
 #ifndef PLAYER_HPP_
 #define PLAYER_HPP_
 
-#include "../GameObject/GameObject.hpp"
+#include "GameObject.hpp"
 
 #include <iostream>
 

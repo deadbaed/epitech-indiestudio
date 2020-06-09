@@ -11,9 +11,9 @@ Menu::Menu(const std::shared_ptr<IrrlichtController> &ctrl, const std::string na
 
 void Menu::Init(void)
 {
-    this->_buttonSettings = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(427, HEIGHT), vector2d<int>(0, 0), GUI_ID_SETTINGS_BUTTON, "../assets/left_grey.jpg", "../assets/left.jpg");
-    this->_buttonPlay = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(427, HEIGHT), vector2d<int>(427, 0), GUI_ID_PLAY_BUTTON, "../assets/middle_grey.jpg", "../assets/middle.jpg");
-    this->_buttonExit = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(427, HEIGHT), vector2d<int>(854, 0), GUI_ID_EXIT_BUTTON, "../assets/right_grey.jpg", "../assets/right.jpg");
+    this->_buttonSettings = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(427, HEIGHT), vector2d<int>(0, 0), GUI_ID_SETTINGS_BUTTON, "../assets/left_grey_button.jpg", "../assets/left_button.jpg");
+    this->_buttonPlay = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(427, HEIGHT), vector2d<int>(427, 0), GUI_ID_PLAY_BUTTON, "../assets/middle_grey_button.jpg", "../assets/middle_button.jpg");
+    this->_buttonExit = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(427, HEIGHT), vector2d<int>(854, 0), GUI_ID_EXIT_BUTTON, "../assets/right_grey_button.jpg", "../assets/right_button.jpg");
 }
 
 void Menu::Update(void)

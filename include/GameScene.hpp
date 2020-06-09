@@ -11,11 +11,15 @@
 #include <vector>
 #include <memory>
 #include <string>
-#include "GameObject.hpp"
+#include <irrlicht.h>
+#include "IGameObject.hpp"
 #include "IrrlichtController.hpp"
 #include "MyEventReceiver.hpp"
 
-class GameScene {
+#include "IGameScene.hpp"
+#include "GameObject.hpp"
+//#include "GameSceneManager.hpp"
+class GameScene : public IGameScene {
     public:
         GameScene(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
         virtual void Init(void);
@@ -23,12 +27,16 @@ class GameScene {
         virtual void Render(void);
         virtual void Delete(void);
         virtual const std::string &GetId(void);
-        virtual void AddGameObject(const std::shared_ptr<GameObject> &obj);
-        virtual ~GameScene() = 0;
+        virtual IGameObject *GetGameObject(std::string id);
+        virtual void AddGameObject(const std::shared_ptr<IGameObject> &obj);
+        virtual const irr::video::SColor &GetBackgroundColor(void);
+        virtual void SetBackgroundColor(const irr::video::SColor color);
+        ~GameScene();
     protected:
-        std::vector<std::shared_ptr<GameObject>> _obj_list;
+        std::vector<std::shared_ptr<IGameObject>> _obj_list;
         const std::string _id;
         const std::shared_ptr<IrrlichtController> &_ctrl;
+        irr::video::SColor _background_color = irr::video::SColor(0, 0, 0, 0);
 };
 
 #endif /* !GAMESCENE_HPP_ */

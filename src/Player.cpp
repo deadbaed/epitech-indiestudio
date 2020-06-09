@@ -38,6 +38,10 @@ void Player::Update()
 
 }
 
+void Player::Delete(void)
+{
+    _status = DELETED;
+}
 void Player::test(void)
 {
 

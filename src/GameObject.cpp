@@ -35,6 +35,11 @@ void GameObject::Render(void)
 
 }
 
+void GameObject::Delete(void)
+{
+    _status = IGameObject::STATUS::DELETED;
+}
+
 GameObject &GameObject::operator=(const GameObject &obj)
 {
     return *this;
@@ -66,7 +71,13 @@ void GameObject::SetRotation(irr::core::vector3df rotation)
 {
     _rotation = rotation;
 }
+
 irr::core::vector3df GameObject::GetRotation(void)
 {
     return _rotation;
+}
+
+IGameObject::STATUS &GameObject::GetStatus(void)
+{
+    return _status;
 }

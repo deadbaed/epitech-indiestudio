@@ -8,8 +8,8 @@
 #ifndef GAMESCENEMANAGER_HPP_
 #define GAMESCENEMANAGER_HPP_
 
-#include "GameScene.hpp"
 #include "IrrlichtController.hpp"
+#include "GameScene.hpp"
 
 class GameSceneManager {
     public:

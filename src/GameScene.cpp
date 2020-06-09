@@ -37,28 +37,32 @@ void GameScene::Init(void)
     camera->setRotation(irr::core::vector3df(90, 180, 0));
 }
 
-void GameScene::AddGameObject(const std::shared_ptr<GameObject> &obj)
+void GameScene::AddGameObject(const std::shared_ptr<IGameObject> &obj)
 {
     _obj_list.push_back(obj);
 }
 
-#include <iostream>
-
 void GameScene::Update(void)
 {
     int idx = 0;
+
+    for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
+        if (i->get()->GetStatus() == IGameObject::STATUS::DELETED)
+            _obj_list.erase(i);
+    }
+
     for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
         i->get()->Update();
         irr::core::vector3df v = i->get()->GetPosition();
         std::string name = i->get()->GetId();
-        //printf("%s %0.2f %0.2f %0.2f\n", name.c_str(), v.X, v.Y, v.Z);
     }
 }
 
 void GameScene::Render(void)
 {
     for (auto i = _obj_list.begin(); i != _obj_list.end(); i++)
-        i->get()->Render();
+        if (i->get()->GetStatus() != IGameObject::STATUS::DELETED)
+            i->get()->Render();
     _ctrl->_scene_mgr->drawAll();
 
 }
@@ -68,7 +72,27 @@ void GameScene::Delete(void)
 
 }
 
+IGameObject *GameScene::GetGameObject(std::string id)
+{
+    for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
+        if (i->get()->GetId() == id)
+            return i->get();
+    }
+    return nullptr;
+}
+
 const std::string &GameScene::GetId(void)
 {
     return _id;
 }
+
+const irr::video::SColor &GameScene::GetBackgroundColor(void)
+{
+    return _background_color;
+}
+
+void GameScene::SetBackgroundColor(const irr::video::SColor color)
+{
+    _background_color = color;
+}
+

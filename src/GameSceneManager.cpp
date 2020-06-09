@@ -21,6 +21,10 @@ void GameSceneManager::LoadScene(const std::string name)
 {
     for (auto i = _scene_list.begin(); i != _scene_list.end(); i++) {
         if (i->get()->GetId() == name) {
+            if (_current_scene) {
+                if (_ctrl->_scene_mgr->getSceneLoaderCount() > 0)
+                    _ctrl->_scene_mgr->clear();
+            }
             _current_scene = i->get();
             _current_scene->Init();
         }
@@ -29,12 +33,18 @@ void GameSceneManager::LoadScene(const std::string name)
 
 void GameSceneManager::Update(void)
 {
-    if (_current_scene == NULL)
+    GameScene *scene = _current_scene;
+    if (scene == NULL)
         return;
-    _ctrl->_driver->beginScene(true, true, irr::video::SColor(0,156,156,156));
-    _current_scene->Update();
-    _current_scene->Render();
-    _ctrl->_driver->endScene ();
+    try {
+        _ctrl->_driver->beginScene(true, true, scene->GetBackgroundColor());
+        scene->Update();
+        scene->Render();
+        _ctrl->_driver->endScene ();
+    } catch (const std::exception &e) {
+        return;
+    }
+    IGameObject *p = scene->GetGameObject("p1");
 }
 
 GameSceneManager::~GameSceneManager()

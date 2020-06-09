@@ -1,14 +1,13 @@
 # cmake stuff
 build/
 cmake-build-*/
-cmake_install.cmake
-CMakeCache.txt
 Makefile
 # jetbrains ide
 .idea/
 
 # visual studio
 .vs/
+.vscode/
 
 # vim
 *~

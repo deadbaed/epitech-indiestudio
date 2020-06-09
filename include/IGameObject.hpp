@@ -11,6 +11,7 @@
 #include <irrlicht.h>
 
 class IGameObject {
+    public:
     enum TYPE {
         PLAYER = 0,
         ENEMY,
@@ -19,15 +20,22 @@ class IGameObject {
         GROUND,
         BONUS
     };
+    enum STATUS {
+        OK = 0,
+        DELETED
+    };
     public:
         virtual ~IGameObject() = default;
-        virtual void Init() = 0;
-        virtual void Update() = 0;
+        virtual void Init(void) = 0;
+        virtual void Update(void) = 0;
+        virtual void Render(void) = 0;
+        virtual void Delete(void) = 0;
         virtual void SetPosition(irr::core::vector3df position) = 0;
         virtual irr::core::vector3df GetPosition(void) = 0;
         virtual void SetRotation(irr::core::vector3df position) = 0;
         virtual irr::core::vector3df GetRotation(void) = 0;
         virtual const std::string &GetId(void) = 0;
+        virtual IGameObject::STATUS &GetStatus(void) = 0;
 };
 
 #endif /* !GAMEOBJECT_HPP_ */

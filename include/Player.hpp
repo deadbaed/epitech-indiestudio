@@ -17,6 +17,7 @@ class Player : public GameObject {
         Player(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
         void Init(const std::string texture);
         void Update();
+        void Delete();
         void SetPosition(irr::core::vector3df position);
         ~Player();
         void test(void);

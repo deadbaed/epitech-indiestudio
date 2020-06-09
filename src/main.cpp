@@ -13,6 +13,7 @@
 #include "TestGameScene.hpp"
 #include "MyEventReceiver.hpp"
 #include "Menu.hpp"
+#include "Settings.hpp"
 
 int main(void)
 {
@@ -25,10 +26,17 @@ int main(void)
     //s->AddGameObject(p);
     std::shared_ptr<TestGameScene> testScene = std::make_shared<TestGameScene>(c, "test");
     std::shared_ptr<Menu> menu = std::make_shared<Menu>(c, "menu");
+    std::shared_ptr<Settings> set = std::make_shared<Settings>(c, "set");
     GameSceneManager m(c);
+
+    m.AddScene(testScene);
     m.AddScene(menu);
-    m.LoadScene("menu");
-    int i = 0;
+    m.AddScene(set);
+
+    //m.LoadScene("test");
+    //m.LoadScene("menu");
+    m.LoadScene("set");
+
     while (c->isRunning())
     {
         m.Update();

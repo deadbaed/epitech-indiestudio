@@ -69,52 +69,51 @@ IF(WIN32)
 
     file(GLOB DLL_FILES_D ${DLL_IRRLICHT} ${DLL_OPENAL32} ${DLL_SFML_AUDIO_D} ${DLL_SFML_SYSTEM_D})
     file(GLOB DLL_FILES ${DLL_IRRLICHT} ${DLL_OPENAL32} ${DLL_SFML_AUDIO} ${DLL_SFML_SYSTEM})
-ENDIF(WIN32)
 
-# windows only: copy the dlls
-IF(WIN32)
-    # Debug
+    # copy dlls
+
+    # irrlicht and openal (they dont change on debug or release)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${DLL_IRRLICHT} $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${DLL_OPENAL32} $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+
+    # SFML Debug
     IF(CMAKE_BUILD_TYPE STREQUAL Debug)
-        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${Irrlicht_DIR}/lib/Irrlicht.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
-        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/sfml-audio-d-2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
-        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/sfml-system-d-2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
-        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/openal32.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${DLL_SFML_AUDIO_D} $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${DLL_SFML_SYSTEM_D} $<TARGET_FILE_DIR:${PROJECT_NAME}>)
     ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
 
-    # Release
+    # SFML Release
     IF(CMAKE_BUILD_TYPE STREQUAL Release)
-        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${Irrlicht_DIR}/lib/Irrlicht.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
-        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/sfml-audio-2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
-        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/sfml-system-2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
-        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy "${SFML_DIR}/../../../bin/openal32.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${DLL_SFML_AUDIO} $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${DLL_SFML_SYSTEM} $<TARGET_FILE_DIR:${PROJECT_NAME}>)
     ENDIF(CMAKE_BUILD_TYPE STREQUAL Release)
 
+    # CPack
+
+    # Location of files
+    install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+    install(FILES ${DLL_FILES} DESTINATION bin)
+    install(DIRECTORY ${ASSETS_PATH}/ DESTINATION assets)
+
+    # Configuration
+    set(CPACK_PACKAGE_NAME "IndieStudio")
+    set(CPACK_PACKAGE_VENDOR "Club Baby Pro")
+    set(CPACK_PACKAGE_VERSION "1.0.0")
+    set(CPACK_PACKAGE_VERSION_MAJOR "1")
+    set(CPACK_PACKAGE_VERSION_MINOR "0")
+    set(CPACK_PACKAGE_VERSION_PATCH "0")
+    set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_LIST_DIR}/CPack/license.txt)
+
+    # Windows Start Menu shortcut to launch the game
+    set(CPACK_NSIS_CREATE_ICONS_EXTRA
+            "CreateShortCut '$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\IndieStudio.lnk' '$INSTDIR\\\\bin\\\\bomberman.exe'"
+            )
+
+    # Delete the shortcut when using the uninstaller
+    set(CPACK_NSIS_DELETE_ICONS_EXTRA
+            "Delete '$SMPROGRAMS\\\\$START_MENU\\\\IndieStudio.lnk'"
+            )
+
+    include(CPack)
+
 ENDIF(WIN32)
-
-# CPack
-
-# Location of files
-install(TARGETS ${PROJECT_NAME} DESTINATION bin)
-install(FILES ${DLL_FILES} DESTINATION bin)
-install(DIRECTORY ${ASSETS_PATH}/ DESTINATION assets)
-
-# Configuration
-set(CPACK_PACKAGE_NAME "IndieStudio")
-set(CPACK_PACKAGE_VENDOR "Club Baby Pro")
-set(CPACK_PACKAGE_VERSION "1.0.0")
-set(CPACK_PACKAGE_VERSION_MAJOR "1")
-set(CPACK_PACKAGE_VERSION_MINOR "0")
-set(CPACK_PACKAGE_VERSION_PATCH "0")
-set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_LIST_DIR}/CPack/license.txt)
-
-# Windows Start Menu shortcut to launch the game
-set(CPACK_NSIS_CREATE_ICONS_EXTRA
-        "CreateShortCut '$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\IndieStudio.lnk' '$INSTDIR\\\\bin\\\\bomberman.exe'"
-        )
-
-# Delete the shortcut when using the uninstaller
-set(CPACK_NSIS_DELETE_ICONS_EXTRA
-        "Delete '$SMPROGRAMS\\\\$START_MENU\\\\IndieStudio.lnk'"
-        )
-
-include(CPack)

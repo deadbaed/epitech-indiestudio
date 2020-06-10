@@ -40,6 +40,7 @@ void TestGameScene::Init(void)
 
     AddGameObject(p);
     AddGameObject(p2);
+    this->_ctrl->_music->Play("../assets/music_intro.ogg");
 }
 
 TestGameScene::~TestGameScene()

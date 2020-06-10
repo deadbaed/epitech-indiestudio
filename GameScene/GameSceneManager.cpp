@@ -36,6 +36,7 @@ void GameSceneManager::Update(void)
     GameScene *scene = _current_scene;
     if (scene == NULL)
         return;
+    this->_ctrl->_music->Update();
     try {
         _ctrl->_driver->beginScene(true, true, scene->GetBackgroundColor());
         scene->Update();

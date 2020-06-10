@@ -9,7 +9,8 @@
 #define IRRLICHTCONTROLLER_HPP_
 
 #include <irrlicht.h>
-#include "MyEventReceiver.hpp"
+#include "Music.hpp"
+#include <memory>
 
 #define WIDTH 1280
 #define HEIGHT 720
@@ -27,6 +28,7 @@ class IrrlichtController {
         irr::gui::IGUIEnvironment *_env;
         SAppContext _context;
         IEventReceiver *_receiver;
+        std::shared_ptr<Music> _music;
         float _volume;
 };
 

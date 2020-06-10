@@ -7,22 +7,22 @@
 
 #include <SFML/Audio.hpp>
 #include <string>
-#include "IrrlichtController.hpp"
 #include <memory>
+#include "MyEventReceiver.hpp"
 
 class Music {
     public:
-        Music (const std::shared_ptr<IrrlichtController> &ctrl);
-        ~Music () {};
+        Music(SAppContext &context);
+        ~Music(){};
 
         int Play(std::string filepath);
         void Update(void);
         void Stop(void);
         float getVolume(void);
     private:
-        const std::shared_ptr<IrrlichtController> &_ctrl;
         std::string _path_music;
         sf::Music _music;
+        SAppContext &_context;
 };
 
 

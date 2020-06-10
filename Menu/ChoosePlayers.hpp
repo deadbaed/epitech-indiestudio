@@ -17,6 +17,7 @@ class ChoosePlayers : public GameScene {
         void Clear(void);
     private:
         std::unique_ptr<Button> _buttonOnePlayer;
+        std::unique_ptr<Button> _buttonBack;
         std::unique_ptr<Button> _buttonTwoPlayers;
 };
 

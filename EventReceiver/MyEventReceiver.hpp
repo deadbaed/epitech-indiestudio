@@ -20,6 +20,8 @@ struct SAppContext {
     core::position2di Position;
     bool settings;
     std::string sceneName;
+    bool up_volume;
+    bool down_volume;
 };
 
 class MyEventReceiver : public IEventReceiver {

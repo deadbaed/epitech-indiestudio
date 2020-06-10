@@ -7,20 +7,21 @@
 
 #include <SFML/Audio.hpp>
 #include <string>
+#include "IrrlichtController.hpp"
 
 class Music {
     public:
-        Music ();
+        Music (const std::shared_ptr<IrrlichtController> &ctrl);
         ~Music () {};
 
         int Play(std::string filepath);
-        void Update(float value);
+        void Update(void);
         void Stop(void);
         float getVolume(void);
     private:
+        const std::shared_ptr<IrrlichtController> &_ctrl;
         std::string _path_music;
         sf::Music _music;
-        float _volume;
 };
 
 

@@ -11,7 +11,6 @@ Settings::Settings(const std::shared_ptr<IrrlichtController> &ctrl, const std::s
 
 void Settings::Init(void)
 {
-    this->_Music = std::make_unique<Music>();
     this->_background = this->_ctrl->_driver->getTexture(("../assets/fond_settings.jpg"));
     this->_buttonPlus = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(80, 80), vector2d<int>((WIDTH / 3) + 50, (HEIGHT / 3) + 43), GUI_ID_PLUS_BUTTON, "../assets/volume_up.jpg");
     this->_buttonMinus = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(65, 65), vector2d<int>((WIDTH / 4) - 150, (HEIGHT / 3) + 50), GUI_ID_MINUS_BUTTON, "../assets/volume_down.jpg");
@@ -27,18 +26,4 @@ void Settings::Render(void)
 {
     _ctrl->_driver->draw2DImage(_background, core::position2d<s32>(0,0), core::rect<s32>(0,0,1280,720), 0, video::SColor(255,255,255,255), true);
     _ctrl->_env->drawAll();
-}
-
-void Settings::increase_volume(void)
-{
-    if (this->_Music->getVolume() < 100) {
-        this->_Music->Update(5);
-    }
-}
-
-void Settings::decrease_volume(void)
-{
-    if (this->_Music->getVolume() > 0) {
-        this->_Music->Update(-5);
-    }
 }

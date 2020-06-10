@@ -29,6 +29,12 @@ bool MyEventReceiver::OnEvent(const SEvent &event) {
                     case GUI_ID_TWO_PLAYERS_BUTTON:
                         Context.sceneName = "gameScene";
                         return true;
+                    case GUI_ID_PLUS_BUTTON:
+                        Context.up_volume = true;
+                        return true;
+                    case GUI_ID_MINUS_BUTTON:
+                        Context.down_volume = true;
+                        return true;
                     default:
                         return false;
                 }

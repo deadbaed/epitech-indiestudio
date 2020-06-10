@@ -22,8 +22,6 @@ class Settings : public GameScene {
         void Init(void);
         void Update(void);
         void Render(void);
-        void increase_volume(void);
-        void decrease_volume(void);
     private:
         std::unique_ptr<Button> _buttonPlus;
         std::unique_ptr<Button> _buttonMinus;

@@ -23,7 +23,11 @@ void IrrlichtController::Init(irr::video::E_DRIVER_TYPE driver_type, int width, 
     _context.Position.Y = -1;
     _context.settings = false;
     _context.sceneName = "menuScene";
+    _context.down_volume = false;
+    _context.up_volume = false;
+    this->_volume = 70; //à charger avec le fichier Save
     this->_receiver = new MyEventReceiver(_context);
+
     _device->setEventReceiver(_receiver);
 }
 

@@ -27,6 +27,7 @@ class IrrlichtController {
         irr::gui::IGUIEnvironment *_env;
         SAppContext _context;
         IEventReceiver *_receiver;
+        float _volume;
 };
 
 #endif /* !IRRLICHTCONTROLLER_HPP_ */

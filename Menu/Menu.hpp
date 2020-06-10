@@ -19,6 +19,8 @@ class Menu : public GameScene {
         std::unique_ptr<Button> _buttonSettings;
         std::unique_ptr<Button> _buttonPlay;
         std::unique_ptr<Button> _buttonExit;
+
+
 };
 
 

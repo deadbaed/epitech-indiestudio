@@ -12,7 +12,7 @@ bool MyEventReceiver::OnEvent(const SEvent &event) {
             case EGET_BUTTON_CLICKED:
                 switch (id) {
                     case GUI_ID_PLAY_BUTTON:
-                        Context.sceneName = "gameScene";
+                        Context.sceneName = "chooseplayersScene";
                         return true;
                     case GUI_ID_SETTINGS_BUTTON:
                         Context.sceneName = "settingsScene";
@@ -22,6 +22,18 @@ bool MyEventReceiver::OnEvent(const SEvent &event) {
                         return true;
                     case GUI_ID_BACK_BUTTON:
                         Context.sceneName = "menuScene";
+                        return true;
+                    case GUI_ID_ONE_PLAYER_BUTTON:
+                        Context.sceneName = "gameScene";
+                        return true;
+                    case GUI_ID_TWO_PLAYERS_BUTTON:
+                        Context.sceneName = "gameScene";
+                        return true;
+                    case GUI_ID_PLUS_BUTTON:
+                        Context.up_volume = true;
+                        return true;
+                    case GUI_ID_MINUS_BUTTON:
+                        Context.down_volume = true;
                         return true;
                     default:
                         return false;

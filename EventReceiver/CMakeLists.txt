@@ -12,3 +12,6 @@ set(SRCS MyEventReceiver.cpp MyEventReceiver.hpp)
 
 # define the binary output
 add_library(${PROJECT_NAME} ${SRCS})
+
+# expose the headers
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

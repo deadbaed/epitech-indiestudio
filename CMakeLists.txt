@@ -43,17 +43,6 @@ set(SRCS Application/main.cpp)
 # define the binary output
 add_executable(${PROJECT_NAME} ${SRCS})
 
-# define the include paths for each subdirectory
-include_directories(${music_SOURCE_DIR})
-include_directories(${event_receiver_SOURCE_DIR})
-include_directories(${button_SOURCE_DIR})
-include_directories(${controller_SOURCE_DIR})
-include_directories(${game_object_SOURCE_DIR})
-include_directories(${player_SOURCE_DIR})
-include_directories(${game_scene_SOURCE_DIR})
-include_directories(${menu_SOURCE_DIR})
-include_directories(${settings_SOURCE_DIR})
-
 # define the internal libraries to use
 target_link_libraries(${PROJECT_NAME} music)
 target_link_libraries(${PROJECT_NAME} event_receiver)

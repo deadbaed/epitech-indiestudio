@@ -13,5 +13,8 @@ set(SRCS Music.cpp Music.hpp)
 # define the binary output
 add_library(${PROJECT_NAME} ${SRCS})
 
+# expose the headers
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
 # define the external libraries to use
 target_link_libraries(${PROJECT_NAME} sfml-audio)

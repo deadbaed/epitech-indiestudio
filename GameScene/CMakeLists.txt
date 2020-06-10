@@ -17,12 +17,9 @@ set(SRCS IGameScene.hpp
 # define the binary output
 add_library(${PROJECT_NAME} ${SRCS})
 
-include_directories(${game_object_SOURCE_DIR})
-include_directories(${controller_SOURCE_DIR})
-include_directories(${event_receiver_SOURCE_DIR})
-include_directories(${player_SOURCE_DIR})
+# expose the headers
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # define the external libraries to use
 target_link_libraries(${PROJECT_NAME} game_object)
-target_link_libraries(${PROJECT_NAME} controller)
 target_link_libraries(${PROJECT_NAME} player)

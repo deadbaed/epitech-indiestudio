@@ -32,7 +32,7 @@ fs::path Storage::constructBasePath() {
 #ifdef STORAGE_DEBUG
     /* Debug implementation, use only for development */
 
-    path = fs::current_path() /= STORAGE_FOLDER_NAME;
+    path = fs::current_path();
 #endif
 
 #if defined(STORAGE_RELEASE) && defined(_WIN32)
@@ -54,8 +54,6 @@ fs::path Storage::constructBasePath() {
 
     /* Free memory :) */
     CoTaskMemFree(path_tmp);
-
-    path /= STORAGE_FOLDER_NAME;
 #endif
 
 #if defined(STORAGE_RELEASE) && defined(__linux__)
@@ -69,8 +67,10 @@ fs::path Storage::constructBasePath() {
     path = std::getenv("HOME");
     path /= ".config";
 
-    path /= STORAGE_FOLDER_NAME;
 #endif
+
+    /* Append storage folder name to base path */
+    path /= STORAGE_FOLDER_NAME;
 
     return path;
 }

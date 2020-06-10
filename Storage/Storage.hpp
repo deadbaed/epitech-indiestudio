@@ -13,13 +13,17 @@
 
 namespace fs = std::filesystem;
 
+#define STORAGE_FOLDER_NAME "IndieStudio-storage"
+
 class Storage {
 public:
     Storage();
 
     ~Storage();
 
-    fs::path getBasePath() const;
+    fs::path constructBasePath();
+
+    const fs::path &getBasePath() const;
 
 private:
     fs::path BasePath;

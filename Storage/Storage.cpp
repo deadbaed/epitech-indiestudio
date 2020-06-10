@@ -69,6 +69,10 @@ fs::path Storage::constructBasePath() {
 
 #endif
 
+    /* If no path is defined, operating system not supported */
+    if (path.empty())
+        return path;
+
     /* Append storage folder name to base path */
     path /= STORAGE_FOLDER_NAME;
 

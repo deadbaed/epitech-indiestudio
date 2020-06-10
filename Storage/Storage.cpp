@@ -15,9 +15,9 @@
 #endif
 
 Storage::Storage() {
-    this->BasePath = constructBasePath();
+    BasePath = constructBasePath();
 
-    if (this->BasePath.empty())
+    if (BasePath.empty())
         abort();
 }
 
@@ -61,21 +61,13 @@ fs::path Storage::constructBasePath() {
 #if defined(STORAGE_RELEASE) && defined(__linux__)
     /* Linux implementation */
 
-    /* Attempt to get user's config folder
-     * according to the XDG Base Directory Specification:
+    /* Construct storage path with user's "HOME" folder
+     * following the XDG Base Directory Specification:
      * https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
      */
-    const char *xdg_config_home = std::getenv("XDG_CONFIG_HOME");
 
-    if (xdg_config_home == nullptr) {
-
-        /* If "XDG_CONFIG_HOME" does not exist
-         * construct config path with user's "HOME"
-         */
-
-        path = std::getenv("HOME");
-        path /= ".config";
-    }
+    path = std::getenv("HOME");
+    path /= ".config";
 
     path /= STORAGE_FOLDER_NAME;
 #endif

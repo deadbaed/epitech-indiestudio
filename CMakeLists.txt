@@ -36,6 +36,7 @@ add_subdirectory(Player)
 add_subdirectory(GameScene)
 add_subdirectory(Menu)
 add_subdirectory(Settings)
+add_subdirectory(Storage)
 
 # define sources to use
 set(SRCS Application/main.cpp)
@@ -53,6 +54,7 @@ target_link_libraries(${PROJECT_NAME} game_scene)
 target_link_libraries(${PROJECT_NAME} menu)
 target_link_libraries(${PROJECT_NAME} settings)
 target_link_libraries(${PROJECT_NAME} player)
+target_link_libraries(${PROJECT_NAME} storage)
 
 # define the external libraries to use
 target_link_libraries(${PROJECT_NAME} ${Irrlicht_LIBRARIES})

@@ -7,6 +7,7 @@
 
 #include "TestGameScene.hpp"
 #include "Player.hpp"
+#include "MapGenerator.hpp"
 
 TestGameScene::TestGameScene(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameScene(ctrl, name)
 {
@@ -33,11 +34,15 @@ void TestGameScene::Init(void)
     camera->setRotation(irr::core::vector3df(90, 180, 0));
     std::shared_ptr<Player> p = std::make_shared<Player>(_ctrl, "p1");
     std::shared_ptr<Player> p2 = std::make_shared<Player>(_ctrl, "p2");
+    std::shared_ptr<mapGenerator> map = std::make_shared<mapGenerator>(vector3df(0,0,0), 6, 10, 10);
+    map->generate(_ctrl, "../assets/floor.obj", 100);
+    map->generateWall(_ctrl, "../assets/wall_1.obj");
+    map->generateBorder(_ctrl, "../assets/wall_1.obj");
+    map->generateBlock(_ctrl, "../assets/wall_2.obj", 30);
     p->Init("../assets/player_1.obj");
     p2->Init("../assets/player_2.obj");
     p->SetPosition(irr::core::vector3df(0, 0, 0));
     p2->SetPosition(irr::core::vector3df(30, 0, 0));
-
     AddGameObject(p);
     AddGameObject(p2);
 }

@@ -27,6 +27,7 @@ void GameSceneManager::LoadScene(const std::string name)
             }
             _current_scene = i->get();
             _current_scene->Init();
+            _ctrl->_context.sceneName = _current_scene->GetId();
         }
     }
 }

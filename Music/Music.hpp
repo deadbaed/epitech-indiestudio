@@ -8,6 +8,7 @@
 #include <SFML/Audio.hpp>
 #include <string>
 #include "IrrlichtController.hpp"
+#include <memory>
 
 class Music {
     public:

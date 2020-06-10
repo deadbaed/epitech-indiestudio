@@ -18,6 +18,11 @@ Storage::Storage() {
 
     if (BasePath.empty())
         abort();
+
+    if (!fs::exists(BasePath)) {
+        fs::create_directories(BasePath);
+        std::cout << "Storage: " << "created folder " << BasePath << std::endl;
+    }
 }
 
 Storage::~Storage() {

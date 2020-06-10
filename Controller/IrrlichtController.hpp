@@ -26,7 +26,7 @@ class IrrlichtController {
         irr::video::IVideoDriver *_driver;
         irr::gui::IGUIEnvironment *_env;
         SAppContext _context;
-        IEventReceiver *_receiver;
+        MyEventReceiver *_receiver;
 };
 
 #endif /* !IRRLICHTCONTROLLER_HPP_ */

@@ -24,11 +24,13 @@ struct SAppContext {
 
 class MyEventReceiver : public IEventReceiver {
     public:
-        MyEventReceiver(SAppContext &context) : Context(context) {}
+        MyEventReceiver(SAppContext &context);
         virtual bool OnEvent(const SEvent &event);
+        virtual bool IsKeyDown(EKEY_CODE keyCode) const;
 
-    private:
+private:
         SAppContext &Context;
+        bool KeyIsDown[KEY_KEY_CODES_COUNT];
 };
 
 enum ButtonType {

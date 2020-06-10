@@ -6,6 +6,7 @@
 */
 
 #include "GameScene.hpp"
+#include <iostream>
 
 GameScene::GameScene(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : _id(name), _ctrl(ctrl)
 {
@@ -46,6 +47,7 @@ void GameScene::Update(void)
 {
     int idx = 0;
 
+    _ctrl->_driver->beginScene(true, true, SColor(100, 150, 150, 150));
     for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
         if (i->get()->GetStatus() == IGameObject::STATUS::DELETED)
             _obj_list.erase(i);

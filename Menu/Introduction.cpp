@@ -21,7 +21,7 @@ void Introduction::Init(void)
     this->_first_part = this->_ctrl->_driver->getTexture("../assets/first_part.jpg");
     this->_second_part = this->_ctrl->_driver->getTexture("../assets/second_part.jpg");
     this->_third_part = this->_ctrl->_driver->getTexture("../assets/third_part.jpg");
-    this->_fourth_part = this->_ctrl->_driver->getTexture("../assets/fourth_part_n.jpg");
+    this->_fourth_part = this->_ctrl->_driver->getTexture("../assets/fourth_part.jpg");
     this->start = std::chrono::steady_clock::now();
 }
 
@@ -37,7 +37,7 @@ void Introduction::Update(void)
             this->_logo = 2;
         if (this->elapsed_seconds.count() > 2.4)
             this->_logo = 3;
-        if (this->elapsed_seconds.count() > 3.2) {
+        if (this->elapsed_seconds.count() > 5) {
             this->_select = 1;
             this->_ctrl->_music->Play("../assets/music_intro.ogg");
         }

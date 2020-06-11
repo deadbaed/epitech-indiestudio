@@ -37,6 +37,20 @@ public:
         return true;
     }
 
+    template<typename T>
+    bool Save(const std::string &key, T *value) {
+        fs::path filepath = constructFileName(key);
+        std::ofstream outputFile(filepath);
+
+        if (!outputFile) {
+            std::cerr << "Storage: " << "could not write to file " << filepath << "." << std::endl;
+            return false;
+        }
+        outputFile << *value;
+        outputFile.close();
+        return true;
+    }
+
 private:
     fs::path BasePath;
 

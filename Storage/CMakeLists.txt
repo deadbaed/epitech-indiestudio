@@ -20,7 +20,6 @@ ENDIF (CMAKE_BUILD_TYPE STREQUAL Release)
 set(SRCS
         Storage.cpp Storage.hpp
         BasePath.cpp
-        LoadFile.cpp
         FileName.cpp)
 
 # define the binary output

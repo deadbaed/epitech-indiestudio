@@ -25,16 +25,15 @@ public:
 
     template<typename T>
     bool Load(const std::string &key, T *value) {
-        std::ifstream inputFile;
-        bool ret = LoadFile(key, &inputFile);
+        fs::path filepath = constructFileName(key);
+        std::ifstream inputFile(filepath);
 
-        if (!ret)
+        if (!inputFile) {
+            std::cerr << "Storage: " << "could not read from file " << filepath << "." << std::endl;
             return false;
-
+        }
         inputFile >> *value;
-
         inputFile.close();
-
         return true;
     }
 
@@ -46,8 +45,6 @@ private:
     fs::path constructBasePath();
 
     fs::path constructFileName(const std::string &name);
-
-    bool LoadFile(const std::string &FileName, std::ifstream *inputFile);
 };
 
 

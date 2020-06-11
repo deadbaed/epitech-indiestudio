@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
 # define sources to use
-set(SRCS Settings.cpp Settings.hpp)
+set(SRCS Settings.cpp Settings.hpp PauseSettings.cpp PauseSettings.hpp)
 
 # define the binary output
 add_library(${PROJECT_NAME} ${SRCS})

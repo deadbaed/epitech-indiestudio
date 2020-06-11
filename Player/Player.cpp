@@ -74,9 +74,9 @@ void Player::Update()
         else if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_S))
             nodePosition.X += SPEED * _frameDeltaTime;
         if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_Q))
-            nodePosition.Z += SPEED * _frameDeltaTime;
-        else if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_D))
             nodePosition.Z -= SPEED * _frameDeltaTime;
+        else if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_D))
+            nodePosition.Z += SPEED * _frameDeltaTime;
         this->setPosition(nodePosition);
         if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_A)) {
             this->_win = true;

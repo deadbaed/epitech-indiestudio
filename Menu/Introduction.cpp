@@ -13,27 +13,28 @@ Introduction::Introduction(const std::shared_ptr<IrrlichtController> &ctrl, cons
 
 void Introduction::Init(void)
 {
-    this->_previous = clock();
     this->_select = 0;
     this->_image_welcome = this->_ctrl->_driver->getTexture("../assets/back_intro_welcome.jpg");
     this->_image_space = this->_ctrl->_driver->getTexture("../assets/back_intro_space.jpg");
     this->_logo = this->_ctrl->_driver->getTexture("../assets/logo.jpg");
+    this->start = std::chrono::steady_clock::now();
 }
 
 void Introduction::Update(void)
 {
-    this->_now = clock();
+    this->end = std::chrono::steady_clock::now();
+    this->elapsed_seconds = end-start;
 
-    if (this->_now - this->_previous > 4000 && this->_select == 0) {
+    if (this->elapsed_seconds.count() > 3.0 && this->_select == 0) {
         this->_select = 1;
         this->_ctrl->_music->Play("../assets/music_intro.ogg");
     }
-    if (this->_now - this->_previous > 1500 && (this->_select == 1 || this->_select == 2)) {
+    if (this->elapsed_seconds.count() > 1.5 && (this->_select == 1 || this->_select == 2)) {
         if (this->_select == 1)
             this->_select = 2;
         else
             this->_select = 1;
-        this->_previous = clock();
+        this->start = std::chrono::steady_clock::now();
     }
     if (this->_ctrl->_receiver->IsKeyDown(KEY_SPACE))
         this->_ctrl->_context.sceneName = "menuScene";

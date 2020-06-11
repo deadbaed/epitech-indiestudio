@@ -8,6 +8,7 @@
 #include "GameScene.hpp"
 
 #include <ctime>
+#include <chrono>
 
 class Introduction : public GameScene {
     public:
@@ -21,8 +22,10 @@ class Introduction : public GameScene {
         video::ITexture* _image_space;
         video::ITexture* _logo;
         int _select;
-        clock_t _previous;
-        clock_t _now;
+        std::chrono::time_point<std::chrono::steady_clock> start;
+        std::chrono::time_point<std::chrono::steady_clock> end;
+        std::chrono::duration<double> elapsed_seconds;
+        unsigned long seconds;
 };
 
 

@@ -39,5 +39,6 @@ int main(void)
     {
         m.Update();
     }
+    c->SaveConfig();
     return 0;
 }

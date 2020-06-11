@@ -25,6 +25,7 @@ class IrrlichtController {
         void Init(irr::video::E_DRIVER_TYPE driver_type, int width, int length);
         ~IrrlichtController();
         bool isRunning(void);
+        void SaveConfig();
     public:
         irr::IrrlichtDevice* _device;
         irr::scene::ISceneManager *_scene_mgr;

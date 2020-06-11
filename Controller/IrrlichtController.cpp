@@ -64,3 +64,8 @@ float IrrlichtController::LoadSound() {
         new_sound = DEFAULT_SOUND;
     return new_sound;
 }
+
+void IrrlichtController::SaveConfig() {
+    config.Save("Music", &_context.volume_music);
+    config.Save("Sound", &_context.volume_sound);
+}

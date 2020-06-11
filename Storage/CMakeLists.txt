@@ -19,7 +19,9 @@ ENDIF (CMAKE_BUILD_TYPE STREQUAL Release)
 # define sources to use
 set(SRCS
         Storage.cpp Storage.hpp
-        BasePath.cpp)
+        BasePath.cpp
+        LoadFile.cpp
+        FileName.cpp)
 
 # define the binary output
 add_library(${PROJECT_NAME} ${SRCS})

@@ -6,11 +6,11 @@
 */
 
 #include "GameObject.hpp"
-#include "GameScene.hpp"
-#include "GameSceneManager.hpp"
+#include "AScene.hpp"
+#include "SceneManager.hpp"
 #include "Player.hpp"
 #include "Introduction.hpp"
-#include "TestGameScene.hpp"
+#include "GameScene.hpp"
 #include "Menu.hpp"
 #include "Settings.hpp"
 #include "ChoosePlayers.hpp"
@@ -21,14 +21,14 @@ int main(void)
     std::shared_ptr<IrrlichtController> c = std::make_shared<IrrlichtController>();
     c->Init(irr::video::E_DRIVER_TYPE::EDT_OPENGL, WIDTH, HEIGHT);
 
-    std::shared_ptr<TestGameScene> testScene = std::make_shared<TestGameScene>(c, "gameScene");
+    std::shared_ptr<GameScene> testScene = std::make_shared<GameScene>(c, "gameScene");
     std::shared_ptr<Menu> menu = std::make_shared<Menu>(c, "menuScene");
     std::shared_ptr<Settings> set = std::make_shared<Settings>(c, "settingsScene");
     std::shared_ptr<ChoosePlayers> chooseP = std::make_shared<ChoosePlayers>(c, "chooseplayersScene");
     std::shared_ptr<Introduction> intro = std::make_shared<Introduction>(c, "introScene");
 
 
-    GameSceneManager m(c);
+    SceneManager m(c);
     m.AddScene(testScene);
     m.AddScene(menu);
     m.AddScene(set);

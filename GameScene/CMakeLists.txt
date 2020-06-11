@@ -8,11 +8,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
 # define sources to use
-set(SRCS IGameScene.hpp
-        GameScene.cpp GameScene.hpp
-        GameSceneManager.cpp GameSceneManager.hpp
-        TestGameScene.cpp TestGameScene.hpp
-        TestGameSceneTest.cpp TestGameSceneTest.hpp)
+set(SRCS IScene.hpp
+        AScene.cpp AScene.hpp
+        SceneManager.cpp SceneManager.hpp
+        GameScene.cpp GameScene.hpp)
 
 # define the binary output
 add_library(${PROJECT_NAME} ${SRCS})

@@ -2,20 +2,20 @@
 ** EPITECH PROJECT, 2020
 ** epitech-indiestudio
 ** File description:
-** IGameScene
+** IScene
 */
 
-#ifndef IGAMESCENE_HPP_
-#define IGAMESCENE_HPP_
+#ifndef ISCENE_HPP_
+#define ISCENE_HPP_
 
 #include <string>
 #include <memory>
 #include "IGameObject.hpp"
 #include "GameObject.hpp"
 
-class IGameScene {
+class IScene {
     public:
-        virtual ~IGameScene() = default;
+        virtual ~IScene() = default;
         virtual void Init(void) = 0;
         virtual void Update(void) = 0;
         virtual void Render(void) = 0;
@@ -29,4 +29,4 @@ class IGameScene {
     private:
 };
 
-#endif /* !IGAMESCENE_HPP_ */
+#endif /* !ISCENE_HPP_ */

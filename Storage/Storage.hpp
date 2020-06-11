@@ -23,7 +23,7 @@ public:
 
     fs::path constructBasePath();
 
-    const fs::path &getBasePath() const;
+    [[nodiscard]] const fs::path &getBasePath() const;
 
 private:
     fs::path BasePath;

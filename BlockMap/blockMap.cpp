@@ -7,7 +7,7 @@
 
 #include "blockMap.hpp"
 
-BlockMap::BlockMap(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameObject(ctrl, (irr::core::vector3df) {5, 5, 5}, name)
+BlockMap::BlockMap(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameObject(ctrl, (irr::core::vector3df) (5, 5, 5), name)
 {
     _position = irr::core::vector3df(0, 0, 0);
     _rotation = irr::core::vector3df(0, 0, 0);

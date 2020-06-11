@@ -7,14 +7,14 @@
 
 #include "Player.hpp"
 
-Player::Player(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameObject(ctrl, (irr::core::vector3df) {5, 5, 5}, name)
+Player::Player(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameObject(ctrl, (irr::core::vector3df) (5, 5, 5), name)
 {
     _position = irr::core::vector3df(0, 0, 0);
     _rotation = irr::core::vector3df(0, 0, 0);
     _node = NULL;
 }
 
-Player::Player(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name, BomberType type, KeyConfig conf): GameObject(ctrl, (irr::core::vector3df) {5, 5, 5}, name)
+Player::Player(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name, BomberType type, KeyConfig conf): GameObject(ctrl, (irr::core::vector3df) (5, 5, 5), name)
 {
     _position = irr::core::vector3df(0, 0, 0);
     _rotation = irr::core::vector3df(0, 0, 0);

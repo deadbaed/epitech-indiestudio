@@ -54,7 +54,7 @@ void AScene::Update(void)
     }
 
     for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
-        i->get()->Update();
+        i->get()->Update(_obj_list);
         irr::core::vector3df v = i->get()->GetPosition();
         std::string name = i->get()->GetId();
     }

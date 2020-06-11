@@ -101,14 +101,16 @@ IF(WIN32)
     install(FILES ${DLL_FILES} DESTINATION bin)
     install(DIRECTORY ${ASSETS_PATH}/ DESTINATION assets)
 
+    set(PROJECT_PRETTY_NAME "IndieStudio")
+
     # Configuration
-    set(CPACK_PACKAGE_NAME "IndieStudio")
+    set(CPACK_PACKAGE_NAME ${PROJECT_PRETTY_NAME})
     set(CPACK_PACKAGE_VENDOR "Club Baby Pro")
-    set(CPACK_PACKAGE_VERSION "1.0.0")
     set(CPACK_PACKAGE_VERSION_MAJOR "1")
     set(CPACK_PACKAGE_VERSION_MINOR "0")
     set(CPACK_PACKAGE_VERSION_PATCH "0")
     set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_LIST_DIR}/CPack/license.txt)
+    set(CPACK_NSIS_DISPLAY_NAME ${PROJECT_PRETTY_NAME})
 
     # Windows Start Menu shortcut to launch the game
     set(CPACK_NSIS_CREATE_ICONS_EXTRA

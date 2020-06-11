@@ -1,9 +1,9 @@
 //
-// Created by Pierre on 06/06/2020.
+// Created by peter on 11/06/2020.
 //
 
-#ifndef BOMBERMAN_SETTINGS_HPP
-#define BOMBERMAN_SETTINGS_HPP
+#ifndef BOMBERMAN_PAUSESETTINGS_HPP
+#define BOMBERMAN_PAUSESETTINGS_HPP
 
 #include "Button.hpp"
 #include "GameScene.hpp"
@@ -17,9 +17,9 @@ using namespace video;
 using namespace io;
 using namespace gui;
 
-class Settings : public GameScene {
+class PauseSettings : public GameScene {
     public:
-        Settings(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
+        PauseSettings(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
         void Init(void);
         void Update(void);
         void Render(void);
@@ -33,5 +33,4 @@ class Settings : public GameScene {
         std::unique_ptr<Sound> _buttonSound;
 };
 
-
-#endif //BOMBERMAN_SETTINGS_HPP
+#endif //BOMBERMAN_PAUSESETTINGS_HPP

@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
 # define sources to use
-set(SRCS Menu.cpp Menu.hpp ChoosePlayers.cpp ChoosePlayers.hpp Introduction.cpp Introduction.hpp)
+set(SRCS Menu.cpp Menu.hpp ChoosePlayers.cpp ChoosePlayers.hpp Introduction.cpp Introduction.hpp PauseMenu.cpp PauseMenu.hpp)
 
 # define the binary output
 add_library(${PROJECT_NAME} ${SRCS})

@@ -58,6 +58,8 @@ void GameScene::Update(void)
         irr::core::vector3df v = i->get()->GetPosition();
         std::string name = i->get()->GetId();
     }
+    if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_ESCAPE))
+        this->_ctrl->_context.sceneName = "pauseScene";
 }
 
 void GameScene::Render(void)

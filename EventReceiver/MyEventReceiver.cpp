@@ -47,6 +47,18 @@ bool MyEventReceiver::OnEvent(const SEvent &event) {
                     case GUI_ID_MINUS_BUTTON_SOUND:
                         Context.down_volume_sound = true;
                         return true;
+                    case GUI_ID_RESUME_BUTTON_PAUSED:
+                        Context.sceneName = "gameScene";
+                        return true;
+                    case GUI_ID_EXIT_BUTTON_PAUSED:
+                        Context.sceneName = "menuScene";
+                        return true;
+                    case GUI_ID_OPTION_BUTTON_PAUSED:
+                        Context.sceneName = "pauseSettingsScene";
+                        return true;
+                    case GUI_ID_BACK_BUTTON_SETTINGS:
+                        Context.sceneName = "pauseScene";
+                        return true;
                     default:
                         return false;
                 }

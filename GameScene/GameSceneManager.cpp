@@ -22,8 +22,10 @@ void GameSceneManager::LoadScene(const std::string name)
     for (auto i = _scene_list.begin(); i != _scene_list.end(); i++) {
         if (i->get()->GetId() == name) {
             if (_current_scene) {
-                if (_ctrl->_scene_mgr->getSceneLoaderCount() > 0)
+                if (_ctrl->_scene_mgr->getSceneLoaderCount() > 0) {
                     _ctrl->_scene_mgr->clear();
+                    _ctrl->_env->clear();
+                }
             }
             _current_scene = i->get();
             _current_scene->Init();

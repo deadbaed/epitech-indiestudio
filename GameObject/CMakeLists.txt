@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
 # define sources to use
-set(SRCS IGameObject.hpp GameObject.cpp GameObject.hpp)
+set(SRCS IGameObject.hpp GameObject.cpp GameObject.hpp Collider.cpp Collider.hpp)
 
 # define the binary output
 add_library(${PROJECT_NAME} ${SRCS})

@@ -11,15 +11,17 @@
 #include <irrlicht.h>
 #include <string>
 #include <memory>
+#include <vector>
 #include "IGameObject.hpp"
 #include "IrrlichtController.hpp"
+#include "Collider.hpp"
 
 class GameObject : public IGameObject {
     public:
-        GameObject(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
+        GameObject(const std::shared_ptr<IrrlichtController> &ctrl, const irr::core::vector3df dimension, const std::string name);
         ~GameObject();
         virtual void Init(void);
-        virtual void Update(void);
+        virtual void Update(std::vector<std::shared_ptr<IGameObject>> obj);
         virtual void Render(void);
         virtual void Delete(void);
         virtual GameObject &operator=(const GameObject &obj);
@@ -28,6 +30,7 @@ class GameObject : public IGameObject {
         virtual irr::core::vector3df GetPosition(void);
         virtual void SetRotation(irr::core::vector3df position);
         virtual irr::core::vector3df GetRotation(void);
+        virtual Collider *GetCollider(void);
         virtual const std::string &GetId(void);
         virtual IGameObject::STATUS &GetStatus(void);
     protected:
@@ -36,6 +39,7 @@ class GameObject : public IGameObject {
         const std::string _id;
         const std::shared_ptr<IrrlichtController> &_ctrl;
         IGameObject::STATUS _status;
+        std::shared_ptr<Collider> _collider;
 };
 
 #endif /* !GAMEOBJECT_HPP_ */

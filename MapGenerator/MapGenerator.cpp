@@ -47,10 +47,11 @@ std::shared_ptr<GameObject> mapGenerator::setMesh(const std::shared_ptr<Irrlicht
     std::shared_ptr<BlockMap> node = std::make_shared<BlockMap>(ctrl, name);
     node->Init(mesh);
     node->SetPosition(pos);
+    //node->GetCollider()->SetPosition(pos);
     return node;
 }
 
-std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBorder(const std::shared_ptr<IrrlichtController> &ctrl, const std::string &pathMesh)
+std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBorder(const std::shared_ptr<IrrlichtController> &ctrl, std::vector<std::shared_ptr<IGameObject>> &list, const std::string &pathMesh)
 {
     float *axe = (float *) ::operator new (sizeof(float) * 3);
     _pos.getAs3Values(axe);
@@ -63,14 +64,13 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBorder(const std:
     for (unsigned int i = 0; i < this->_width + 2; i++) {
         if (i == 0 || (i + 1 == this->_width + 2)) {
             for (unsigned int j = 0; j < this->_lenght + 2; j++) {
-                mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "border", mesh));
+                list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "border", mesh));
                 if (j + 1 < this->_lenght + 2)
                     x += this->_spacing;
             }
         } else {
-            mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "border", mesh));
-            mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x + (this->_spacing * (this->_lenght + 1)), y, z), "border", mesh));
-        }
+            list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "border", mesh));
+            list.push_back(this->setMesh(ctrl, vector3df(x + (this->_spacing * (this->_lenght + 1)), y, z), "border", mesh));        }
         if (i + 1 < this->_width + 2)
             z += this->_spacing;
         x = axe[0] - this->_spacing;
@@ -92,7 +92,7 @@ int mapGenerator::checkCorner(unsigned int i, unsigned int j)
     return 0;
 }
 
-std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBlock(const std::shared_ptr<IrrlichtController> &ctrl, const std::string &pathMesh, int prob)
+std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBlock(const std::shared_ptr<IrrlichtController> &ctrl, std::vector<std::shared_ptr<IGameObject>> &list, const std::string &pathMesh, int prob)
 {
     std::random_device dev;
     std::mt19937 _prob(dev());
@@ -115,7 +115,8 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBlock(const std::
                     continue;
                 }
                 if (j % 2 == 0 && distribution(_prob) <= prob)
-                    mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
+                    list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
+                    //mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
                 if (j + 1 < this->_lenght)
                     x += this->_spacing;
             }
@@ -127,7 +128,9 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBlock(const std::
                     continue;
                 }
                 if (distribution(_prob) <= prob)
-                    mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
+                    list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
+
+                    //mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
                 if (j + 1 < this->_lenght)
                     x += this->_spacing;
             }
@@ -141,7 +144,7 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBlock(const std::
     return mapped_mesh;
 }
 
-std::vector<std::shared_ptr<GameObject>> mapGenerator::generateWall(const std::shared_ptr<IrrlichtController> &ctrl, const std::string &pathMesh)
+std::vector<std::shared_ptr<GameObject>> mapGenerator::generateWall(const std::shared_ptr<IrrlichtController> &ctrl, std::vector<std::shared_ptr<IGameObject>> &list, const std::string &pathMesh)
 {
     float *axe = (float *) ::operator new (sizeof(float) * 3);
     _pos.getAs3Values(axe);
@@ -154,8 +157,11 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateWall(const std::s
     for (unsigned int i = 0; i < this->_width; i++) {
         if (i % 2 != 0)
             for (unsigned int j = 0; j < this->_lenght; j++) {
-                if (j % 2 != 0)
-                    mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "wall", mesh));
+                if (j % 2 != 0) {
+                    list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "wall", mesh));
+                    //printf("push\n");
+                }
+                //mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "wall", mesh));
                 if (j + 1 < this->_lenght)
                     x += this->_spacing;
             }
@@ -169,7 +175,7 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateWall(const std::s
     return mapped_mesh;
 }
 
-std::vector<std::shared_ptr<GameObject>> mapGenerator::generate(const std::shared_ptr<IrrlichtController> &ctrl, const std::string &pathMesh, int prob)
+std::vector<std::shared_ptr<GameObject>> mapGenerator::generate(const std::shared_ptr<IrrlichtController> &ctrl, std::vector<std::shared_ptr<IGameObject>> &list, const std::string &pathMesh, int prob)
 {
     std::random_device dev;
     std::mt19937 _prob(dev());
@@ -185,7 +191,8 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generate(const std::share
     for (unsigned int i = 0; i < this->_width; i++) {
         for (unsigned int j = 0; j < this->_lenght; j++) {
             if (distribution(_prob) <= prob)
-                mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "ground", mesh));
+                list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "ground", mesh));
+            //    mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "ground", mesh));
             if (j + 1 < this->_lenght)
                 x += this->_spacing;
         }

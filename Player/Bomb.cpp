@@ -7,7 +7,7 @@
 
 #include "Bomb.hpp"
 
-Bomb::Bomb(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameObject(ctrl, name)
+Bomb::Bomb(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameObject(ctrl, (irr::core::vector3df) {1, 1, 1}, name)
 {
     _position = irr::core::vector3df(0, 0, 0);
     _rotation = irr::core::vector3df(0, 0, 0);
@@ -23,8 +23,9 @@ void Bomb::Init()
     }
 }
 
-void Bomb::Update()
+void Bomb::Update(std::vector<std::shared_ptr<IGameObject>> obj)
 {
+
 }
 
 void Bomb::Delete()
@@ -36,4 +37,5 @@ void Bomb::setPosition(irr::core::vector3df const position)
 {
     this->SetPosition(position);
     _node->setPosition((position));
+    _collider->SetPosition(position);
 }

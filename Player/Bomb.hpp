@@ -19,11 +19,11 @@ public:
     Bomb(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
     ~Bomb() = default;
     void Init();
-    void Update();
+    void Update(std::vector<std::shared_ptr<IGameObject>> obj);
     void Delete();
 private:
     void setPosition(irr::core::vector3df const position);
     irr::scene::IAnimatedMeshSceneNode *_node;
 };
 
-#endif /* !BOMB_HPP */d
+#endif /* !BOMB_HPP */

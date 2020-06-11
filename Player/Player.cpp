@@ -7,14 +7,14 @@
 
 #include "Player.hpp"
 
-Player::Player(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameObject(ctrl, name)
+Player::Player(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameObject(ctrl, (irr::core::vector3df) {5, 5, 5}, name)
 {
     _position = irr::core::vector3df(0, 0, 0);
     _rotation = irr::core::vector3df(0, 0, 0);
     _node = NULL;
 }
 
-Player::Player(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name, BomberType type, KeyConfig conf): GameObject(ctrl, name)
+Player::Player(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name, BomberType type, KeyConfig conf): GameObject(ctrl, (irr::core::vector3df) {5, 5, 5}, name)
 {
     _position = irr::core::vector3df(0, 0, 0);
     _rotation = irr::core::vector3df(0, 0, 0);
@@ -60,11 +60,29 @@ void Player::Init(const std::string texture)
     this->_old = this->_ctrl->_device->getTimer()->getTime();
 }
 
-void Player::Update()
+void Player::Update(std::vector<std::shared_ptr<IGameObject>> obj)
 {
     /* Movements */
     _frameDeltaTime = this->GetTime();
     this->_old = this->_now;
+
+    //////////////////////////////////////////////////////////
+
+    //irr::core::vector3df v = GetCollider()->_position;
+    //printf("-->%0.2f %0.2f %0.2f\n", v.X, v.Y, v.Z);
+    for (auto i = obj.cbegin(); i != obj.cend(); i++) {
+        if (i->get()->GetId() != _id && i->get()->GetId().compare("p1") != 0 && i->get()->GetId().compare("p2") != 0 && i->get()->GetId().compare("ground") != 0) {
+            if (GetCollider()->Collide(*i->get()->GetCollider())) {
+                //printf("%s\n", i->get()->GetId().c_str());
+
+                //////////////
+                // COLISION //
+                //////////////
+            }
+        }
+    }
+
+    /////////////////////////////////////////////////////////
 
     if (this->_conf == KeyConfig::LEFT) {
         core::vector3df nodePosition = this->GetPosition();
@@ -108,6 +126,7 @@ void Player::Update()
             this->_node->setCurrentFrame(POSE_BEGIN);
         }
     }
+    _collider->SetPosition(this->GetPosition());
     /*
     if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_SPACE)) {
         this->_dead = true;
@@ -168,4 +187,5 @@ void Player::setPosition(irr::core::vector3df const position)
 {
     this->SetPosition(position);
     _node->setPosition((position));
+    _collider->SetPosition(position);
 }

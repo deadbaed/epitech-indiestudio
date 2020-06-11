@@ -11,6 +11,7 @@
 #include <iostream>
 #include "GameObject.hpp"
 #include "MyEventReceiver.hpp"
+#include "Collider.hpp"
 
 /* Timing for animations */
 #define BEGIN       0
@@ -51,7 +52,7 @@ class Player : public GameObject {
         ~Player() = default;
         void Init();
         void Init(const std::string texture);
-        void Update();
+        void Update(std::vector<std::shared_ptr<IGameObject>> obj);
         void Delete();
     private:
         void animationWin(void);
@@ -71,6 +72,7 @@ class Player : public GameObject {
         bool _win;
         bool _pose;
         bool _dead;
+        //std::shared_ptr<Collider> _collider;
 };
 
 #endif /* !PLAYER_HPP_ */

@@ -25,7 +25,10 @@ void IrrlichtController::Init(irr::video::E_DRIVER_TYPE driver_type, int width, 
     _context.sceneName = "";
     _context.down_volume = false;
     _context.up_volume = false;
-    _context.volume = 40; //à charger avec le fichier Save
+    _context.down_volume_sound = false;
+    _context.up_volume_sound = false;
+    _context.volume_music = 20; //à charger avec le fichier Save
+    _context.volume_sound = 40; //à charger avec le fichier Save
     this->_music = std::make_shared<Music>(_context);
     this->_receiver = new MyEventReceiver(_context);
 

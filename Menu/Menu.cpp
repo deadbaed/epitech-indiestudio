@@ -15,13 +15,17 @@ void Menu::Init(void)
     this->_buttonPlay = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(427, HEIGHT), vector2d<int>(427, 0), GUI_ID_PLAY_BUTTON, "../assets/middle_grey_button.jpg", "../assets/middle_button.jpg");
     this->_buttonExit = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(427, HEIGHT), vector2d<int>(854, 0), GUI_ID_EXIT_BUTTON, "../assets/right_grey_button.jpg", "../assets/right_button.jpg");
     this->_ctrl->_music->Play("../assets/menu_music.ogg");
+    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, "../assets/sound_button.wav");
 }
 
 void Menu::Update(void)
 {
-    this->_buttonPlay->updateButton(this->_ctrl->_context);
-    this->_buttonSettings->updateButton(this->_ctrl->_context);
-    this->_buttonExit->updateButton(this->_ctrl->_context);
+    if (this->_buttonPlay->updateButton(this->_ctrl->_context) == 1)
+        this->_buttonSound->Play();
+    if (this->_buttonSettings->updateButton(this->_ctrl->_context) == 1)
+        this->_buttonSound->Play();
+    if (this->_buttonExit->updateButton(this->_ctrl->_context) == 1)
+        this->_buttonSound->Play();
 }
 
 void Menu::Render(void)

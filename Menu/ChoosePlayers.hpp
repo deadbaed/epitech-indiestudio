@@ -7,6 +7,7 @@
 
 #include "Button.hpp"
 #include "GameScene.hpp"
+#include "Sound.hpp"
 
 class ChoosePlayers : public GameScene {
     public:
@@ -19,6 +20,7 @@ class ChoosePlayers : public GameScene {
         std::unique_ptr<Button> _buttonOnePlayer;
         std::unique_ptr<Button> _buttonBack;
         std::unique_ptr<Button> _buttonTwoPlayers;
+        std::unique_ptr<Sound> _buttonSound;
 };
 
 

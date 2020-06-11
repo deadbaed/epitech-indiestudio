@@ -20,9 +20,12 @@ struct SAppContext {
     core::position2di Position;
     bool settings;
     std::string sceneName;
-    float volume;
+    float volume_music;
+    float volume_sound;
     bool up_volume;
     bool down_volume;
+    bool up_volume_sound;
+    bool down_volume_sound;
 };
 
 class MyEventReceiver : public IEventReceiver {
@@ -42,6 +45,8 @@ enum ButtonType {
     GUI_ID_EXIT_BUTTON,
     GUI_ID_PLUS_BUTTON,
     GUI_ID_MINUS_BUTTON,
+    GUI_ID_PLUS_BUTTON_SOUND,
+    GUI_ID_MINUS_BUTTON_SOUND,
     GUI_ID_BACK_BUTTON,
     GUI_ID_ONE_PLAYER_BUTTON,
     GUI_ID_TWO_PLAYERS_BUTTON

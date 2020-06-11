@@ -12,16 +12,26 @@ Settings::Settings(const std::shared_ptr<IrrlichtController> &ctrl, const std::s
 void Settings::Init(void)
 {
     this->_background = this->_ctrl->_driver->getTexture(("../assets/fond_settings.jpg"));
-    this->_buttonPlus = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 4) + 90, (HEIGHT / 3) + 100), GUI_ID_PLUS_BUTTON, "../assets/volume_up.jpg", "../assets/volume_up_big.jpg");
-    this->_buttonMinus = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 4) - 100, (HEIGHT / 3) + 100), GUI_ID_MINUS_BUTTON, "../assets/volume_down.jpg", "../assets/volume_down_big.jpg");
+    this->_buttonPlus = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 4) + 70, (HEIGHT / 3) + 150), GUI_ID_PLUS_BUTTON, "../assets/volume_up.jpg", "../assets/volume_up_big.jpg");
+    this->_buttonMinus = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 4) - 130, (HEIGHT / 3) + 150), GUI_ID_MINUS_BUTTON, "../assets/volume_down.jpg", "../assets/volume_down_big.jpg");
+    this->_buttonPlusSound = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 4) + 70, (HEIGHT / 3) + 350), GUI_ID_PLUS_BUTTON_SOUND, "../assets/volume_up.jpg", "../assets/volume_up_big.jpg");
+    this->_buttonMinusSound = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 4) - 130, (HEIGHT / 3) + 350), GUI_ID_MINUS_BUTTON_SOUND, "../assets/volume_down.jpg", "../assets/volume_down_big.jpg");
     this->_buttonBack = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(1280, 100), vector2d<int>(0, 0), GUI_ID_BACK_BUTTON, "../assets/home_p.jpg", "../assets/home_fonce.jpg");
+    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, "../assets/sound_button.wav");
 }
 
 void Settings::Update(void)
 {
-    this->_buttonBack->updateButton(this->_ctrl->_context);
-    this->_buttonPlus->updateButton(this->_ctrl->_context);
-    this->_buttonMinus->updateButton(this->_ctrl->_context);
+    if (this->_buttonBack->updateButton(this->_ctrl->_context))
+        this->_buttonSound->Play();
+    if (this->_buttonPlus->updateButton(this->_ctrl->_context))
+        this->_buttonSound->Play();
+    if (this->_buttonMinus->updateButton(this->_ctrl->_context))
+        this->_buttonSound->Play();
+    if (this->_buttonPlusSound->updateButton(this->_ctrl->_context))
+        this->_buttonSound->Play();
+    if (this->_buttonMinusSound->updateButton(this->_ctrl->_context))
+        this->_buttonSound->Play();
 }
 
 void Settings::Render(void)

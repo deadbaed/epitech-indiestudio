@@ -18,21 +18,30 @@ int Music::Play(std::string filepath)
         return -1;
     this->_path_music = filepath;
     this->_music.play();
-    this->_music.setVolume(this->_context.volume);
+    this->_music.setVolume(this->_context.volume_music);
     return (0);
 }
 
 void Music::Update(void)
 {
-    if (this->_context.volume < 100 && this->_context.up_volume) {
-        this->_context.volume += 5;
+    if (this->_context.volume_music < 100 && this->_context.up_volume) {
+        this->_context.volume_music += 5;
         this->_context.up_volume = false;
     }
-    if (this->_context.volume > 0 && this->_context.down_volume) {
-        this->_context.volume -= 5;
+    if (this->_context.volume_music > 0 && this->_context.down_volume) {
+        this->_context.volume_music -= 5;
         this->_context.down_volume = false;
     }
-    this->_music.setVolume(this->_context.volume);
+    this->_music.setVolume(this->_context.volume_music);
+
+    if (this->_context.volume_sound < 100 && this->_context.up_volume_sound) {
+        this->_context.volume_sound += 5;
+        this->_context.up_volume_sound = false;
+    }
+    if (this->_context.volume_sound > 0 && this->_context.down_volume_sound) {
+        this->_context.volume_sound -= 5;
+        this->_context.down_volume_sound = false;
+    }
 }
 
 void Music::Stop(void)
@@ -42,5 +51,5 @@ void Music::Stop(void)
 
 float Music::getVolume(void)
 {
-    return this->_context.volume;
+    return this->_context.volume_music;
 }

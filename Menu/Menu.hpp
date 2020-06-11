@@ -7,6 +7,7 @@
 
 #include "GameScene.hpp"
 #include "Button.hpp"
+#include "Sound.hpp"
 
 class Menu : public GameScene {
     public:
@@ -19,8 +20,7 @@ class Menu : public GameScene {
         std::unique_ptr<Button> _buttonSettings;
         std::unique_ptr<Button> _buttonPlay;
         std::unique_ptr<Button> _buttonExit;
-
-
+        std::unique_ptr<Sound> _buttonSound;
 };
 
 

@@ -41,6 +41,12 @@ bool MyEventReceiver::OnEvent(const SEvent &event) {
                     case GUI_ID_MINUS_BUTTON:
                         Context.down_volume = true;
                         return true;
+                    case GUI_ID_PLUS_BUTTON_SOUND:
+                        Context.up_volume_sound = true;
+                        return true;
+                    case GUI_ID_MINUS_BUTTON_SOUND:
+                        Context.down_volume_sound = true;
+                        return true;
                     default:
                         return false;
                 }

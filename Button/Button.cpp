@@ -48,6 +48,7 @@ int Button::updateButton(SAppContext context) {
     if (this->_states == 1 && this->_lastStates == 0) {
         this->_button->setImage(this->_textureButtonOver);
         this->_lastStates = 1;
+        return 1;
     }
     return 0;
 }

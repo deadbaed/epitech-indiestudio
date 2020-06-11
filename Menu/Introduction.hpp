@@ -20,8 +20,14 @@ class Introduction : public GameScene {
     private:
         video::ITexture* _image_welcome;
         video::ITexture* _image_space;
-        video::ITexture* _logo;
+//        video::ITexture* _logo;
+        video::ITexture* _first_part;
+        video::ITexture* _second_part;
+        video::ITexture* _third_part;
+        video::ITexture* _fourth_part;
+
         int _select;
+        int _logo;
         std::chrono::time_point<std::chrono::steady_clock> start;
         std::chrono::time_point<std::chrono::steady_clock> end;
         std::chrono::duration<double> elapsed_seconds;

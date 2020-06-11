@@ -27,8 +27,8 @@ void IrrlichtController::Init(irr::video::E_DRIVER_TYPE driver_type, int width, 
     _context.up_volume = false;
     _context.down_volume_sound = false;
     _context.up_volume_sound = false;
-    _context.volume_music = 20; //à charger avec le fichier Save
-    _context.volume_sound = 40; //à charger avec le fichier Save
+    _context.volume_music = LoadMusic();
+    _context.volume_sound = LoadSound();
     this->_music = std::make_shared<Music>(_context);
     this->_receiver = new MyEventReceiver(_context);
 
@@ -43,4 +43,24 @@ bool IrrlichtController::isRunning(void)
 IrrlichtController::~IrrlichtController()
 {
 
+}
+
+float IrrlichtController::LoadMusic() {
+    float new_music;
+
+    bool ret = config.Load("Music", &new_music);
+
+    if (!ret)
+        new_music = DEFAULT_MUSIC;
+    return new_music;
+}
+
+float IrrlichtController::LoadSound() {
+    float new_sound;
+
+    bool ret = config.Load("Sound", &new_sound);
+
+    if (!ret)
+        new_sound = DEFAULT_SOUND;
+    return new_sound;
 }

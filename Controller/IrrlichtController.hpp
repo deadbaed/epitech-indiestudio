@@ -10,10 +10,14 @@
 
 #include <irrlicht.h>
 #include "Music.hpp"
+#include "Storage.hpp"
 #include <memory>
 
 #define WIDTH 1280
 #define HEIGHT 720
+
+#define DEFAULT_MUSIC 20
+#define DEFAULT_SOUND 40
 
 class IrrlichtController {
     public:
@@ -30,6 +34,10 @@ class IrrlichtController {
         MyEventReceiver *_receiver;
         std::shared_ptr<Music> _music;
         float _volume;
+    private:
+        Storage config;
+        float LoadMusic();
+        float LoadSound();
 };
 
 #endif /* !IRRLICHTCONTROLLER_HPP_ */

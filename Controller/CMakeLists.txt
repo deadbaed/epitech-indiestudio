@@ -19,3 +19,4 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 # define the external libraries to use
 target_link_libraries(${PROJECT_NAME} event_receiver)
 target_link_libraries(${PROJECT_NAME} music)
+target_link_libraries(${PROJECT_NAME} storage)

@@ -41,7 +41,7 @@ add_subdirectory(Settings)
 add_subdirectory(Storage)
 
 # define sources to use
-set(SRCS Application/main.cpp)
+set(SRCS Application/main.cpp CPack/win32.rc)
 
 # define the binary output
 add_executable(${PROJECT_NAME} ${SRCS})

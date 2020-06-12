@@ -71,13 +71,13 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBorder(const std:
     for (unsigned int i = 0; i < this->_width; i++) {
         if (i == 0 || (i + 1 == this->_width)) {
             for (unsigned int j = 0; j < this->_lenght; j++) {
-                this->_meshes[i][j] = this->setMesh(ctrl, vector3df(x, y, z), "border", mesh);
+                this->_meshes[j][i] = this->setMesh(ctrl, vector3df(x, y, z), "border", mesh);
                 if (j + 1 < this->_lenght)
                     x += this->_spacing;
             }
         } else {
-            this->_meshes[i][0] = this->setMesh(ctrl, vector3df(x, y, z), "border", mesh);
-            this->_meshes[i][this->_lenght - 1] = this->setMesh(ctrl, vector3df(x + (this->_spacing * (this->_lenght - 1)), y, z), "border", mesh);
+            this->_meshes[0][i] = this->setMesh(ctrl, vector3df(x, y, z), "border", mesh);
+            this->_meshes[this->_lenght - 1][i] = this->setMesh(ctrl, vector3df(x + (this->_spacing * (this->_lenght - 1)), y, z), "border", mesh);
         }
         if (i + 1 < this->_width)
             z += this->_spacing;
@@ -123,7 +123,6 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBlock(const std::
                     continue;
                 }
                 if (j % 2 == 0 && distribution(_prob) <= prob) {
-                    std::cout << i << ':' << j << '\n';
                     this->_meshes[j + 1][i + 1] = this->setMesh(ctrl, vector3df(x, y, z), "block", mesh);
                 }
                     //list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
@@ -138,7 +137,6 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBlock(const std::
                     continue;
                 }
                 if (distribution(_prob) <= prob) {
-                    std::cout << i << ':' << j << '\n';
                     this->_meshes[j + 1][i + 1] = this->setMesh(ctrl, vector3df(x, y, z), "block", mesh);
                 }//mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
                 if (j + 1 < this->_lenght - 2)
@@ -164,13 +162,11 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateWall(const std::s
     IAnimatedMesh *mesh = ctrl->_scene_mgr->getMesh(pathMesh.c_str());
     std::vector<std::shared_ptr<GameObject>> mapped_mesh;
 
-    std::cout << "azerty" << '\n';
     for (unsigned int i = 0; i < this->_width - 2; i++) {
         if (i % 2 != 0)
             for (unsigned int j = 0; j < this->_lenght - 2; j++) {
                 if (j % 2 != 0) {
-                    this->_meshes[i + 1][j + 1] = this->setMesh(ctrl, vector3df(x, y, z), "wall", mesh);
-                    std::cout << i << ':' << j << '\n';
+                    this->_meshes[j + 1][i + 1] = this->setMesh(ctrl, vector3df(x, y, z), "wall", mesh);
                     //printf("push\n");
                 }
                 //mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "wall", mesh));

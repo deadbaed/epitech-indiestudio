@@ -15,7 +15,7 @@ mapGenerator::mapGenerator()
     this->_lenght = 0;
 }
 
-mapGenerator::mapGenerator(const vector3df &pos, unsigned int spacing, unsigned int width, unsigned int lenght)
+mapGenerator::mapGenerator(const vector3df &pos, float spacing, unsigned int width, unsigned int lenght)
 {
     this->_pos = pos;
     this->_spacing = spacing;
@@ -92,7 +92,7 @@ int mapGenerator::checkCorner(unsigned int i, unsigned int j)
     return 0;
 }
 
-std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBlock(const std::shared_ptr<IrrlichtController> &ctrl, std::vector<std::shared_ptr<IGameObject>> &list, const std::string &pathMesh, int prob)
+std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBlock(const std::shared_ptr<IrrlichtController> &ctrl, std::vector<std::shared_ptr<IGameObject>> &list, const std::string &pathMesh, unsigned int prob)
 {
     std::random_device dev;
     std::mt19937 _prob(dev());
@@ -175,7 +175,7 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateWall(const std::s
     return mapped_mesh;
 }
 
-std::vector<std::shared_ptr<GameObject>> mapGenerator::generate(const std::shared_ptr<IrrlichtController> &ctrl, std::vector<std::shared_ptr<IGameObject>> &list, const std::string &pathMesh, int prob)
+std::vector<std::shared_ptr<GameObject>> mapGenerator::generate(const std::shared_ptr<IrrlichtController> &ctrl, std::vector<std::shared_ptr<IGameObject>> &list, const std::string &pathMesh, unsigned int prob)
 {
     std::random_device dev;
     std::mt19937 _prob(dev());

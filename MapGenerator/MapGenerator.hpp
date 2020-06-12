@@ -31,16 +31,16 @@ private:
     int checkCorner(unsigned int i, unsigned int j);
 public:
     mapGenerator();
-    mapGenerator(const vector3df &pos, unsigned int spacing, unsigned int width, unsigned int lenght);
+    mapGenerator(const vector3df &pos, float spacing, unsigned int width, unsigned int lenght);
     ~mapGenerator();
     void setPosition(const vector3df &pos);
     void setSize(unsigned int width, unsigned int lenght);
     void setSpacing(float spacing);
     std::vector<std::shared_ptr<GameObject>> generateBorder(const std::shared_ptr<IrrlichtController> &ctrl, std::vector<std::shared_ptr<IGameObject>> &list, const std::string &pathMesh);
-    std::vector<std::shared_ptr<GameObject>> generateBlock(const std::shared_ptr<IrrlichtController> &ctrl, std::vector<std::shared_ptr<IGameObject>> &list, const std::string &pathMesh, int prob);
+    std::vector<std::shared_ptr<GameObject>> generateBlock(const std::shared_ptr<IrrlichtController> &ctrl, std::vector<std::shared_ptr<IGameObject>> &list, const std::string &pathMesh, unsigned int prob);
     std::shared_ptr<GameObject> setMesh(const std::shared_ptr<IrrlichtController> &ctrl, vector3df pos, std::string name, IAnimatedMesh *mesh);
     std::vector<std::shared_ptr<GameObject>> generateWall(const std::shared_ptr<IrrlichtController> &ctrl, std::vector<std::shared_ptr<IGameObject>> &list, const std::string &pathMesh);
-    std::vector<std::shared_ptr<GameObject>> generate(const std::shared_ptr<IrrlichtController> &ctrl, std::vector<std::shared_ptr<IGameObject>> &list, const std::string &pathMesh, int prob);
+    std::vector<std::shared_ptr<GameObject>> generate(const std::shared_ptr<IrrlichtController> &ctrl, std::vector<std::shared_ptr<IGameObject>> &list, const std::string &pathMesh, unsigned int prob);
     //std::vector<IAnimatedMeshSceneNode *> generateBlock(ISceneManager* &smgr, IAnimatedMesh* &mesh, int prob);
     //std::vector<IAnimatedMeshSceneNode *> generateBorder(ISceneManager* &smgr, IAnimatedMesh* &mesh);
     //std::vector<IAnimatedMeshSceneNode *> generateWall(ISceneManager* &smgr, IAnimatedMesh* &mesh);

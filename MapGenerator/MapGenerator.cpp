@@ -21,6 +21,13 @@ mapGenerator::mapGenerator(const vector3df &pos, float spacing, unsigned int wid
     this->_spacing = spacing;
     this->_width = width;
     this->_lenght = lenght;
+
+    _meshes =  new (std::nothrow) GameObject **[width + 2];
+    for (unsigned int i = 0; i < width; i++) {
+        _meshes[i] = new (std::nothrow) GameObject *[lenght + 2];
+        for (unsigned int j = 0; j < lenght; j++)
+            _meshes[i][j] = NULL;
+    }
 }
 
 mapGenerator::~mapGenerator() {}
@@ -42,9 +49,9 @@ void mapGenerator::setSpacing(float spacing)
     this->_spacing = spacing;
 }
 
-std::shared_ptr<GameObject> mapGenerator::setMesh(const std::shared_ptr<IrrlichtController> &ctrl, vector3df pos, std::string name, IAnimatedMesh *mesh)
+GameObject *mapGenerator::setMesh(const std::shared_ptr<IrrlichtController> &ctrl, vector3df pos, std::string name, IAnimatedMesh *mesh)
 {
-    std::shared_ptr<BlockMap> node = std::make_shared<BlockMap>(ctrl, name);
+    BlockMap *node = new BlockMap (ctrl, name);
     node->Init(mesh);
     node->SetPosition(pos);
     //node->GetCollider()->SetPosition(pos);
@@ -61,17 +68,18 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBorder(const std:
     IAnimatedMesh *mesh = ctrl->_scene_mgr->getMesh(pathMesh.c_str());
     std::vector<std::shared_ptr<GameObject>> mapped_mesh;
 
-    for (unsigned int i = 0; i < this->_width + 2; i++) {
-        if (i == 0 || (i + 1 == this->_width + 2)) {
-            for (unsigned int j = 0; j < this->_lenght + 2; j++) {
-                list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "border", mesh));
-                if (j + 1 < this->_lenght + 2)
+    for (unsigned int i = 0; i < this->_width; i++) {
+        if (i == 0 || (i + 1 == this->_width)) {
+            for (unsigned int j = 0; j < this->_lenght; j++) {
+                this->_meshes[i][j] = this->setMesh(ctrl, vector3df(x, y, z), "border", mesh);
+                if (j + 1 < this->_lenght)
                     x += this->_spacing;
             }
         } else {
-            list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "border", mesh));
-            list.push_back(this->setMesh(ctrl, vector3df(x + (this->_spacing * (this->_lenght + 1)), y, z), "border", mesh));        }
-        if (i + 1 < this->_width + 2)
+            this->_meshes[i][0] = this->setMesh(ctrl, vector3df(x, y, z), "border", mesh);
+            this->_meshes[i][this->_lenght - 1] = this->setMesh(ctrl, vector3df(x + (this->_spacing * (this->_lenght - 1)), y, z), "border", mesh);
+        }
+        if (i + 1 < this->_width)
             z += this->_spacing;
         x = axe[0] - this->_spacing;
     }
@@ -81,13 +89,13 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBorder(const std:
 
 int mapGenerator::checkCorner(unsigned int i, unsigned int j)
 {
-    if ((j == 0 && i == 0) || (j == 1 && i == 0) || (j == 0 && i == 1))
+    if ((j == 1 && i == 1) || (j == 2 && i == 1) || (j == 1 && i == 2))
         return 1;
-    if ((j == 0 && (i + 1 == this->_width)) || (j == 1 && (i + 1 == this->_width)) || (j == 0 && (i + 2 == this->_width)))
+    if ((j == 1 && (i + 1 == this->_width - 1)) || (j == 2 && (i + 1 == this->_width - 1)) || (j == 1 && (i + 2 == this->_width - 1)))
         return 1;
-    if (((j + 1 == this->_lenght) && i == 0) || ((j + 2 == this->_lenght) && i == 0) || ((j + 1 == this->_lenght) && i == 1))
+    if (((j + 1 == this->_lenght - 1) && i == 1) || ((j + 2 == this->_lenght - 1) && i == 1) || ((j + 1 == this->_lenght - 1) && i == 2))
         return 1;
-    if (((j + 1 == this->_lenght) && (i + 1 == this->_width)) || ((j + 2 == this->_lenght) && (i + 1 == this->_width)) || ((j + 1 == this->_lenght) && (i + 2 == this->_width)))
+    if (((j + 1 == this->_lenght - 1) && (i + 1 == this->_width - 1)) || ((j + 2 == this->_lenght - 1) && (i + 1 == this->_width - 1)) || ((j + 1 == this->_lenght - 1) && (i + 2 == this->_width - 1)))
         return 1;
     return 0;
 }
@@ -106,36 +114,38 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBlock(const std::
     IAnimatedMesh *mesh = ctrl->_scene_mgr->getMesh(pathMesh.c_str());
     std::vector<std::shared_ptr<GameObject>> mapped_mesh;
 
-    for (unsigned int i = 0; i < this->_width; i++) {
+    for (unsigned int i = 0; i < this->_width - 2; i++) {
         if (i % 2 != 0) {
-            for (unsigned int j = 0; j < this->_lenght; j++) {
-                if (checkCorner(i, j) == 1) {
-                    if (j + 1 < this->_lenght)
+            for (unsigned int j = 0; j < this->_lenght - 2; j++) {
+                if (checkCorner(i + 1, j + 1) == 1) {
+                    if (j + 1 < this->_lenght - 2)
                         x += this->_spacing;
                     continue;
                 }
-                if (j % 2 == 0 && distribution(_prob) <= prob)
-                    list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
-                    //mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
-                if (j + 1 < this->_lenght)
+                if (j % 2 == 0 && distribution(_prob) <= prob) {
+                    std::cout << i << ':' << j << '\n';
+                    this->_meshes[j + 1][i + 1] = this->setMesh(ctrl, vector3df(x, y, z), "block", mesh);
+                }
+                    //list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
+                if (j + 1 < this->_lenght - 2)
                     x += this->_spacing;
             }
         } else {
-            for (unsigned int j = 0; j < this->_lenght; j++) {
-                if (checkCorner(i, j) == 1) {
-                    if (j + 1 < this->_lenght)
+            for (unsigned int j = 0; j < this->_lenght - 2; j++) {
+                if (checkCorner(i + 1, j + 1) == 1) {
+                    if (j + 1 < this->_lenght - 2)
                         x += this->_spacing;
                     continue;
                 }
-                if (distribution(_prob) <= prob)
-                    list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
-
-                    //mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
-                if (j + 1 < this->_lenght)
+                if (distribution(_prob) <= prob) {
+                    std::cout << i << ':' << j << '\n';
+                    this->_meshes[j + 1][i + 1] = this->setMesh(ctrl, vector3df(x, y, z), "block", mesh);
+                }//mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
+                if (j + 1 < this->_lenght - 2)
                     x += this->_spacing;
             }
         }
-        if (i + 1 < this->_width)
+        if (i + 1 < this->_width - 2)
             z += this->_spacing;
         x = axe[0];
     }
@@ -154,18 +164,20 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateWall(const std::s
     IAnimatedMesh *mesh = ctrl->_scene_mgr->getMesh(pathMesh.c_str());
     std::vector<std::shared_ptr<GameObject>> mapped_mesh;
 
-    for (unsigned int i = 0; i < this->_width; i++) {
+    std::cout << "azerty" << '\n';
+    for (unsigned int i = 0; i < this->_width - 2; i++) {
         if (i % 2 != 0)
-            for (unsigned int j = 0; j < this->_lenght; j++) {
+            for (unsigned int j = 0; j < this->_lenght - 2; j++) {
                 if (j % 2 != 0) {
-                    list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "wall", mesh));
+                    this->_meshes[i + 1][j + 1] = this->setMesh(ctrl, vector3df(x, y, z), "wall", mesh);
+                    std::cout << i << ':' << j << '\n';
                     //printf("push\n");
                 }
                 //mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "wall", mesh));
-                if (j + 1 < this->_lenght)
+                if (j + 1 < this->_lenght - 2)
                     x += this->_spacing;
             }
-        if (i + 1 < this->_width)
+        if (i + 1 < this->_width - 2)
             z += this->_spacing;
         x = axe[0];
     }
@@ -188,21 +200,19 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generate(const std::share
     IAnimatedMesh *mesh = ctrl->_scene_mgr->getMesh(pathMesh.c_str());
     std::vector<std::shared_ptr<GameObject>> mapped_mesh;
 
-    for (unsigned int i = 0; i < this->_width; i++) {
-        for (unsigned int j = 0; j < this->_lenght; j++) {
+    for (unsigned int i = 0; i < this->_width - 2; i++) {
+        for (unsigned int j = 0; j < this->_lenght - 2; j++) {
             if (distribution(_prob) <= prob)
-                list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "ground", mesh));
+                this->setMesh(ctrl, vector3df(x, y, z), "ground", mesh);
             //    mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "ground", mesh));
-            if (j + 1 < this->_lenght)
+            if (j + 1 < this->_lenght - 2)
                 x += this->_spacing;
         }
-        if (i + 1 < this->_width)
+        if (i + 1 < this->_width - 2)
             z += this->_spacing;
         x = axe[0];
     }
     delete(axe);
-    //this->setLightning(mapped_mesh);
-    //this->_meshes.push_back(mapped_mesh);
     return mapped_mesh;
 }
 
@@ -221,7 +231,7 @@ float mapGenerator::getSpacing(void)
     return this->_spacing;
 }
 
-void mapGenerator::getMap(unsigned int i)
+GameObject ***mapGenerator::getMap(void)
 {
-    return;
+    return this->_meshes;
 }

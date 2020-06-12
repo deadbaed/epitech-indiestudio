@@ -16,12 +16,6 @@ fs::path Storage::constructBasePath() {
 
     fs::path path;
 
-#ifdef STORAGE_DEBUG
-    /* Debug implementation, use only for development */
-
-    path = fs::current_path();
-#endif
-
 #if defined(STORAGE_RELEASE) && defined(_WIN32)
     /* Windows implementation */
 
@@ -60,20 +54,11 @@ fs::path Storage::constructBasePath() {
     path /= ".config";
 #endif
 
-#if defined(_WIN32)
-    /* If we are on windows and the path is not present already,
-     * that means Visual Studio is being used to build and it sucks
-     *
-     * Use current folder as a base path
-     */
+    /* Debug implementation */
 
+    /* Use current folder as a base path */
     if (path.empty())
         path = fs::current_path();
-#endif
-
-    /* If no path is defined, operating system is not supported */
-    if (path.empty())
-        return path;
 
     /* Append storage folder name to base path */
     path /= STORAGE_FOLDER_NAME;

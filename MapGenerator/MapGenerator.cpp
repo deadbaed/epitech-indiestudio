@@ -22,12 +22,14 @@ mapGenerator::mapGenerator(const vector3df &pos, float spacing, unsigned int wid
     this->_width = width;
     this->_lenght = lenght;
 
-    _meshes =  new (std::nothrow) GameObject **[width + 2];
+    _meshes =  new (std::nothrow) GameObject **[width + 1];
     for (unsigned int i = 0; i < width; i++) {
-        _meshes[i] = new (std::nothrow) GameObject *[lenght + 2];
+        _meshes[i] = new (std::nothrow) GameObject *[lenght + 1];
         for (unsigned int j = 0; j < lenght; j++)
             _meshes[i][j] = NULL;
+        _meshes[i][lenght] = NULL;
     }
+    _meshes[width] = NULL;
 }
 
 mapGenerator::~mapGenerator() {}
@@ -199,7 +201,10 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generate(const std::share
     for (unsigned int i = 0; i < this->_width - 2; i++) {
         for (unsigned int j = 0; j < this->_lenght - 2; j++) {
             if (distribution(_prob) <= prob)
-                this->setMesh(ctrl, vector3df(x, y, z), "ground", mesh);
+                if (this->_meshes[j + 1][i + 1] == NULL)
+                    this->_meshes[j + 1][i + 1] = this->setMesh(ctrl, vector3df(x, y, z), "ground", mesh);
+                else
+                    this->setMesh(ctrl, vector3df(x, y, z), "ground", mesh);
             //    mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "ground", mesh));
             if (j + 1 < this->_lenght - 2)
                 x += this->_spacing;

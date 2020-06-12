@@ -8,20 +8,24 @@
 #include "GameObject.hpp"
 #include "AScene.hpp"
 #include "SceneManager.hpp"
-#include "Player.hpp"
 #include "Introduction.hpp"
 #include "GameScene.hpp"
 #include "Menu.hpp"
 #include "Settings.hpp"
 #include "ChoosePlayers.hpp"
-#include "Music.hpp"
 #include "PauseMenu.hpp"
 #include "PauseSettings.hpp"
 
-int main(void)
-{
+/* Win32: Remove the console application */
+#ifdef _IRR_WINDOWS_
+#pragma comment(lib, "Irrlicht.lib")
+#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
+#endif
+
+int main(void) {
     std::shared_ptr<IrrlichtController> c = std::make_shared<IrrlichtController>();
     c->Init(irr::video::E_DRIVER_TYPE::EDT_OPENGL, WIDTH, HEIGHT);
+    c->_device->setWindowCaption(L"Indie Studio");
 
     std::shared_ptr<GameScene> testScene = std::make_shared<GameScene>(c, "gameScene");
     std::shared_ptr<Menu> menu = std::make_shared<Menu>(c, "menuScene");
@@ -40,10 +44,10 @@ int main(void)
     m.AddScene(pause);
     m.AddScene(pauseSettings);
     m.LoadScene("introScene");
+
     while (c->isRunning())
-    {
         m.Update();
-    }
+
     c->SaveConfig();
     return 0;
 }

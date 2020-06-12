@@ -33,6 +33,7 @@ public:
             std::cerr << "Storage: " << "could not read from file " << filepath << "." << std::endl;
             return false;
         }
+        std::cout << "Storage: " << "reading config from file " << filepath << "." << std::endl;
         inputFile >> *value;
         inputFile.close();
         return true;
@@ -47,6 +48,7 @@ public:
             std::cerr << "Storage: " << "could not write to file " << filepath << "." << std::endl;
             return false;
         }
+        std::cout << "Storage: " << "writing config to file " << filepath << "." << std::endl;
         outputFile << *value;
         outputFile.close();
         return true;

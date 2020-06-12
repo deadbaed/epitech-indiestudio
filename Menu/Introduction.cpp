@@ -14,14 +14,14 @@ Introduction::Introduction(const std::shared_ptr<IrrlichtController> &ctrl, cons
 void Introduction::Init(void)
 {
     this->_select = 0;
-    this->_image_welcome = this->_ctrl->_driver->getTexture("../assets/back_intro_welcome.jpg");
-    this->_image_space = this->_ctrl->_driver->getTexture("../assets/back_intro_space.jpg");
+    this->_image_welcome = this->_ctrl->_driver->getTexture("../assets/menu/back_intro_welcome.jpg");
+    this->_image_space = this->_ctrl->_driver->getTexture("../assets/menu/back_intro_space.jpg");
     this->_logo = 0;
 //    this->_logo = this->_ctrl->_driver->getTexture("../assets/logo.jpg");
-    this->_first_part = this->_ctrl->_driver->getTexture("../assets/first_part.jpg");
-    this->_second_part = this->_ctrl->_driver->getTexture("../assets/second_part.jpg");
-    this->_third_part = this->_ctrl->_driver->getTexture("../assets/third_part.jpg");
-    this->_fourth_part = this->_ctrl->_driver->getTexture("../assets/fourth_part.jpg");
+    this->_first_part = this->_ctrl->_driver->getTexture("../assets/menu/first_part.jpg");
+    this->_second_part = this->_ctrl->_driver->getTexture("../assets/menu/second_part.jpg");
+    this->_third_part = this->_ctrl->_driver->getTexture("../assets/menu/third_part.jpg");
+    this->_fourth_part = this->_ctrl->_driver->getTexture("../assets/menu/fourth_part.jpg");
     this->start = std::chrono::steady_clock::now();
 }
 
@@ -39,7 +39,7 @@ void Introduction::Update(void)
             this->_logo = 3;
         if (this->elapsed_seconds.count() > 5) {
             this->_select = 1;
-            this->_ctrl->_music->Play("../assets/music_intro.ogg");
+            this->_ctrl->_music->Play("../assets/audio/music_intro.ogg");
         }
     }
     if (this->elapsed_seconds.count() > 1.5 && (this->_select == 1 || this->_select == 2)) {

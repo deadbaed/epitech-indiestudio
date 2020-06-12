@@ -45,7 +45,7 @@ void GameScene::Init(void)
     p2->SetPosition(irr::core::vector3df(20, 0, 0));
     AddGameObject(p);
     AddGameObject(p2);
-    this->_ctrl->_music->Play("../assets/music_game.ogg");
+    this->_ctrl->_music->Play("../assets/audio/music_game.ogg");
     std::shared_ptr<mapGenerator> map = std::make_shared<mapGenerator>(vector3df(0,0,0), 6, 10, 10);
     map->generate(_ctrl, _obj_list, "../assets/floor.obj", 100);
     map->generateWall(_ctrl, _obj_list, "../assets/wall_1.obj");

@@ -32,14 +32,17 @@ class GameObject : public IGameObject {
         virtual irr::core::vector3df GetRotation(void);
         virtual Collider *GetCollider(void);
         virtual const std::string &GetId(void);
-        virtual IGameObject::STATUS &GetStatus(void);
+        virtual IGameObject::status_e &GetStatus(void);
+        virtual const IGameObject::type_e GetType(void);
+
     protected:
         irr::core::vector3df _position;
         irr::core::vector3df _rotation;
         const std::string _id;
         const std::shared_ptr<IrrlichtController> &_ctrl;
-        IGameObject::STATUS _status;
+        IGameObject::status_e _status;
         std::shared_ptr<Collider> _collider;
+        IGameObject::status_e _type;
 };
 
 #endif /* !GAMEOBJECT_HPP_ */

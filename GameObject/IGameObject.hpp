@@ -12,15 +12,18 @@
 #include "Collider.hpp"
 class IGameObject {
     public:
-    enum TYPE {
-        PLAYER = 0,
+    enum type_e {
+        GAME_OBJECT = 0,
+        PLAYER,
+        BOMB,
         ENEMY,
+        BORDER,
         WALL,
         DESTRUCTABLE_WALL,
         GROUND,
         BONUS
     };
-    enum STATUS {
+    enum status_e {
         OK = 0,
         DELETED
     };
@@ -36,7 +39,8 @@ class IGameObject {
         virtual void SetRotation(irr::core::vector3df position) = 0;
         virtual irr::core::vector3df GetRotation(void) = 0;
         virtual const std::string &GetId(void) = 0;
-        virtual IGameObject::STATUS &GetStatus(void) = 0;
+        virtual IGameObject::status_e &GetStatus(void) = 0;
+        virtual const IGameObject::type_e GetType(void) = 0;
 };
 
 #endif /* !GAMEOBJECT_HPP_ */

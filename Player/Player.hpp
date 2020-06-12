@@ -54,6 +54,8 @@ class Player : public GameObject {
         void Init(const std::string texture);
         void Update(std::vector<std::shared_ptr<IGameObject>> &obj);
         void Delete();
+        const IGameObject::type_e GetType(void);
+
     private:
         void animationWin(void);
         void animationPose(void);

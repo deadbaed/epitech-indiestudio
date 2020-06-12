@@ -189,3 +189,8 @@ void Player::setPosition(irr::core::vector3df const position)
     _node->setPosition((position));
     _collider->SetPosition(position);
 }
+
+const IGameObject::type_e Player::GetType(void)
+{
+    return IGameObject::type_e::PLAYER;
+}

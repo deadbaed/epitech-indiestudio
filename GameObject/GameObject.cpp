@@ -38,7 +38,7 @@ void GameObject::Render(void)
 
 void GameObject::Delete(void)
 {
-    _status = IGameObject::STATUS::DELETED;
+    _status = IGameObject::status_e::DELETED;
 }
 
 Collider *GameObject::GetCollider(void)
@@ -84,7 +84,12 @@ irr::core::vector3df GameObject::GetRotation(void)
     return _rotation;
 }
 
-IGameObject::STATUS &GameObject::GetStatus(void)
+IGameObject::status_e &GameObject::GetStatus(void)
 {
     return _status;
+}
+
+const IGameObject::type_e GameObject::GetType(void)
+{
+    return IGameObject::type_e::GAME_OBJECT;
 }

@@ -19,8 +19,8 @@ class BlockMap : public GameObject {
         void Update(std::vector<std::shared_ptr<IGameObject>> &obj);
         void Delete();
         void SetPosition(irr::core::vector3df position);
+        const IGameObject::type_e GetType(void);
         ~BlockMap();
-        void test(void);
     private:
         irr::scene::IAnimatedMeshSceneNode *_node;
 };

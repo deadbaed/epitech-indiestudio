@@ -49,7 +49,7 @@ void AScene::Update(void)
 
     _ctrl->_driver->beginScene(true, true, SColor(100, 150, 150, 150));
     for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
-        if (i->get()->GetStatus() == IGameObject::STATUS::DELETED)
+        if (i->get()->GetStatus() == IGameObject::status_e::DELETED)
             _obj_list.erase(i);
     }
 
@@ -64,7 +64,7 @@ void AScene::Update(void)
 void AScene::Render(void)
 {
     for (auto i = _obj_list.begin(); i != _obj_list.end(); i++)
-        if (i->get()->GetStatus() != IGameObject::STATUS::DELETED)
+        if (i->get()->GetStatus() != IGameObject::status_e::DELETED)
             i->get()->Render();
     _ctrl->_scene_mgr->drawAll();
 

@@ -43,7 +43,15 @@ void BlockMap::Delete(void)
 {
     _status = DELETED;
 }
-void BlockMap::test(void)
+
+const IGameObject::type_e BlockMap::GetType(void)
 {
+    if (!_id.compare("border"))
+        return IGameObject::type_e::BORDER;
+    if (!_id.compare("wall"))
+        return IGameObject::type_e::WALL;
+    if (!_id.compare("block"))
+        return IGameObject::type_e::DESTRUCTABLE_WALL;
+    return IGameObject::type_e::GROUND;
 
 }

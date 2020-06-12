@@ -39,3 +39,8 @@ void Bomb::setPosition(irr::core::vector3df const position)
     _node->setPosition((position));
     _collider->SetPosition(position);
 }
+
+const IGameObject::type_e GameObject::GetType(void)
+{
+    return IGameObject::type_e::BOMB;
+}

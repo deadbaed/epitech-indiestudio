@@ -60,6 +60,17 @@ fs::path Storage::constructBasePath() {
     path /= ".config";
 #endif
 
+#if defined(_WIN32)
+    /* If we are on windows and the path is not present already,
+     * that means Visual Studio is being used to build and it sucks
+     *
+     * Use current folder as a base path
+     */
+
+    if (path.empty())
+        path = fs::current_path();
+#endif
+
     /* If no path is defined, operating system is not supported */
     if (path.empty())
         return path;

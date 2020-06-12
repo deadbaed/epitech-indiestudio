@@ -23,7 +23,7 @@ void Bomb::Init()
     }
 }
 
-void Bomb::Update(std::vector<std::shared_ptr<IGameObject>> obj)
+void Bomb::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
 {
 
 }

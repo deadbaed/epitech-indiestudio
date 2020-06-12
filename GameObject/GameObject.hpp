@@ -21,7 +21,7 @@ class GameObject : public IGameObject {
         GameObject(const std::shared_ptr<IrrlichtController> &ctrl, const irr::core::vector3df dimension, const std::string name);
         ~GameObject();
         virtual void Init(void);
-        virtual void Update(std::vector<std::shared_ptr<IGameObject>> obj);
+        virtual void Update(std::vector<std::shared_ptr<IGameObject>> &obj);
         virtual void Render(void);
         virtual void Delete(void);
         virtual GameObject &operator=(const GameObject &obj);

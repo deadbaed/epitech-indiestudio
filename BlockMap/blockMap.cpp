@@ -34,7 +34,7 @@ BlockMap::~BlockMap()
 
 }
 
-void BlockMap::Update()
+void BlockMap::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
 {
 
 }

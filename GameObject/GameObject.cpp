@@ -26,7 +26,7 @@ void GameObject::Init(void)
 
 }
 
-void GameObject::Update(std::vector<std::shared_ptr<IGameObject>> obj)
+void GameObject::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
 {
 
 }

@@ -52,7 +52,7 @@ class Player : public GameObject {
         ~Player() = default;
         void Init();
         void Init(const std::string texture);
-        void Update(std::vector<std::shared_ptr<IGameObject>> obj);
+        void Update(std::vector<std::shared_ptr<IGameObject>> &obj);
         void Delete();
     private:
         void animationWin(void);

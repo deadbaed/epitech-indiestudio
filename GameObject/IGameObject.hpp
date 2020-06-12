@@ -27,7 +27,7 @@ class IGameObject {
     public:
         virtual ~IGameObject() = default;
         virtual void Init(void) = 0;
-        virtual void Update(std::vector<std::shared_ptr<IGameObject>> obj) = 0;
+        virtual void Update(std::vector<std::shared_ptr<IGameObject>> &obj) = 0;
         virtual void Render(void) = 0;
         virtual void Delete(void) = 0;
         virtual Collider *GetCollider(void) = 0;

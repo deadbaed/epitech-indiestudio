@@ -60,7 +60,7 @@ void Player::Init(const std::string texture)
     this->_old = this->_ctrl->_device->getTimer()->getTime();
 }
 
-void Player::Update(std::vector<std::shared_ptr<IGameObject>> obj)
+void Player::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
 {
     /* Movements */
     _frameDeltaTime = this->GetTime();

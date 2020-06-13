@@ -13,6 +13,9 @@
 #include <random>
 #include "blockMap.hpp"
 
+#define BLOCK_PATH "../assets/wall_2.obj"
+#define WALL_PATH  "../assets/wall_1.obj"
+#define GROUND_PATH "../assets/floor.obj"
 
 using namespace irr;
 using namespace core;

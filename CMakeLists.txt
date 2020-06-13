@@ -158,6 +158,7 @@ IF (UNIX)
     # rpm package
     set(CPACK_GENERATOR "RPM")
     set(CPACK_RPM_PACKAGE_REQUIRES "SFML >= 2.5.0, irrlicht >= 1.8.4")
+    set(CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION "/usr/share/applications")
 ENDIF (UNIX)
 
 include(CPack)

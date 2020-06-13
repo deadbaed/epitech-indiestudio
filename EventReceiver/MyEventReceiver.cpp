@@ -30,10 +30,12 @@ bool MyEventReceiver::OnEvent(const SEvent &event) {
                         Context.sceneName = "menuScene";
                         return true;
                     case GUI_ID_ONE_PLAYER_BUTTON:
-                        Context.sceneName = "gameScene";
+                        Context.players = 1;
+                        Context.sceneName = "skinScene";
                         return true;
                     case GUI_ID_TWO_PLAYERS_BUTTON:
-                        Context.sceneName = "gameScene";
+                        Context.players = 2;
+                        Context.sceneName = "skinsScene";
                         return true;
                     case GUI_ID_PLUS_BUTTON:
                         Context.up_volume = true;
@@ -59,6 +61,32 @@ bool MyEventReceiver::OnEvent(const SEvent &event) {
                     case GUI_ID_BACK_BUTTON_SETTINGS:
                         Context.sceneName = "pauseScene";
                         return true;
+                    case GUI_ID_SKIN_WHITE_BUTTON:
+                        Context.skin_player_one = 1;
+                        return true;
+                    case GUI_ID_SKIN_BLUE_BUTTON:
+                        Context.skin_player_one = 3;
+                        return true;
+                    case GUI_ID_SKIN_GREEN_BUTTON:
+                        Context.skin_player_one = 2;
+                        return true;
+                    case GUI_ID_SKIN_BLACK_BUTTON:
+                        Context.skin_player_one = 4;
+                        return true;
+                    case GUI_ID_SKINS_WHITE_BUTTON:
+                        Context.skin_player_two = 1;
+                        return true;
+                    case GUI_ID_SKINS_BLUE_BUTTON:
+                        Context.skin_player_two = 3;
+                        return true;
+                    case GUI_ID_SKINS_GREEN_BUTTON:
+                        Context.skin_player_two = 2;
+                        return true;
+                    case GUI_ID_SKINS_BLACK_BUTTON:
+                        Context.skin_player_two = 4;
+                        return true;
+                    case GUI_ID_GO_BUTTON:
+                        Context.sceneName = "gameScene";
                     default:
                         return false;
                 }

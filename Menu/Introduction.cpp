@@ -17,7 +17,6 @@ void Introduction::Init(void)
     this->_image_welcome = this->_ctrl->_driver->getTexture("../assets/menu/back_intro_welcome.jpg");
     this->_image_space = this->_ctrl->_driver->getTexture("../assets/menu/back_intro_space.jpg");
     this->_logo = 0;
-//    this->_logo = this->_ctrl->_driver->getTexture("../assets/logo.jpg");
     this->_first_part = this->_ctrl->_driver->getTexture("../assets/menu/first_part.jpg");
     this->_second_part = this->_ctrl->_driver->getTexture("../assets/menu/second_part.jpg");
     this->_third_part = this->_ctrl->_driver->getTexture("../assets/menu/third_part.jpg");

@@ -17,11 +17,11 @@
 /* Timing for animations */
 #define BEGIN       0
 #define WIN_BEGIN   5
-#define WIN_END     60
-#define POSE_BEGIN  70
-#define POSE_END    120
-#define DEAD_BEGIN  180
-#define DEAD_END    250
+#define WIN_END     70
+#define POSE_BEGIN  80
+#define POSE_END    140
+#define DEAD_BEGIN  150
+#define DEAD_END    210
 
 /* Path for models */
 #define WHITE_PATH  "../assets/players/white.b3d"

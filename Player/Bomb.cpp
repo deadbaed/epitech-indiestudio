@@ -63,11 +63,19 @@ Particles::ParticleSetting_t Bomb::setParticle()
 }
 void Bomb::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
 {
-    this->_obj = &obj;
     this->end = std::chrono::steady_clock::now();
     this->elapsed_seconds = end - start;
-    if (this->elapsed_seconds.count() > TIME_BOMB) {
-        explosion();
+    this->_obj = &obj;
+    if (this->_boom == false ) {
+        if (this->elapsed_seconds.count() > TIME_BOMB) {
+            explosion();
+            this->_boom = true;
+            this->start = std::chrono::steady_clock::now();
+        }
+    } else if (this->_boom) {
+        if (this->elapsed_seconds.count() > TIME_ALIVE) {
+            this->Delete();
+        }
     }
 }
 
@@ -107,7 +115,12 @@ void Bomb::explosion()
 
 void Bomb::Delete()
 {
-    _status = DELETED;
+    this->_upperExplosion->clear();
+    this->_downExplosion->clear();
+    this->_leftExplosion->clear();
+    this->_rightExplosion->clear();
+    //_status = DELETED;
+    //this->_node->remove();
 }
 
 void Bomb::setPosition(irr::core::vector3df const position)

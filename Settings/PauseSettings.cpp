@@ -4,7 +4,7 @@
 
 #include "PauseSettings.hpp"
 
-PauseSettings::PauseSettings(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameScene(ctrl, name)
+PauseSettings::PauseSettings(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : AScene(ctrl, name)
 {
 
 }

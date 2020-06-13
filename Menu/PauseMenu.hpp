@@ -17,7 +17,7 @@ using namespace video;
 using namespace io;
 using namespace gui;
 
-class PauseMenu : public GameScene {
+class PauseMenu : public AScene {
 public:
     PauseMenu(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
     void Init(void);

@@ -9,7 +9,7 @@
 #include "Button.hpp"
 #include "Sound.hpp"
 
-class Menu : public GameScene {
+class Menu : public AScene {
     public:
         Menu(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
         void Init(void);

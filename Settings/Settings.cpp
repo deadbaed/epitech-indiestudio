@@ -4,7 +4,7 @@
 
 #include "Settings.hpp"
 
-Settings::Settings(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameScene(ctrl, name)
+Settings::Settings(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : AScene(ctrl, name)
 {
 
 }

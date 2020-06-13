@@ -9,7 +9,7 @@
 #include "GameScene.hpp"
 #include "Sound.hpp"
 
-class ChoosePlayers : public GameScene {
+class ChoosePlayers : public AScene {
     public:
         ChoosePlayers(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
         void Init(void);

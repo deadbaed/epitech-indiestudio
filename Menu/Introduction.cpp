@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-Introduction::Introduction(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameScene(ctrl, name)
+Introduction::Introduction(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : AScene(ctrl, name)
 {
 
 }

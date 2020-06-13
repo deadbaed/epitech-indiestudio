@@ -17,7 +17,7 @@ using namespace video;
 using namespace io;
 using namespace gui;
 
-class PauseSettings : public GameScene {
+class PauseSettings : public AScene {
     public:
         PauseSettings(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
         void Init(void);

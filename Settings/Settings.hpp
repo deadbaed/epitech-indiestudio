@@ -17,7 +17,7 @@ using namespace video;
 using namespace io;
 using namespace gui;
 
-class Settings : public GameScene {
+class Settings : public AScene {
     public:
         Settings(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
         void Init(void);

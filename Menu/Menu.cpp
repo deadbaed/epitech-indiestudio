@@ -4,7 +4,7 @@
 
 #include "Menu.hpp"
 
-Menu::Menu(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameScene(ctrl, name)
+Menu::Menu(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : AScene(ctrl, name)
 {
 
 }

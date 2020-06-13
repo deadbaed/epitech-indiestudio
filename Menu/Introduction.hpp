@@ -10,7 +10,7 @@
 #include <ctime>
 #include <chrono>
 
-class Introduction : public GameScene {
+class Introduction : public AScene {
     public:
         Introduction(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
         void Init(void);

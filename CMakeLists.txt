@@ -151,8 +151,9 @@ IF (UNIX)
     # build debian package
     set(CPACK_GENERATOR "DEB")
     set(CPACK_DEBIAN_PACKAGE_DEPENDS "libsfml-dev,libirrlicht1.8,libirrlicht-dev")
+    set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
     set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Philippe Loctaux")
-    #    set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+    set(CPACK_PACKAGE_DESCRIPTION "bomberman clone made by epitech students")
 ENDIF (UNIX)
 
 include(CPack)

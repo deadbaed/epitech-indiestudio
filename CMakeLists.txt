@@ -144,16 +144,20 @@ set(CPACK_PACKAGE_VENDOR "Club Baby Pro")
 set(CPACK_PACKAGE_VERSION_MAJOR "1")
 set(CPACK_PACKAGE_VERSION_MINOR "0")
 set(CPACK_PACKAGE_VERSION_PATCH "0")
+set(CPACK_PACKAGE_DESCRIPTION "Bomberman clone made by epitech students")
 set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_LIST_DIR}/CPack/license.txt)
 set(CPACK_NSIS_DISPLAY_NAME ${PROJECT_PRETTY_NAME})
 
 IF (UNIX)
-    # build debian package
+    # deb package
     set(CPACK_GENERATOR "DEB")
     set(CPACK_DEBIAN_PACKAGE_DEPENDS "libsfml-dev,libirrlicht1.8,libirrlicht-dev")
     set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
     set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Philippe Loctaux")
-    set(CPACK_PACKAGE_DESCRIPTION "bomberman clone made by epitech students")
+
+    # rpm package
+    set(CPACK_GENERATOR "RPM")
+    set(CPACK_RPM_PACKAGE_REQUIRES "SFML >= 2.5.0, irrlicht >= 1.8.4")
 ENDIF (UNIX)
 
 include(CPack)

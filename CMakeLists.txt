@@ -15,9 +15,9 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 set(Irrlicht_DIR "${CMAKE_MODULE_PATH}/Irrlicht")
 
 # Windows: give path to the local SFML
-IF(WIN32)
+IF (WIN32)
     set(SFML_DIR "${CMAKE_MODULE_PATH}/SFML-2.5.0/lib/cmake/SFML")
-ENDIF()
+ENDIF (WIN32)
 
 # use the cmake modules
 find_package(Irrlicht REQUIRED)
@@ -65,7 +65,7 @@ target_link_libraries(${PROJECT_NAME} ${Irrlicht_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} sfml-system sfml-audio)
 
 # windows: define external libs dll location
-IF(WIN32)
+IF (WIN32)
     set(DLL_IRRLICHT ${Irrlicht_DIR}/lib/Irrlicht.dll)
     set(DLL_OPENAL32 ${SFML_DIR}/../../../bin/openal32.dll)
     set(DLL_SFML_AUDIO_D ${SFML_DIR}/../../../bin/sfml-audio-d-2.dll)
@@ -83,34 +83,19 @@ IF(WIN32)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${DLL_OPENAL32} $<TARGET_FILE_DIR:${PROJECT_NAME}>)
 
     # SFML Debug
-    IF(CMAKE_BUILD_TYPE STREQUAL Debug)
+    IF (CMAKE_BUILD_TYPE STREQUAL Debug)
         add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${DLL_SFML_AUDIO_D} $<TARGET_FILE_DIR:${PROJECT_NAME}>)
         add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${DLL_SFML_SYSTEM_D} $<TARGET_FILE_DIR:${PROJECT_NAME}>)
-    ENDIF(CMAKE_BUILD_TYPE STREQUAL Debug)
+    ENDIF (CMAKE_BUILD_TYPE STREQUAL Debug)
 
     # SFML Release
-    IF(CMAKE_BUILD_TYPE STREQUAL Release)
+    IF (CMAKE_BUILD_TYPE STREQUAL Release)
         add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${DLL_SFML_AUDIO} $<TARGET_FILE_DIR:${PROJECT_NAME}>)
         add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${DLL_SFML_SYSTEM} $<TARGET_FILE_DIR:${PROJECT_NAME}>)
-    ENDIF(CMAKE_BUILD_TYPE STREQUAL Release)
+    ENDIF (CMAKE_BUILD_TYPE STREQUAL Release)
 
-    # CPack
-
-    # Location of files
-    install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+    # CPack: windows: put the dlls with the binary
     install(FILES ${DLL_FILES} DESTINATION bin)
-    install(DIRECTORY ${ASSETS_PATH}/ DESTINATION assets)
-
-    set(PROJECT_PRETTY_NAME "IndieStudio")
-
-    # Configuration
-    set(CPACK_PACKAGE_NAME ${PROJECT_PRETTY_NAME})
-    set(CPACK_PACKAGE_VENDOR "Club Baby Pro")
-    set(CPACK_PACKAGE_VERSION_MAJOR "1")
-    set(CPACK_PACKAGE_VERSION_MINOR "0")
-    set(CPACK_PACKAGE_VERSION_PATCH "0")
-    set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_LIST_DIR}/CPack/license.txt)
-    set(CPACK_NSIS_DISPLAY_NAME ${PROJECT_PRETTY_NAME})
 
     # Windows Start Menu shortcut to launch the game
     set(CPACK_NSIS_CREATE_ICONS_EXTRA
@@ -122,6 +107,44 @@ IF(WIN32)
             "Delete '$SMPROGRAMS\\\\$START_MENU\\\\IndieStudio.lnk'"
             )
 
-    include(CPack)
+ENDIF (WIN32)
 
-ENDIF(WIN32)
+# CPack
+
+set(PROJECT_PRETTY_NAME "IndieStudio")
+
+# Location of files
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+
+IF (WIN32)
+    install(DIRECTORY ${ASSETS_PATH}/ DESTINATION assets)
+ENDIF (WIN32)
+
+IF (UNIX)
+    # put assets in UNIX style folder
+    install(DIRECTORY ${ASSETS_PATH}/ DESTINATION share/${PROJECT_PRETTY_NAME}/assets)
+
+    # linux icons
+    file(GLOB LINUX_ICONS
+            CPack/bomberman.png
+            CPack/bomberman-128.png
+            CPack/bomberman-96.png
+            CPack/bomberman-72.png
+            CPack/bomberman-64.png
+            CPack/bomberman-48.png)
+    install(FILES ${LINUX_ICONS} DESTINATION share/${PROJECT_PRETTY_NAME}/icons)
+
+    # desktop launcher
+    install(FILES CPack/indiestudio.desktop DESTINATION share/applications)
+ENDIF (UNIX)
+
+# Configuration
+set(CPACK_PACKAGE_NAME ${PROJECT_PRETTY_NAME})
+set(CPACK_PACKAGE_VENDOR "Club Baby Pro")
+set(CPACK_PACKAGE_VERSION_MAJOR "1")
+set(CPACK_PACKAGE_VERSION_MINOR "0")
+set(CPACK_PACKAGE_VERSION_PATCH "0")
+set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_LIST_DIR}/CPack/license.txt)
+set(CPACK_NSIS_DISPLAY_NAME ${PROJECT_PRETTY_NAME})
+
+include(CPack)

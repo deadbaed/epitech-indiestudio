@@ -16,7 +16,7 @@ class IGameObject {
         GAME_OBJECT = 0,
         PLAYER,
         BOMB,
-        ENEMY,
+        AI,
         BORDER,
         WALL,
         DESTRUCTABLE_WALL,

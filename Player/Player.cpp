@@ -135,7 +135,7 @@ void Player::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
 bool Player::calculateCollision()
 {
     for (auto i = _obj->cbegin(); i != _obj->cend(); i++) {
-        if (i->get()->GetId() != _id && i->get()->GetId().compare("p1") != 0 && i->get()->GetId().compare("p2") != 0 && i->get()->GetId().compare("ground") != 0) {
+        if (i->get()->GetId() != _id && i->get()->GetType() != IGameObject::PLAYER && i->get()->GetType() != IGameObject::AI && i->get()->GetId().compare("ground") != 0) {
             if (GetCollider()->Collide(*i->get()->GetCollider())) {
                 return (true);
             }

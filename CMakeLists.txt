@@ -39,6 +39,7 @@ add_subdirectory(GameScene)
 add_subdirectory(Menu)
 add_subdirectory(Settings)
 add_subdirectory(Storage)
+add_subdirectory(Exception)
 
 # define sources to use
 set(SRCS Application/main.cpp CPack/win32.rc)

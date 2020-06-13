@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Indie Studio
+Icon=/usr/share/IndieStudio/icons/bomberman-128.png
+Exec=bomberman
+Version=1.0
+Type=Application
+Categories=Game;
+Terminal=false

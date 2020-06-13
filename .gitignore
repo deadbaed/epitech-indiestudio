@@ -12,3 +12,6 @@ cmake-build-*/
 # vim
 *~
 [._]*.un~
+
+# IndieStudio storage
+IndieStudio-storage/

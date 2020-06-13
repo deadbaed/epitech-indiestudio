@@ -17,7 +17,8 @@
 #define PARTICLE_PATH   "../assets/bomb/fire.bmp"
 
 /* Explose after.. */
-#define TIME_BOMB    4
+#define TIME_BOMB   4
+#define TIME_ALIVE  1
 
 class Bomb : public GameObject {
 public:

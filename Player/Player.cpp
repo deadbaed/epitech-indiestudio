@@ -147,7 +147,8 @@ bool Player::calculateCollision()
 void Player::Delete()
 {
     _dead = true;
-    //_status = DELETED;
+    _status = DELETED;
+    this->_node->remove();
 }
 
 void Player::updateAnimations()

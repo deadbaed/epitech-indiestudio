@@ -8,7 +8,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
 # define sources to use
-set(SRCS Player.cpp Player.hpp Bomb.cpp Bomb.hpp)
+set(SRCS Player.cpp Player.hpp
+        Bomb.cpp Bomb.hpp
+        Particles.hpp Particles.cpp)
 
 # define the binary output
 add_library(${PROJECT_NAME} ${SRCS})

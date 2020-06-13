@@ -12,6 +12,7 @@
 #include "GameObject.hpp"
 #include "MyEventReceiver.hpp"
 #include "Collider.hpp"
+#include "Bomb.hpp"
 
 /* Timing for animations */
 #define BEGIN       0
@@ -62,6 +63,9 @@ class Player : public GameObject {
         void animationDead(void);
         void updateAnimations(void);
         void setPosition(irr::core::vector3df const position);
+        void setRotation(irr::core::vector3df const rotation);
+        bool calculateCollision(void);
+        void poseBomb();
         f32 GetTime(void);
         BomberType _type;
         KeyConfig _conf;
@@ -74,6 +78,9 @@ class Player : public GameObject {
         bool _win;
         bool _pose;
         bool _dead;
+        /* Bomb increase */
+        int _nb;
+        std::vector<std::shared_ptr<IGameObject>> *_obj;
         //std::shared_ptr<Collider> _collider;
 };
 

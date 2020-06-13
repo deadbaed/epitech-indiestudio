@@ -147,4 +147,12 @@ set(CPACK_PACKAGE_VERSION_PATCH "0")
 set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_LIST_DIR}/CPack/license.txt)
 set(CPACK_NSIS_DISPLAY_NAME ${PROJECT_PRETTY_NAME})
 
+IF (UNIX)
+    # build debian package
+    set(CPACK_GENERATOR "DEB")
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "libsfml-dev,libirrlicht1.8,libirrlicht-dev")
+    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Philippe Loctaux")
+    #    set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+ENDIF (UNIX)
+
 include(CPack)

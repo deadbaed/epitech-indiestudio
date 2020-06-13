@@ -86,7 +86,7 @@ bool Bomb::calculateCollision(irr::core::vector3df position)
     for (auto i = _obj->cbegin(); i != _obj->cend(); i++) {
         if (i->get()->GetId() != _id && (i->get()->GetId().compare("p1") == 0 || i->get()->GetId().compare("p2") == 0)) {
             if (tmp->Collide(*i->get()->GetCollider())) {
-                i->get()->Delete();
+                i->get()->SetStatus(IGameObject::status_e::DELETED);
             }
         }
         if (i->get()->GetId() != _id && i->get()->GetId().compare("p1") != 0 && i->get()->GetId().compare("p2") != 0 && i->get()->GetId().compare("ground") != 0) {

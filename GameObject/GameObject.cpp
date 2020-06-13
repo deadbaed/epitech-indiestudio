@@ -14,6 +14,7 @@ GameObject::GameObject(const std::shared_ptr<IrrlichtController> &ctrl, irr::cor
     _position = irr::core::vector3df(0, 0, 0);
     _rotation = irr::core::vector3df(0, 0, 0);
     _collider = std::make_shared<Collider>(_position, dimension.X, dimension.Y, dimension.Z);
+    _status = IGameObject::OK;
 }
 
 GameObject::~GameObject()
@@ -92,4 +93,9 @@ IGameObject::status_e &GameObject::GetStatus(void)
 const IGameObject::type_e GameObject::GetType(void)
 {
     return IGameObject::type_e::GAME_OBJECT;
+}
+
+void GameObject::SetStatus(IGameObject::status_e status)
+{
+    _status = status;
 }

@@ -33,6 +33,7 @@ class GameObject : public IGameObject {
         virtual Collider *GetCollider(void);
         virtual const std::string &GetId(void);
         virtual IGameObject::status_e &GetStatus(void);
+        virtual void SetStatus(IGameObject::status_e status);
         virtual const IGameObject::type_e GetType(void);
 
     protected:

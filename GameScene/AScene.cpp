@@ -49,12 +49,15 @@ void AScene::Update(void)
 
     _ctrl->_driver->beginScene(true, true, SColor(100, 150, 150, 150));
     for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
-        if (i->get()->GetStatus() == IGameObject::status_e::DELETED)
+        if (i->get()->GetStatus() == IGameObject::status_e::DELETED) {
+            i->get()->Delete();
             _obj_list.erase(i);
+        }
     }
 
     for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
-        i->get()->Update(_obj_list);
+        if (i->get()->GetStatus() != IGameObject::status_e::DELETED)
+            i->get()->Update(_obj_list);
     }
 
     if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_ESCAPE))

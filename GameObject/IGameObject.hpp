@@ -40,6 +40,7 @@ class IGameObject {
         virtual irr::core::vector3df GetRotation(void) = 0;
         virtual const std::string &GetId(void) = 0;
         virtual IGameObject::status_e &GetStatus(void) = 0;
+        virtual void SetStatus(IGameObject::status_e status) = 0;
         virtual const IGameObject::type_e GetType(void) = 0;
 };
 

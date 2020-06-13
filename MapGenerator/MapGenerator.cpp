@@ -22,9 +22,9 @@ mapGenerator::mapGenerator(const vector3df &pos, float spacing, unsigned int wid
     this->_width = width;
     this->_lenght = lenght;
 
-    _meshes =  new (std::nothrow) GameObject **[width + 1];
+    _meshes =  new (std::nothrow) std::shared_ptr<IGameObject> *[width + 1];
     for (unsigned int i = 0; i < width; i++) {
-        _meshes[i] = new (std::nothrow) GameObject *[lenght + 1];
+        _meshes[i] = new (std::nothrow) std::shared_ptr<IGameObject>[lenght + 1];
         for (unsigned int j = 0; j < lenght; j++)
             _meshes[i][j] = NULL;
         _meshes[i][lenght] = NULL;
@@ -51,9 +51,9 @@ void mapGenerator::setSpacing(float spacing)
     this->_spacing = spacing;
 }
 
-GameObject *mapGenerator::setMesh(const std::shared_ptr<IrrlichtController> &ctrl, vector3df pos, std::string name, IAnimatedMesh *mesh)
+std::shared_ptr<IGameObject> mapGenerator::setMesh(const std::shared_ptr<IrrlichtController> &ctrl, vector3df pos, std::string name, IAnimatedMesh *mesh)
 {
-    BlockMap *node = new BlockMap (ctrl, name);
+    std::shared_ptr<BlockMap> node = std::make_shared<BlockMap>(ctrl, name);
     node->Init(mesh);
     node->SetPosition(pos);
     //node->GetCollider()->SetPosition(pos);
@@ -74,12 +74,15 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBorder(const std:
         if (i == 0 || (i + 1 == this->_width)) {
             for (unsigned int j = 0; j < this->_lenght; j++) {
                 this->_meshes[j][i] = this->setMesh(ctrl, vector3df(x, y, z), "border", mesh);
+                list.push_back(this->_meshes[j][i]);
                 if (j + 1 < this->_lenght)
                     x += this->_spacing;
             }
         } else {
             this->_meshes[0][i] = this->setMesh(ctrl, vector3df(x, y, z), "border", mesh);
             this->_meshes[this->_lenght - 1][i] = this->setMesh(ctrl, vector3df(x + (this->_spacing * (this->_lenght - 1)), y, z), "border", mesh);
+            list.push_back(this->_meshes[0][i]);
+            list.push_back(this->_meshes[this->_lenght - 1][i]);
         }
         if (i + 1 < this->_width)
             z += this->_spacing;
@@ -126,6 +129,7 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBlock(const std::
                 }
                 if (j % 2 == 0 && distribution(_prob) <= prob) {
                     this->_meshes[j + 1][i + 1] = this->setMesh(ctrl, vector3df(x, y, z), "block", mesh);
+                    list.push_back(this->_meshes[j + 1][i + 1]);
                 }
                     //list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
                 if (j + 1 < this->_lenght - 2)
@@ -140,6 +144,7 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateBlock(const std::
                 }
                 if (distribution(_prob) <= prob) {
                     this->_meshes[j + 1][i + 1] = this->setMesh(ctrl, vector3df(x, y, z), "block", mesh);
+                    list.push_back(this->_meshes[j + 1][i + 1]);
                 }//mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "block", mesh));
                 if (j + 1 < this->_lenght - 2)
                     x += this->_spacing;
@@ -169,6 +174,7 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generateWall(const std::s
             for (unsigned int j = 0; j < this->_lenght - 2; j++) {
                 if (j % 2 != 0) {
                     this->_meshes[j + 1][i + 1] = this->setMesh(ctrl, vector3df(x, y, z), "wall", mesh);
+                    list.push_back(this->_meshes[j + 1][i + 1]);
                     //printf("push\n");
                 }
                 //mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "wall", mesh));
@@ -201,10 +207,12 @@ std::vector<std::shared_ptr<GameObject>> mapGenerator::generate(const std::share
     for (unsigned int i = 0; i < this->_width - 2; i++) {
         for (unsigned int j = 0; j < this->_lenght - 2; j++) {
             if (distribution(_prob) <= prob)
-                if (this->_meshes[j + 1][i + 1] == NULL)
+                if (this->_meshes[j + 1][i + 1] == NULL) {
                     this->_meshes[j + 1][i + 1] = this->setMesh(ctrl, vector3df(x, y, z), "ground", mesh);
-                else
-                    this->setMesh(ctrl, vector3df(x, y, z), "ground", mesh);
+                    list.push_back(this->_meshes[j + 1][i + 1]);
+                } else {
+                    list.push_back(this->setMesh(ctrl, vector3df(x, y, z), "ground", mesh));
+                }
             //    mapped_mesh.push_back(this->setMesh(ctrl, vector3df(x, y, z), "ground", mesh));
             if (j + 1 < this->_lenght - 2)
                 x += this->_spacing;
@@ -232,7 +240,7 @@ float mapGenerator::getSpacing(void)
     return this->_spacing;
 }
 
-GameObject ***mapGenerator::getMap(void)
+std::shared_ptr<IGameObject> **mapGenerator::getMap(void)
 {
     return this->_meshes;
 }

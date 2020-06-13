@@ -22,6 +22,10 @@ Player::Player(const std::shared_ptr<IrrlichtController> &ctrl, const std::strin
     _type = type;
     _conf = conf;
     _alive = true;
+    _win = false;
+    _pose = false;
+    _dead = false;
+    _nb = 0;
 }
 
 void Player::Init()
@@ -65,37 +69,32 @@ void Player::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
     /* Movements */
     _frameDeltaTime = this->GetTime();
     this->_old = this->_now;
-
-    //////////////////////////////////////////////////////////
-
-    //irr::core::vector3df v = GetCollider()->_position;
-    //printf("-->%0.2f %0.2f %0.2f\n", v.X, v.Y, v.Z);
-    for (auto i = obj.cbegin(); i != obj.cend(); i++) {
-        if (i->get()->GetId() != _id && i->get()->GetId().compare("p1") != 0 && i->get()->GetId().compare("p2") != 0 && i->get()->GetId().compare("ground") != 0) {
-            if (GetCollider()->Collide(*i->get()->GetCollider())) {
-                //printf("%s\n", i->get()->GetId().c_str());
-
-                //////////////
-                // COLISION //
-                //////////////
-            }
-        }
-    }
-
-    /////////////////////////////////////////////////////////
+    this->_obj = &obj;
 
     if (this->_conf == KeyConfig::LEFT) {
         core::vector3df nodePosition = this->GetPosition();
 
-        if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_Z))
+        if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_Z)) {
             nodePosition.X -= SPEED * _frameDeltaTime;
-        else if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_S))
+            this->setRotation(core::vector3df(0, 90, 0));
+        }
+        else if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_S)) {
             nodePosition.X += SPEED * _frameDeltaTime;
-        if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_Q))
+            this->setRotation(core::vector3df(0, -90, 0));
+        }
+        if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_Q)) {
             nodePosition.Z -= SPEED * _frameDeltaTime;
-        else if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_D))
+            this->setRotation(core::vector3df(0, 0, 0));
+        }
+        else if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_D)) {
             nodePosition.Z += SPEED * _frameDeltaTime;
-        this->setPosition(nodePosition);
+            this->setRotation(core::vector3df(0, 180, 0));
+        }
+
+        _collider->SetPosition(nodePosition);
+        if (!calculateCollision())
+            this->setPosition(nodePosition);
+
         if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_A)) {
             this->_win = true;
             this->_node->setCurrentFrame(WIN_BEGIN);
@@ -116,7 +115,9 @@ void Player::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
             nodePosition.Z += SPEED * _frameDeltaTime;
         else if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_M))
             nodePosition.Z -= SPEED * _frameDeltaTime;
+
         this->setPosition(nodePosition);
+
         if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_I)) {
             this->_win = true;
             this->_node->setCurrentFrame(WIN_BEGIN);
@@ -127,18 +128,27 @@ void Player::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
         }
     }
     _collider->SetPosition(this->GetPosition());
-    /*
-    if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_SPACE)) {
-        this->_dead = true;
-        this->_node->setCurrentFrame(DEAD_BEGIN);
-    }
-     */
+    _node->setAnimationSpeed(90);
     this->updateAnimations();
+}
+
+bool Player::calculateCollision()
+{
+    for (auto i = _obj->cbegin(); i != _obj->cend(); i++) {
+        if (i->get()->GetId() != _id && i->get()->GetId().compare("p1") != 0 && i->get()->GetId().compare("p2") != 0 && i->get()->GetId().compare("ground") != 0) {
+            if (GetCollider()->Collide(*i->get()->GetCollider())) {
+                return (true);
+            }
+        }
+    }
+    return (false);
 }
 
 void Player::Delete()
 {
+    _dead = true;
     _status = DELETED;
+    this->_node->remove();
 }
 
 void Player::updateAnimations()
@@ -166,6 +176,7 @@ void Player::animationPose()
     if (this->_node->getFrameNr() > POSE_END) {
         this->_node->setCurrentFrame(POSE_BEGIN);
         this->_pose = false;
+        poseBomb();
     }
 }
 
@@ -190,6 +201,22 @@ void Player::setPosition(irr::core::vector3df const position)
     _collider->SetPosition(position);
 }
 
+void Player::setRotation(irr::core::vector3df const rotation)
+{
+    this->SetRotation(rotation);
+    _node->setRotation(rotation);
+}
+
+void Player::poseBomb()
+{
+    std::shared_ptr<Bomb> bomb = std::make_unique<Bomb>(this->_ctrl, "bomb_" + std::to_string(_nb));
+
+    _nb++;
+    bomb->Init();
+    vector3df vect = this->GetPosition(); // add a +1
+    bomb->setPosition(vect);
+    _obj->push_back(bomb);
+}
 const IGameObject::type_e Player::GetType(void)
 {
     return IGameObject::type_e::PLAYER;

@@ -26,9 +26,10 @@ struct SAppContext {
     bool down_volume;
     bool up_volume_sound;
     bool down_volume_sound;
-    int players;
+    int nb_player;
     int skin_player_one;
     int skin_player_two;
+    int winner;
 };
 
 class MyEventReceiver : public IEventReceiver {

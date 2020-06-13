@@ -67,7 +67,6 @@ void AScene::Render(void)
         if (i->get()->GetStatus() != IGameObject::status_e::DELETED)
             i->get()->Render();
     _ctrl->_scene_mgr->drawAll();
-
 }
 
 void AScene::Clear(void)

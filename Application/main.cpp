@@ -17,6 +17,7 @@
 #include "PauseSettings.hpp"
 #include "SelectSkin.hpp"
 #include "SelectSkins.hpp"
+#include "EndScene.hpp"
 
 /* Win32: Remove the console application */
 #ifdef _IRR_WINDOWS_
@@ -38,6 +39,7 @@ int main(void) {
     std::shared_ptr<Introduction> intro = std::make_shared<Introduction>(c, "introScene");
     std::shared_ptr<PauseMenu> pause = std::make_shared<PauseMenu>(c, "pauseScene");
     std::shared_ptr<PauseSettings> pauseSettings = std::make_shared<PauseSettings>(c, "pauseSettingsScene");
+    std::shared_ptr<EndScene> endScene = std::make_shared<EndScene>(c, "endScene");
 
     SceneManager m(c);
     m.AddScene(testScene);
@@ -49,6 +51,7 @@ int main(void) {
     m.AddScene(pauseSettings);
     m.AddScene(selectSkin);
     m.AddScene(selectSkins);
+    m.AddScene(endScene);
     m.LoadScene("introScene");
     while (c->isRunning())
         m.Update();

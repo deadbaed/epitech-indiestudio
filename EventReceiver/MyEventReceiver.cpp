@@ -30,11 +30,11 @@ bool MyEventReceiver::OnEvent(const SEvent &event) {
                         Context.sceneName = "menuScene";
                         return true;
                     case GUI_ID_ONE_PLAYER_BUTTON:
-                        Context.players = 1;
+                        Context.nb_player = 1;
                         Context.sceneName = "skinScene";
                         return true;
                     case GUI_ID_TWO_PLAYERS_BUTTON:
-                        Context.players = 2;
+                        Context.nb_player = 2;
                         Context.sceneName = "skinsScene";
                         return true;
                     case GUI_ID_PLUS_BUTTON:

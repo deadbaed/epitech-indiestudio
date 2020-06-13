@@ -8,6 +8,7 @@
 #include "Button.hpp"
 #include "GameScene.hpp"
 #include "Sound.hpp"
+#include "Player.hpp"
 
 class SelectSkins : public AScene {
     public:
@@ -16,6 +17,8 @@ class SelectSkins : public AScene {
         void Update(void);
         void Render(void);
         void Clear(void);
+        void SelectPlayerOne();
+        void SelectPlayerTwo();
     private:
         ITexture *_background;
         std::unique_ptr<Button> _first_skin_one;
@@ -27,7 +30,16 @@ class SelectSkins : public AScene {
         std::unique_ptr<Button> _third_skin_two;
         std::unique_ptr<Button> _fourth_skin_two;
         std::unique_ptr<Button> _buttonGo;
+        std::unique_ptr<Button> _buttonBack;
         std::unique_ptr<Sound> _buttonSound;
+
+        std::unique_ptr<Player> p1;
+        std::unique_ptr<Player> p2;
+        std::unique_ptr<Player> p3;
+        std::unique_ptr<Player> p4;
+
+        int _current_skin1;
+        int _current_skin2;
 };
 
 #endif //BOMBERMAN_SELECTSKINS_HPP

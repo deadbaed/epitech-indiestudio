@@ -27,6 +27,8 @@ public:
     void Update(std::vector<std::shared_ptr<IGameObject>> &obj);
     void Delete();
     void setPosition(irr::core::vector3df const position);
+    const IGameObject::type_e GetType(void);
+
 private:
     bool calculateCollision(irr::core::vector3df position);
     void explosion(void);

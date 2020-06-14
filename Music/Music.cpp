@@ -3,6 +3,7 @@
 //
 
 #include "Music.hpp"
+#include "Error.hpp"
 
 Music::Music(SAppContext &context) : _context(context)
 {
@@ -15,7 +16,7 @@ int Music::Play(std::string filepath)
         return 0;
     this->_music.stop();
     if (!this->_music.openFromFile(filepath.c_str()))
-        return -1;
+        throw MusicError("Can't open music file");
     this->_path_music = filepath;
     this->_music.play();
     this->_music.setVolume(this->_context.volume_music);

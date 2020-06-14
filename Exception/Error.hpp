@@ -33,4 +33,20 @@ class MenuError : public Error
         MenuError(const std::string &msg);
         virtual ~MenuError() throw(){}
 };
+
+class MusicError : public Error
+{
+public:
+    MusicError(const std::string &msg);
+    virtual ~MusicError() throw(){}
+};
+
+class SoundError : public Error
+{
+public:
+    SoundError(const std::string &msg);
+    virtual ~SoundError() throw(){}
+};
+
+
 #endif /* !EXCEPTION_HPP_ */

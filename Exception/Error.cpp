@@ -26,3 +26,13 @@ MenuError::MenuError(const std::string &msg = "") : Error(msg)
 {
 
 }
+
+MusicError::MusicError(const std::string &msg = "") : Error(msg)
+{
+
+}
+
+SoundError::SoundError(const std::string &msg = "") : Error(msg)
+{
+
+}

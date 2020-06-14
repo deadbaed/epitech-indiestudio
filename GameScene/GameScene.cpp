@@ -105,7 +105,7 @@ void GameScene::Init(void)
         map->generate(_ctrl, _obj_list, AssetSelector(FLOOR_ASSET).string(), 100);
         map->generateWall(_ctrl, _obj_list, AssetSelector(WALL1_ASSET).string());
         map->generateBorder(_ctrl, _obj_list, AssetSelector(WALL1_ASSET).string());
-        map->generateBlock(_ctrl, _obj_list, AssetSelector(WALL2_ASSET).string(), 30);
+        map->generateBlock(_ctrl, _obj_list, AssetSelector(WALL2_ASSET).string(), 90);
     }
     if (!_powers)
         addPowerUp(NB_POWER_UP);

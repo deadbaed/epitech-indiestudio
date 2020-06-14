@@ -20,7 +20,7 @@ void PowerUp::Init(void)
     if (_id.compare("skate")) {
         _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(AssetSelector(SKATE).c_str()));
     } else {
-        _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(AssetSelector(SKATE).c_str()));
+        _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(AssetSelector(WALL_PASS).c_str()));
     }
     _node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
     _node->setMD2Animation(scene::EMAT_STAND);

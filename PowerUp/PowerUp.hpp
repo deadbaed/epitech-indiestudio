@@ -14,7 +14,7 @@
 #include <iostream>
 
 #define SKATE "skate.obj"
-
+#define WALL_PASS "wall_pass.obj"
 class PowerUp : public GameObject {
     public:
         PowerUp(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);

@@ -12,9 +12,9 @@
 #include "PowerUp.hpp"
 
 #define MUSIC_GAME "audio/music_game.ogg"
-#define FLOOR_ASSET "floor.obj"
-#define WALL1_ASSET "wall_1.obj"
-#define WALL2_ASSET "wall_2.obj"
+#define FLOOR_ASSET "map/floor.obj"
+#define WALL1_ASSET "map/wall_1.obj"
+#define WALL2_ASSET "map/wall_2.obj"
 
 class GameScene : public AScene {
     public:

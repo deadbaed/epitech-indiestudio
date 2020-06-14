@@ -13,7 +13,7 @@
 #include <random>
 #include <iostream>
 
-#define SKATE "../assets/skate.obj"
+#define SKATE "skate.obj"
 
 class PowerUp : public GameObject {
     public:

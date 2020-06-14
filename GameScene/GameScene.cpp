@@ -57,6 +57,7 @@ void GameScene::Init(void)
         this->player_two_set = false;
         this->end = false;
         this->_winner = 1;
+        this->_winner = false;
     }
     for (auto i = _obj_list.cbegin(); i != _obj_list.cend(); i++) {
         if (i->get()->GetType() == IGameObject::type_e::BORDER) {
@@ -83,6 +84,14 @@ void GameScene::Init(void)
             i->get()->Init();
             player_two_set = true;
         }
+        if (i->get()->GetType() == IGameObject::type_e::PWU_SKATE) {
+            i->get()->Init();
+            _powers = true;
+        }
+        if (i->get()->GetType() == IGameObject::type_e::PWU_WALL_PASS) {
+            i->get()->Init();
+            _powers = true;
+        }
     }
 
     /* Camera */
@@ -98,7 +107,8 @@ void GameScene::Init(void)
         map->generateBorder(_ctrl, _obj_list, AssetSelector(WALL1_ASSET).string());
         map->generateBlock(_ctrl, _obj_list, AssetSelector(WALL2_ASSET).string(), 30);
     }
-    addPowerUp(NB_POWER_UP);
+    if (!_powers)
+        addPowerUp(NB_POWER_UP);
 
     /* Music */
     this->_ctrl->_music->Play(AssetSelector(MUSIC_GAME).string());
@@ -143,7 +153,7 @@ void GameScene::Update(void)
         }
     }
 
-    if (players == 1) {
+    if (players <= 1) {
         this->_ctrl->_context.winner = _winner;
         this->_ctrl->_context.sceneName = "endScene";
     }

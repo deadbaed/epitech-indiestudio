@@ -24,6 +24,7 @@ void PowerUp::Init(void)
     }
     _node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
     _node->setMD2Animation(scene::EMAT_STAND);
+    _node->setPosition(GetPosition());
 }
 
 void PowerUp::SetPosition(irr::core::vector3df position)

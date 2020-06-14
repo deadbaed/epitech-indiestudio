@@ -30,6 +30,7 @@ class GameScene : public AScene {
         bool player_one_set;
         bool player_two_set;
         bool end;
+        bool _powers;
         int _winner;
         void addPowerUp(unsigned int prob);
         std::shared_ptr<IGameObject> initPowerUp(irr::core::vector3df pos, const std::string name);

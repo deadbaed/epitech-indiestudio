@@ -18,6 +18,7 @@ int Music::Play(std::string filepath)
     if (!this->_music.openFromFile(filepath.c_str()))
         throw MusicError("Can't open music file");
     this->_path_music = filepath;
+    this->_music.setLoop(true);
     this->_music.play();
     this->_music.setVolume(this->_context.volume_music);
     return (0);

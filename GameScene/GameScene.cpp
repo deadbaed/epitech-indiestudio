@@ -98,7 +98,7 @@ void GameScene::Init(void)
         map->generateBorder(_ctrl, _obj_list, AssetSelector(WALL1_ASSET).string());
         map->generateBlock(_ctrl, _obj_list, AssetSelector(WALL2_ASSET).string(), 30);
     }
-    addPowerUp(100);
+    addPowerUp(NB_POWER_UP);
 
     /* Music */
     this->_ctrl->_music->Play(AssetSelector(MUSIC_GAME).string());

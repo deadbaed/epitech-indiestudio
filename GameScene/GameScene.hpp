@@ -16,6 +16,8 @@
 #define WALL1_ASSET "map/wall_1.obj"
 #define WALL2_ASSET "map/wall_2.obj"
 
+#define NB_POWER_UP 10
+
 class GameScene : public AScene {
     public:
         GameScene(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);

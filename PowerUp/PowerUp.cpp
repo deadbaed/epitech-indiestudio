@@ -46,7 +46,10 @@ void PowerUp::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
 
 void PowerUp::Delete(void)
 {
-    _status = DELETED;
+    if (this->_node) {
+        this->_node->remove();
+        this->_node = NULL;
+    }
 }
 
 const IGameObject::type_e PowerUp::GetType(void)

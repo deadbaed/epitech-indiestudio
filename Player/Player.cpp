@@ -27,6 +27,9 @@ Player::Player(const std::shared_ptr<IrrlichtController> &ctrl, const std::strin
     _pose = false;
     _dead = false;
     _nb = 0;
+    _speed = SPEED;
+    _no_collids = false;
+    _collid = false;
 }
 
 void Player::Init()
@@ -78,22 +81,24 @@ void Player::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
             core::vector3df nodePosition = this->GetPosition();
 
             if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_Z)) {
-                nodePosition.X -= SPEED * _frameDeltaTime;
+                nodePosition.X -= _speed * _frameDeltaTime;
                 this->setRotation(core::vector3df(0, 90, 0));
             } else if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_S)) {
-                nodePosition.X += SPEED * _frameDeltaTime;
+                nodePosition.X += _speed * _frameDeltaTime;
                 this->setRotation(core::vector3df(0, -90, 0));
             }
             if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_Q)) {
-                nodePosition.Z -= SPEED * _frameDeltaTime;
+                nodePosition.Z -= _speed * _frameDeltaTime;
                 this->setRotation(core::vector3df(0, 0, 0));
             } else if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_D)) {
-                nodePosition.Z += SPEED * _frameDeltaTime;
+                nodePosition.Z += _speed * _frameDeltaTime;
                 this->setRotation(core::vector3df(0, 180, 0));
             }
 
             _collider->SetPosition(nodePosition);
             if (!calculateCollision())
+                this->setPosition(nodePosition);
+            else if (_no_collids && !calculateBorderCollisions())
                 this->setPosition(nodePosition);
 
             if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_A)) {
@@ -105,19 +110,29 @@ void Player::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
                 this->_node->setCurrentFrame(POSE_BEGIN);
             }
         }
+
         if (this->_conf == KeyConfig::RIGHT) {
             core::vector3df nodePosition = this->GetPosition();
 
-            if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_O))
-                nodePosition.X -= SPEED * _frameDeltaTime;
-            else if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_L))
-                nodePosition.X += SPEED * _frameDeltaTime;
-            if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_K))
-                nodePosition.Z += SPEED * _frameDeltaTime;
-            else if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_M))
-                nodePosition.Z -= SPEED * _frameDeltaTime;
-
-            this->setPosition(nodePosition);
+            if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_O)) {
+                nodePosition.X -= _speed * _frameDeltaTime;
+                this->setRotation(core::vector3df(0, 90, 0));
+            } else if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_L)) {
+                nodePosition.X += _speed * _frameDeltaTime;
+                this->setRotation(core::vector3df(0, -90, 0));
+            }
+            if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_K)) {
+                nodePosition.Z -= _speed * _frameDeltaTime;
+                this->setRotation(core::vector3df(0, 0, 0));
+            } else if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_M)) {
+                nodePosition.Z += _speed * _frameDeltaTime;
+                this->setRotation(core::vector3df(0, 180, 0));
+            }
+            _collider->SetPosition(nodePosition);
+            if (!calculateCollision())
+                this->setPosition(nodePosition);
+            else if (_no_collids && !calculateBorderCollisions())
+                this->setPosition(nodePosition);
 
             if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_KEY_I)) {
                 this->_win = true;
@@ -132,26 +147,62 @@ void Player::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
     }
     if (this->_node)
         this->updateAnimations();
+    if (this->_no_collids) {
+        this->end = std::chrono::steady_clock::now();
+        this->elapsed_seconds = end - start;
+        if (this->elapsed_seconds.count() > NO_COLLID && !_collid) {
+            this->_no_collids = false;
+        }
+    }
 }
 
 bool Player::calculateCollision()
 {
+    bool ret = false;
+
     for (auto i = _obj->cbegin(); i != _obj->cend(); i++) {
-        if (i->get()->GetId() != _id && i->get()->GetType() != IGameObject::PLAYER && i->get()->GetType() != IGameObject::AI && i->get()->GetId().compare("ground") != 0) {
+        if (i->get()->GetId() != _id && i->get()->GetType() == IGameObject::type_e::PWU_WALL_PASS) {
             if (GetCollider()->Collide(*i->get()->GetCollider())) {
-                return (true);
+                _no_collids = true;
+                this->start = std::chrono::steady_clock::now();
+                i->get()->SetStatus(IGameObject::status_e::DELETED);
+            }
+        }
+        if (i->get()->GetId() != _id && i->get()->GetType() == IGameObject::type_e::PWU_SKATE) {
+            if (GetCollider()->Collide(*i->get()->GetCollider())) {
+                _speed += 1;
+                i->get()->SetStatus(IGameObject::status_e::DELETED);
+            }
+        }
+        if (i->get()->GetId() != _id && i->get()->GetType() != IGameObject::PLAYER && i->get()->GetType() != IGameObject::AI && i->get()->GetId().compare("ground") != 0 \
+        && i->get()->GetType() != IGameObject::type_e::PWU_SKATE && i->get()->GetType() != IGameObject::type_e::PWU_WALL_PASS) {
+            if (GetCollider()->Collide(*i->get()->GetCollider())) {
+                ret = true;
             }
         }
     }
-    return (false);
+    _collid = ret;
+    return (ret);
+}
+
+bool Player::calculateBorderCollisions()
+{
+    bool ret = false;
+
+    for (auto i = _obj->cbegin(); i != _obj->cend(); i++) {
+        if (i->get()->GetId() != _id && i->get()->GetType() == IGameObject::type_e::BORDER) {
+            if (GetCollider()->Collide(*i->get()->GetCollider())) {
+                ret = true;
+            }
+        }
+    }
+    return (ret);
 }
 
 void Player::Delete()
 {
     _dead = true;
     this->_node->setCurrentFrame(DEAD_BEGIN);
-    //_status = DELETED;
-    //this->_node->remove();
 }
 
 void Player::updateAnimations()
@@ -168,7 +219,6 @@ void Player::updateAnimations()
 
 void Player::animationWin()
 {
-    std::cout << "win " << std::endl;
     if (this->_node->getFrameNr() > WIN_END) {
         this->_node->setCurrentFrame(WIN_BEGIN);
         this->_win = false;
@@ -177,7 +227,6 @@ void Player::animationWin()
 
 void Player::animationPose()
 {
-    std::cout << "pose " << std::endl;
     if (this->_node->getFrameNr() > POSE_END) {
         this->_node->setCurrentFrame(POSE_BEGIN);
         this->_pose = false;
@@ -187,7 +236,6 @@ void Player::animationPose()
 
 void Player::animationDead()
 {
-    std::cout << "dead " << std::endl;
     if (this->_node->getFrameNr() > DEAD_END) {
         this->_node->setCurrentFrame(DEAD_BEGIN);
         //this->_dead = false;

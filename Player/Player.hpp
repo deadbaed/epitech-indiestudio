@@ -34,7 +34,10 @@
 #define RIGHT_KEY   "OKLMP"
 
 /* Speed */
-#define SPEED 20
+#define SPEED 15
+
+/* POWERUP TIME */
+#define NO_COLLID 5
 
 class Player : public GameObject {
     public:
@@ -81,6 +84,15 @@ class Player : public GameObject {
         bool _dead;
         /* Bomb increase */
         int _nb;
+        /* Speed */
+        int _speed;
+        /* Power up flags */
+        bool _collid;
+        bool _no_collids;
+        bool calculateBorderCollisions();
+        std::chrono::time_point<std::chrono::steady_clock> start;
+        std::chrono::time_point<std::chrono::steady_clock> end;
+        std::chrono::duration<double> elapsed_seconds;
         std::vector<std::shared_ptr<IGameObject>> *_obj;
         //std::shared_ptr<Collider> _collider;
 };

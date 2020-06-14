@@ -34,12 +34,16 @@ void GameScene::addPowerUp(unsigned int prob)
     std::random_device dev;
     std::mt19937 _prob(dev());
     std::uniform_int_distribution<std::mt19937::result_type> distribution(1,100);
+    std::uniform_int_distribution<std::mt19937::result_type> distribution_2(1, 2);
     std::vector<std::shared_ptr<IGameObject>>::iterator ptr;
 
     for (ptr = _obj_list.begin(); ptr < _obj_list.end(); ptr++)
         if (ptr->get()->GetType() == IGameObject::type_e::GROUND || ptr->get()->GetType() == IGameObject::type_e::DESTRUCTABLE_WALL)
             if (distribution(_prob) <= prob) {
-                _obj_list.push_back(initPowerUp(ptr->get()->GetPosition(), "skate"));
+                if (distribution_2(_prob) == 1)
+                    _obj_list.push_back(initPowerUp(ptr->get()->GetPosition(), "skate"));
+                else
+                   _obj_list.push_back(initPowerUp(ptr->get()->GetPosition(), "wall_pass"));
             }
 }
 
@@ -94,7 +98,7 @@ void GameScene::Init(void)
         map->generateBorder(_ctrl, _obj_list, AssetSelector(WALL1_ASSET).string());
         map->generateBlock(_ctrl, _obj_list, AssetSelector(WALL2_ASSET).string(), 30);
     }
-    addPowerUp(3);
+    addPowerUp(100);
 
     /* Music */
     this->_ctrl->_music->Play(AssetSelector(MUSIC_GAME).string());

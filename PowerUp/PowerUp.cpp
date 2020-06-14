@@ -17,14 +17,11 @@ PowerUp::PowerUp(const std::shared_ptr<IrrlichtController> &ctrl, const std::str
 
 void PowerUp::Init(void)
 {
-    std::random_device dev;
-    std::mt19937 _prob(dev());
-    std::uniform_int_distribution<std::mt19937::result_type> distribution(1, 2);
-
-    if (distribution(_prob) == 1)
+    if (_id.compare("skate")) {
         _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(AssetSelector(SKATE).c_str()));
-    else
+    } else {
         _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(AssetSelector(SKATE).c_str()));
+    }
     _node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
     _node->setMD2Animation(scene::EMAT_STAND);
 }

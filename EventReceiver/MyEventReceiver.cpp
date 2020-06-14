@@ -64,11 +64,11 @@ bool MyEventReceiver::OnEvent(const SEvent &event) {
                     case GUI_ID_SKIN_WHITE_BUTTON:
                         Context.skin_player_one = 1;
                         return true;
-                    case GUI_ID_SKIN_BLUE_BUTTON:
-                        Context.skin_player_one = 3;
-                        return true;
                     case GUI_ID_SKIN_GREEN_BUTTON:
                         Context.skin_player_one = 2;
+                        return true;
+                    case GUI_ID_SKIN_BLUE_BUTTON:
+                        Context.skin_player_one = 3;
                         return true;
                     case GUI_ID_SKIN_BLACK_BUTTON:
                         Context.skin_player_one = 4;
@@ -76,11 +76,11 @@ bool MyEventReceiver::OnEvent(const SEvent &event) {
                     case GUI_ID_SKINS_WHITE_BUTTON:
                         Context.skin_player_two = 1;
                         return true;
-                    case GUI_ID_SKINS_BLUE_BUTTON:
-                        Context.skin_player_two = 3;
-                        return true;
                     case GUI_ID_SKINS_GREEN_BUTTON:
                         Context.skin_player_two = 2;
+                        return true;
+                    case GUI_ID_SKINS_BLUE_BUTTON:
+                        Context.skin_player_two = 3;
                         return true;
                     case GUI_ID_SKINS_BLACK_BUTTON:
                         Context.skin_player_two = 4;

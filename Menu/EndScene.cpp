@@ -27,8 +27,6 @@ void EndScene::Init(void)
         p2->setPosition(irr::core::vector3df(1, -3, 9));
         p->setPosition(irr::core::vector3df(-6, -3, 14));
     }
-    AddGameObject(p);
-    AddGameObject(p2);
     this->_ctrl->_music->Play("../assets/audio/music_game.ogg");
     this->_restart = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 - 600, HEIGHT / 2 - 300), GUI_ID_RESUME_BUTTON_PAUSED, "../assets/end/restart.png", "../assets/end/restart_fonce.png");
     this->_exit = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 + 200, HEIGHT / 2 - 300), GUI_ID_EXIT_BUTTON_PAUSED, "../assets/end/menu.png", "../assets/end/menu_fonce.png");

@@ -20,10 +20,10 @@
 #include "EndScene.hpp"
 
 /* Win32: Remove the console application */
-#ifdef _IRR_WINDOWS_
-#pragma comment(lib, "Irrlicht.lib")
-#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
-#endif
+//#ifdef _IRR_WINDOWS_
+//#pragma comment(lib, "Irrlicht.lib")
+//#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
+//#endif
 
 int main(void) {
     std::shared_ptr<IrrlichtController> c = std::make_shared<IrrlichtController>();

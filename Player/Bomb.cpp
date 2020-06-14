@@ -28,7 +28,7 @@ void Bomb::Init()
         _node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
         _node->setMD2Animation(scene::EMAT_STAND);
     }
-    _node->setScale(irr::core::vector3df(3.3, 3.3, 3.3));
+    _node->setScale(irr::core::vector3df((float)3.3, (float)3.3, (float)3.3));
     this->start = std::chrono::steady_clock::now();
     this->_particles->Init();
 }

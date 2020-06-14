@@ -6,6 +6,7 @@
 */
 
 #include "AI.hpp"
+#include "AssetSelector.hpp"
 
 AI::AI(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name): GameObject(ctrl, irr::core::vector3df(5, 5, 5), name)
 {
@@ -22,7 +23,7 @@ AI::AI(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name):
 
 void AI::Init()
 {
-    _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(WHITE_PATH));
+    _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(AssetSelector(WHITE_PATH).c_str()));
 
     if (_node) {
         _node->setMaterialFlag(irr::video::EMF_LIGHTING, false);

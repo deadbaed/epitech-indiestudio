@@ -6,6 +6,7 @@
 */
 
 #include "Bomb.hpp"
+#include "AssetSelector.hpp"
 
 Bomb::Bomb(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameObject(ctrl, irr::core::vector3df(1, 1, 1), name)
 {
@@ -22,7 +23,7 @@ Bomb::Bomb(const std::shared_ptr<IrrlichtController> &ctrl, const std::string na
 
 void Bomb::Init()
 {
-    _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(BOMB_PATH));
+    _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(AssetSelector(BOMB_PATH).c_str()));
     if (_node) {
         _node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
         _node->setMD2Animation(scene::EMAT_STAND);

@@ -42,6 +42,7 @@ add_subdirectory(Storage)
 add_subdirectory(Exception)
 add_subdirectory(Ai)
 add_subdirectory(PowerUp)
+add_subdirectory(AssetSelector)
 
 # define sources to use
 set(SRCS Application/main.cpp CPack/win32.rc)
@@ -63,7 +64,6 @@ target_link_libraries(${PROJECT_NAME} settings)
 target_link_libraries(${PROJECT_NAME} player)
 target_link_libraries(${PROJECT_NAME} storage)
 target_link_libraries(${PROJECT_NAME} ai)
-target_link_libraries(${PROJECT_NAME} power_up)
 
 # define the external libraries to use
 target_link_libraries(${PROJECT_NAME} ${Irrlicht_LIBRARIES})

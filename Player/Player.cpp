@@ -6,6 +6,7 @@
 */
 
 #include "Player.hpp"
+#include "AssetSelector.hpp"
 
 Player::Player(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameObject(ctrl, irr::core::vector3df(5, 5, 5), name)
 {
@@ -32,19 +33,19 @@ void Player::Init()
 {
     switch (this->_type) {
         case WHITE:
-            _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(WHITE_PATH));
+            _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(AssetSelector(WHITE_PATH).c_str()));
             break;
         case GREEN:
-            _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(GREEN_PATH));
+            _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(AssetSelector(GREEN_PATH).c_str()));
             break;
         case BLUE:
-            _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(BLUE_PATH));
+            _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(AssetSelector(BLUE_PATH).c_str()));
             break;
         case BLACK:
-            _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(BLACK_PATH));
+            _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(AssetSelector(BLACK_PATH).c_str()));
             break;
         default:
-            _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(WHITE_PATH));
+            _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(AssetSelector(WHITE_PATH).c_str()));
     }
     if (_node) {
         _node->setMaterialFlag(irr::video::EMF_LIGHTING, false);

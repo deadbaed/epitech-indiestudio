@@ -8,7 +8,7 @@
 #include "GameScene.hpp"
 #include "Player.hpp"
 #include "MapGenerator.hpp"
-
+#include "AssetSelector.hpp"
 #include <iostream>
 
 GameScene::GameScene(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : AScene(ctrl, name)
@@ -68,12 +68,11 @@ void GameScene::Init(void)
     p2->SetPosition(irr::core::vector3df(20, 0, 0));
     AddGameObject(p);
     AddGameObject(p2);
-    this->_ctrl->_music->Play("../assets/audio/music_game.ogg");
+    this->_ctrl->_music->Play(AssetSelector(MUSIC_GAME).string());
     std::shared_ptr<mapGenerator> map = std::make_shared<mapGenerator>(vector3df(0,0,0), 6, 11, 11);
-    map->generate(_ctrl, _obj_list, GROUND_PATH, 100);
-    map->generateWall(_ctrl, _obj_list, WALL_PATH);
-    map->generateBorder(_ctrl, _obj_list, WALL_PATH);
-    map->generateBlock(_ctrl, _obj_list, BLOCK_PATH, 30);
+    map->generate(_ctrl, _obj_list, AssetSelector(FLOOR_ASSET).string(), 100);
+    map->generateWall(_ctrl, _obj_list, AssetSelector(WALL1_ASSET).string());
+    map->generateBorder(_ctrl, _obj_list, AssetSelector(WALL1_ASSET).string());
+    map->generateBlock(_ctrl, _obj_list, AssetSelector(WALL2_ASSET).string(), 30);
     addPowerUp(3);
-
 }

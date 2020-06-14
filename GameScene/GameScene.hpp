@@ -9,6 +9,7 @@
 #define GAMESCENE_HPP_
 
 #include "AScene.hpp"
+#include "PowerUp.hpp"
 
 class GameScene : public AScene {
     public:
@@ -17,6 +18,8 @@ class GameScene : public AScene {
         ~GameScene();
     protected:
     private:
+        void addPowerUp(unsigned int prob);
+        std::shared_ptr<IGameObject> initPowerUp(irr::core::vector3df pos, const std::string name);
 };
 
 #endif /* !GAMESCENE_HPP_ */

@@ -8,6 +8,7 @@
 #include "GameScene.hpp"
 #include "Player.hpp"
 #include "MapGenerator.hpp"
+
 #include <iostream>
 
 GameScene::GameScene(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : AScene(ctrl, name)
@@ -18,6 +19,28 @@ GameScene::GameScene(const std::shared_ptr<IrrlichtController> &ctrl, const std:
 GameScene::~GameScene()
 {
 
+}
+
+std::shared_ptr<IGameObject> GameScene::initPowerUp(irr::core::vector3df pos, const std::string name)
+{
+    std::shared_ptr<PowerUp> power_up = std::make_shared<PowerUp>(_ctrl, name);
+    power_up->Init();
+    power_up->SetPosition(pos);
+    return power_up;
+}
+
+void GameScene::addPowerUp(unsigned int prob)
+{
+    std::random_device dev;
+    std::mt19937 _prob(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> distribution(1,100);
+    std::vector<std::shared_ptr<IGameObject>>::iterator ptr;
+
+    for (ptr = _obj_list.begin(); ptr < _obj_list.end(); ptr++)
+        if (ptr->get()->GetType() == IGameObject::type_e::GROUND || ptr->get()->GetType() == IGameObject::type_e::DESTRUCTABLE_WALL)
+            if (distribution(_prob) <= prob) {
+                _obj_list.push_back(initPowerUp(ptr->get()->GetPosition(), "skate"));
+            }
 }
 
 void GameScene::Init(void)
@@ -47,8 +70,10 @@ void GameScene::Init(void)
     AddGameObject(p2);
     this->_ctrl->_music->Play("../assets/audio/music_game.ogg");
     std::shared_ptr<mapGenerator> map = std::make_shared<mapGenerator>(vector3df(0,0,0), 6, 11, 11);
-    map->generate(_ctrl, _obj_list, "../assets/floor.obj", 100);
-    map->generateWall(_ctrl, _obj_list, "../assets/wall_1.obj");
-    map->generateBorder(_ctrl, _obj_list, "../assets/wall_1.obj");
-    map->generateBlock(_ctrl, _obj_list, "../assets/wall_2.obj", 30);
+    map->generate(_ctrl, _obj_list, GROUND_PATH, 100);
+    map->generateWall(_ctrl, _obj_list, WALL_PATH);
+    map->generateBorder(_ctrl, _obj_list, WALL_PATH);
+    map->generateBlock(_ctrl, _obj_list, BLOCK_PATH, 30);
+    addPowerUp(3);
+
 }

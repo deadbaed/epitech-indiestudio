@@ -13,7 +13,7 @@ GameObject::GameObject(const std::shared_ptr<IrrlichtController> &ctrl, irr::cor
 {
     _position = irr::core::vector3df(0, 0, 0);
     _rotation = irr::core::vector3df(0, 0, 0);
-    _collider = std::make_shared<Collider>(_position, dimension.X, dimension.Y, dimension.Z);
+    _collider = std::make_shared<Collider>(_position, (int)dimension.X, (int)dimension.Y, (int)dimension.Z);
     _status = IGameObject::OK;
 }
 

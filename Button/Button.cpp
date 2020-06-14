@@ -3,18 +3,22 @@
 //
 
 #include "Button.hpp"
+#include "Error.hpp"
 
 Button::Button(IrrlichtDevice *device, vector2d<int> size, vector2d<int> pos, ButtonType type, std::string path1, std::string path2)
 {
-    this->_driver = device->getVideoDriver();
-    this->_env = device->getGUIEnvironment();
-    this->_textureButton = this->_driver->getTexture(path1.c_str());
-    this->_textureButtonOver = this->_driver->getTexture(path2.c_str());
-    this->_button = this->_env->addButton(rect<s32>(pos.X, pos.Y, pos.X + size.X, pos.Y + size.Y), 0, type);
-    this->_button->setImage(this->_textureButton);
-    this->_button->setPressedImage(this->_textureButtonOver);
-    this->_states = 0;
-    this->_lastStates = 0;
+        this->_driver = device->getVideoDriver();
+        this->_env = device->getGUIEnvironment();
+        if ((this->_textureButton = this->_driver->getTexture(path1.c_str())) == 0)
+            throw std::exception("Loading texture button");
+        if ((this->_textureButtonOver = this->_driver->getTexture(path2.c_str())) == 0)
+            throw std::exception("Loading texture button over");
+        if ((this->_button = this->_env->addButton(rect<s32>(pos.X, pos.Y, pos.X + size.X, pos.Y + size.Y), 0, type)) == 0)
+            throw std::exception("Add button");
+        this->_button->setImage(this->_textureButton);
+        this->_button->setPressedImage(this->_textureButtonOver);
+        this->_states = 0;
+        this->_lastStates = 0;
 }
 
 Button::Button(IrrlichtDevice *device, vector2d<int> size, vector2d<int> pos, ButtonType type, std::string path1)

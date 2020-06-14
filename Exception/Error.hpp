@@ -27,4 +27,10 @@ class StorageError : public Error
         virtual ~StorageError() throw(){}
 };
 
+class MenuError : public Error
+{
+    public:
+        MenuError(const std::string &msg);
+        virtual ~MenuError() throw(){}
+};
 #endif /* !EXCEPTION_HPP_ */

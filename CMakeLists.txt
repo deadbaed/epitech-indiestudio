@@ -61,6 +61,7 @@ target_link_libraries(${PROJECT_NAME} menu)
 target_link_libraries(${PROJECT_NAME} settings)
 target_link_libraries(${PROJECT_NAME} player)
 target_link_libraries(${PROJECT_NAME} storage)
+target_link_libraries(${PROJECT_NAME} exception)
 target_link_libraries(${PROJECT_NAME} ai)
 
 # define the external libraries to use

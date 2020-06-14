@@ -26,36 +26,63 @@
 //#endif
 
 int main(void) {
-    std::shared_ptr<IrrlichtController> c = std::make_shared<IrrlichtController>();
-    c->Init(irr::video::E_DRIVER_TYPE::EDT_OPENGL, WIDTH, HEIGHT);
-    c->_device->setWindowCaption(L"Indie Studio");
 
-    std::shared_ptr<GameScene> testScene = std::make_shared<GameScene>(c, "gameScene");
-    std::shared_ptr<Menu> menu = std::make_shared<Menu>(c, "menuScene");
-    std::shared_ptr<Settings> set = std::make_shared<Settings>(c, "settingsScene");
-    std::shared_ptr<ChoosePlayers> chooseP = std::make_shared<ChoosePlayers>(c, "chooseplayersScene");
-    std::shared_ptr<SelectSkin> selectSkin = std::make_shared<SelectSkin>(c, "skinScene");
-    std::shared_ptr<SelectSkins> selectSkins = std::make_shared<SelectSkins>(c, "skinsScene");
-    std::shared_ptr<Introduction> intro = std::make_shared<Introduction>(c, "introScene");
-    std::shared_ptr<PauseMenu> pause = std::make_shared<PauseMenu>(c, "pauseScene");
-    std::shared_ptr<PauseSettings> pauseSettings = std::make_shared<PauseSettings>(c, "pauseSettingsScene");
-    std::shared_ptr<EndScene> endScene = std::make_shared<EndScene>(c, "endScene");
-
+    std::shared_ptr<IrrlichtController> c;
+    std::shared_ptr<Menu> menu;
+    std::shared_ptr<Settings> set;
+    std::shared_ptr<ChoosePlayers> chooseP;
+    std::shared_ptr<SelectSkin> selectSkin;
+    std::shared_ptr<SelectSkins> selectSkins;
+    std::shared_ptr<Introduction> intro;
+    std::shared_ptr<PauseMenu> pause;
+    std::shared_ptr<PauseSettings> pauseSettings;
+    std::shared_ptr<EndScene> endScene;
+    std::shared_ptr<GameScene> testScene;
+    try {
+        c = std::make_shared<IrrlichtController>();
+        c->Init(irr::video::E_DRIVER_TYPE::EDT_OPENGL, WIDTH, HEIGHT);
+        c->_device->setWindowCaption(L"Indie Studio");
+    }
+    catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return (84);
+    }
     SceneManager m(c);
-    m.AddScene(testScene);
-    m.AddScene(menu);
-    m.AddScene(set);
-    m.AddScene(chooseP);
-    m.AddScene(intro);
-    m.AddScene(pause);
-    m.AddScene(pauseSettings);
-    m.AddScene(selectSkin);
-    m.AddScene(selectSkins);
-    m.AddScene(endScene);
-    m.LoadScene("introScene");
-    while (c->isRunning())
-        m.Update();
-
-    c->SaveConfig();
+    try {
+        menu = std::make_shared<Menu>(c, "menuScene");
+        set = std::make_shared<Settings>(c, "settingsScene");
+        chooseP = std::make_shared<ChoosePlayers>(c, "chooseplayersScene");
+        selectSkin = std::make_shared<SelectSkin>(c, "skinScene");
+        selectSkins = std::make_shared<SelectSkins>(c, "skinsScene");
+        intro = std::make_shared<Introduction>(c, "introScene");
+        pause = std::make_shared<PauseMenu>(c, "pauseScene");
+        pauseSettings = std::make_shared<PauseSettings>(c, "pauseSettingsScene");
+        endScene = std::make_shared<EndScene>(c, "endScene");
+        testScene = std::make_shared<GameScene>(c, "gameScene");
+        m.AddScene(menu);
+        m.AddScene(set);
+        m.AddScene(chooseP);
+        m.AddScene(intro);
+        m.AddScene(pause);
+        m.AddScene(pauseSettings);
+        m.AddScene(selectSkin);
+        m.AddScene(selectSkins);
+        m.AddScene(endScene);
+        m.AddScene(testScene);
+    }
+    catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return (84);
+    }
+    try {
+        m.LoadScene("introScene");
+        while (c->isRunning())
+            m.Update();
+        c->SaveConfig();
+    }
+    catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return (84);
+    }
     return 0;
 }

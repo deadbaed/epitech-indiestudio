@@ -3,6 +3,7 @@
 //
 
 #include "Menu.hpp"
+#include "Error.hpp"
 
 Menu::Menu(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : AScene(ctrl, name)
 {

@@ -7,7 +7,6 @@
 
 Sound::Sound(SAppContext &context, const std::string path) : _context(context)
 {
-    ;
     if (!this->_buffer.loadFromFile(path))
         throw MusicError("Can't open sound file");
     this->_sound.setBuffer(this->_buffer);

@@ -65,4 +65,5 @@ void EndScene::Render(void)
 void EndScene::Clear(void)
 {
     this->_ctrl->_env->clear();
+    this->_ctrl->_context.clear_obj = true;
 }

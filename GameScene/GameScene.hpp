@@ -8,7 +8,10 @@
 #ifndef GAMESCENE_HPP_
 #define GAMESCENE_HPP_
 
+#include <iostream>
 #include "AScene.hpp"
+#include "Player.hpp"
+#include "MapGenerator.hpp"
 
 class GameScene : public AScene {
     public:
@@ -17,6 +20,10 @@ class GameScene : public AScene {
         ~GameScene();
     protected:
     private:
+    bool map_set;
+    bool player_one_set;
+    bool player_two_set;
+    std::shared_ptr<mapGenerator> map;
 };
 
 #endif /* !GAMESCENE_HPP_ */

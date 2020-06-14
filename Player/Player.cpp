@@ -52,6 +52,7 @@ void Player::Init()
     }
     this->_old = this->_ctrl->_device->getTimer()->getTime();
     _node->setScale(irr::core::vector3df(2, 2, 2));
+    _node->setAnimationSpeed(90);
 }
 
 void Player::Init(const std::string texture)
@@ -128,8 +129,8 @@ void Player::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
         }
         _collider->SetPosition(this->GetPosition());
     }
-    _node->setAnimationSpeed(90);
-    this->updateAnimations();
+    if (this->_node)
+        this->updateAnimations();
 }
 
 bool Player::calculateCollision()
@@ -201,7 +202,8 @@ f32 Player::GetTime()
 void Player::setPosition(irr::core::vector3df const position)
 {
     this->SetPosition(position);
-    _node->setPosition((position));
+    if (_node)
+        _node->setPosition((position));
     _collider->SetPosition(position);
 }
 
@@ -217,10 +219,20 @@ void Player::poseBomb()
 
     _nb++;
     bomb->Init();
-    vector3df vect = this->GetPosition(); // add a +1
-    bomb->setPosition(vect);
-    _obj->push_back(bomb);
+    vector3df vect = this->GetPosition();
+    vector3df pos_bomb;
+    std::unique_ptr<Collider> tmp = std::make_unique<Collider>(vect, 1, 1, 1);
+    for (auto i = _obj->cbegin(); i != _obj->cend(); i++) {
+        if (i->get()->GetId() != _id && i->get()->GetType() == IGameObject::type_e::GROUND) {
+            if (tmp->Collide(*i->get()->GetCollider())) {
+                pos_bomb = i->get()->GetPosition();
+                bomb->setPosition(pos_bomb);
+                _obj->push_back(bomb);
+            }
+        }
+    }
 }
+
 const IGameObject::type_e Player::GetType(void)
 {
     return IGameObject::type_e::PLAYER;

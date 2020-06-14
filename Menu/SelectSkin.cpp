@@ -40,14 +40,14 @@ void SelectSkin::Update(void)
     int idx = 0;
 
     _ctrl->_driver->beginScene(true, true, SColor(100, 150, 150, 150));
-    for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
+   /* for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
         if (i->get()->GetStatus() == IGameObject::status_e::DELETED)
             _obj_list.erase(i);
     }
 
     for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
         i->get()->Update(_obj_list);
-    }
+    }*/
 
     if (this->_first_skin->updateButton(this->_ctrl->_context))
         this->_buttonSound->Play();
@@ -76,6 +76,7 @@ void SelectSkin::Render(void)
 void SelectSkin::Clear(void)
 {
     this->_ctrl->_env->clear();
+    this->_ctrl->_context.clear_obj = true;
 }
 
 void SelectSkin::SelectPlayer()

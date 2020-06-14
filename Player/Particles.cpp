@@ -15,7 +15,7 @@ Particles::Particles(const std::shared_ptr<IrrlichtController> &ctrl, ParticleSe
 
 void Particles::Init()
 {
-    this->_emitter = _particle->createBoxEmitter(
+    irr::scene::IParticleEmitter * _emitter= _particle->createBoxEmitter(
             _settings._box,
             _settings._direction,
             _settings._minParticles,
@@ -28,7 +28,7 @@ void Particles::Init()
     _emitter->setMaxStartSize(_settings._maxStartSize);
 
     _particle->setEmitter(_emitter);
-    this->_emitter->drop();
+    _emitter->drop();
 
     _paf = _particle->createFadeOutParticleAffector();
     _particle->addAffector(_paf);
@@ -41,7 +41,6 @@ void Particles::Init()
 
 Particles::~Particles()
 {
-    this->_particle->drop();
 }
 
 void Particles::clear()
@@ -52,4 +51,18 @@ void Particles::clear()
 void Particles::setPosition(irr::core::vector3df position)
 {
     this->_particle->setPosition(position);
+}
+
+void Particles::Delete() {
+    //this->clear();
+    //this->_particle->removeAllAffectors();
+    //this->_particle->removeAll();
+    //this->_particle->removeAll();
+//    std::cout << "Particles" << std::endl;
+    if (this->_particle) {
+        this->_particle->remove();
+        this->_particle = NULL;
+        //this->_particle->remove();
+        //this->_particle->drop();
+    }
 }

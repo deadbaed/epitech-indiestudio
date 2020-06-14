@@ -23,6 +23,7 @@ void IrrlichtController::Init(irr::video::E_DRIVER_TYPE driver_type, int width, 
     _context.Position.Y = -1;
     _context.settings = false;
     _context.sceneName = "";
+    _context.clear_obj = false;
     _context.down_volume = false;
     _context.up_volume = false;
     _context.down_volume_sound = false;

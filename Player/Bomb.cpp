@@ -6,6 +6,7 @@
 */
 
 #include "Bomb.hpp"
+#include <memory>
 
 Bomb::Bomb(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameObject(ctrl, irr::core::vector3df(1, 1, 1), name)
 {
@@ -74,7 +75,7 @@ void Bomb::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
         }
     } else if (this->_boom) {
         if (this->elapsed_seconds.count() > TIME_ALIVE) {
-            this->Delete();
+            SetStatus(IGameObject::status_e::DELETED);
         }
     }
 }
@@ -82,20 +83,39 @@ void Bomb::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
 bool Bomb::calculateCollision(irr::core::vector3df position)
 {
     std::unique_ptr<Collider> tmp = std::make_unique<Collider>(position, 5, 5, 5);
+    bool ret = false;
 
-    for (auto i = _obj->cbegin(); i != _obj->cend(); i++) {
-        if (i->get()->GetId() != _id && (i->get()->GetId().compare("p1") == 0 || i->get()->GetId().compare("p2") == 0)) {
+    for (auto i = _obj->begin(); i != _obj->end(); i++) {
+
+        if (i->get()->GetId() != _id && i->get()->GetType() == IGameObject::type_e::PLAYER) {
             if (tmp->Collide(*i->get()->GetCollider())) {
                 i->get()->SetStatus(IGameObject::status_e::DELETED);
             }
         }
-        if (i->get()->GetId() != _id && i->get()->GetId().compare("p1") != 0 && i->get()->GetId().compare("p2") != 0 && i->get()->GetId().compare("ground") != 0) {
+
+        if (i->get()->GetId() != _id && i->get()->GetType() == IGameObject::type_e::DESTRUCTABLE_WALL) {
             if (tmp->Collide(*i->get()->GetCollider())) {
-                return (true);
+                i->get()->SetStatus(IGameObject::status_e::DELETED);
+            }
+        }
+
+        if (i->get()->GetId() != _id && i->get()->GetType() == IGameObject::type_e::BOMB) {
+            //std::unique_ptr<Collider> temp = std::make_unique<Collider>(position, 50, 50, 50);
+            //if (tmp->Collide(*i->get()->GetCollider())) {
+                std::cout << "Bomb" << std::endl;
+                //Bomb *bomb = dynamic_cast<Bomb*>(i->get());
+                //auto bomb = std::dynamic_pointer_cast<Bomb>(i.base());
+                //bomb->explosion();
+            //}
+        }
+
+        if (i->get()->GetId() != _id && i->get()->GetType() != IGameObject::type_e::PLAYER && i->get()->GetType() != IGameObject::type_e::DESTRUCTABLE_WALL && i->get()->GetType() != IGameObject::type_e::GROUND) {
+            if (tmp->Collide(*i->get()->GetCollider())) {
+                ret = true;
             }
         }
     }
-    return (false);
+    return (ret);
 }
 
 void Bomb::explosion()
@@ -103,23 +123,33 @@ void Bomb::explosion()
     irr::core::vector3df pos = this->GetPosition();
 
     this->_particles->clear();
-    if (!calculateCollision(vector3df(pos.X - 5, pos.Y, pos.Z)))
+    if (!calculateCollision(vector3df(pos.X - 6, pos.Y, pos.Z)))
         this->_upperExplosion->Init();
-    if (!calculateCollision(vector3df(pos.X + 5, pos.Y, pos.Z)))
+    if (!calculateCollision(vector3df(pos.X + 6, pos.Y, pos.Z)))
         this->_downExplosion->Init();
-    if (!calculateCollision(vector3df(pos.X, pos.Y, pos.Z - 5)))
+    if (!calculateCollision(vector3df(pos.X, pos.Y, pos.Z - 6)))
         this->_leftExplosion->Init();
-    if (!calculateCollision(vector3df(pos.X, pos.Y, pos.Z + 5)))
+    if (!calculateCollision(vector3df(pos.X, pos.Y, pos.Z + 6)))
         this->_rightExplosion->Init();
 }
 
 void Bomb::Delete()
 {
-    this->_upperExplosion->clear();
+    //std::cout << "ok" << std::endl;
+    this->_particles->Delete();
+    this->_upperExplosion->Delete();
+    this->_downExplosion->Delete();
+    this->_rightExplosion->Delete();
+    this->_leftExplosion->Delete();
+    if (this->_node) {
+        this->_node->remove();
+        this->_node = NULL;
+        //this->_node->setVisible(false);
+    }
+   /* this->_upperExplosion->clear();
     this->_downExplosion->clear();
     this->_leftExplosion->clear();
-    this->_rightExplosion->clear();
-    //_status = DELETED;
+    this->_rightExplosion->clear();*/
     //this->_node->remove();
 }
 

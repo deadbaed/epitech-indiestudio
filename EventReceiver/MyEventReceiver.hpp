@@ -20,6 +20,7 @@ struct SAppContext {
     core::position2di Position;
     bool settings;
     std::string sceneName;
+    bool clear_obj;
     float volume_music;
     float volume_sound;
     bool up_volume;

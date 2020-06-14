@@ -53,15 +53,18 @@ void AScene::Update(void)
             i->get()->Delete();
             _obj_list.erase(i);
         }
+        if (i == _obj_list.end())
+            break;
+    }
+
+    if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_ESCAPE)) {
+        this->_ctrl->_context.sceneName = "pauseScene";
     }
 
     for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
         if (i->get()->GetStatus() != IGameObject::status_e::DELETED)
             i->get()->Update(_obj_list);
     }
-
-    if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_ESCAPE))
-        this->_ctrl->_context.sceneName = "pauseScene";
 }
 
 void AScene::Render(void)

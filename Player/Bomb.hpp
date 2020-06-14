@@ -28,6 +28,7 @@ public:
     void Update(std::vector<std::shared_ptr<IGameObject>> &obj);
     void Delete();
     void setPosition(irr::core::vector3df const position);
+    void setChainedExplosion(bool);
     const IGameObject::type_e GetType(void);
 
 private:
@@ -49,6 +50,7 @@ private:
     std::chrono::time_point<std::chrono::steady_clock> end;
     std::chrono::duration<double> elapsed_seconds;
     bool _boom;
+    bool _boom_chain;
 };
 
 #endif /* !BOMB_HPP */

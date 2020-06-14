@@ -21,6 +21,25 @@ void BlockMap::Init(IAnimatedMesh* &mesh)
     _node->setMD2Animation(scene::EMAT_STAND);
 }
 
+void BlockMap::Init()
+{
+    std::string path = "../assets/wall_2.obj";
+
+    if (GetType() == IGameObject::type_e::GROUND)
+        path = "../assets/floor.obj";
+    if (GetType() == IGameObject::type_e::DESTRUCTABLE_WALL)
+        path = "../assets/wall_2.obj";
+    if (GetType() == IGameObject::type_e::WALL)
+        path = "../assets/wall_1.obj";
+    if (GetType() == IGameObject::type_e::BORDER)
+        path = "../assets/wall_1.obj";
+    _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(path.c_str()));
+    _node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+    _node->setMD2Animation(scene::EMAT_STAND);
+    _node->setPosition(GetPosition());
+
+}
+
 void BlockMap::SetPosition(irr::core::vector3df position)
 {
     _position = position;
@@ -41,7 +60,11 @@ void BlockMap::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
 
 void BlockMap::Delete(void)
 {
-    _status = DELETED;
+    if (this->_node) {
+        this->_node->remove();
+        this->_node = NULL;
+    }
+    //_status = DELETED;
 }
 
 const IGameObject::type_e BlockMap::GetType(void)

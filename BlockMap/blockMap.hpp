@@ -16,6 +16,7 @@ class BlockMap : public GameObject {
     public:
         BlockMap(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
         void Init(IAnimatedMesh* &mesh);
+        void Init();
         void Update(std::vector<std::shared_ptr<IGameObject>> &obj);
         void Delete();
         void SetPosition(irr::core::vector3df position);

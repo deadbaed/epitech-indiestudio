@@ -32,11 +32,12 @@ public:
     void Init();
     void clear(void);
     void setPosition(irr::core::vector3df position);
+    void Delete(void);
 private:
     const std::shared_ptr<IrrlichtController> &_ctrl;
     irr::scene::IParticleSystemSceneNode *_particle;
     scene::IParticleAffector *_paf;
-    irr::scene::IParticleEmitter *_emitter;
+//    irr::scene::IParticleEmitter *_emitter;
     ParticleSetting_t _settings;
 };
 

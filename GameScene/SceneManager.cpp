@@ -23,8 +23,13 @@ void SceneManager::LoadScene(const std::string name)
         if (i->get()->GetId() == name) {
             if (_current_scene) {
                 if (_ctrl->_scene_mgr->getSceneLoaderCount() > 0) {
-                    _ctrl->_scene_mgr->clear();
-                    _ctrl->_env->clear();
+                        std::cout << "name " << name << std::endl;
+                        std::cout << _current_scene->GetId() << std::endl;
+//                    if (_current_scene->GetId() != "gameScene" && name != "pauseScene" || _current_scene->GetId() != "pauseScene" && name != "gameScene") {
+//                        _ctrl->_scene_mgr->clear();
+                        _ctrl->_scene_mgr->clear();
+                        _ctrl->_env->clear();
+//                    }
                 }
             }
             _current_scene = i->get();

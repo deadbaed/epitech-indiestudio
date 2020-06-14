@@ -13,7 +13,7 @@ fs::path AssetSelector(const std::string &asset) {
 
 #if defined(ASSET_SELECTOR_RELEASE) && defined(__linux__)
     if (fs::current_path() == std::getenv("HOME"))
-        AssetPath = "/usr/share/IndieStudio/";
+        AssetPath = "/usr/share/IndieStudio/assets";
     else
         std::cerr << "not in installed mode (with package)" << std::endl;
 #endif

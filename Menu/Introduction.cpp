@@ -14,13 +14,13 @@ Introduction::Introduction(const std::shared_ptr<IrrlichtController> &ctrl, cons
 void Introduction::Init(void)
 {
     this->_select = 0;
-    this->_image_welcome = this->_ctrl->_driver->getTexture("../assets/menu/back_intro_welcome.jpg");
-    this->_image_space = this->_ctrl->_driver->getTexture("../assets/menu/back_intro_space.jpg");
+    this->_image_welcome = this->_ctrl->_driver->getTexture(WELCOME);
+    this->_image_space = this->_ctrl->_driver->getTexture(SPACE);
     this->_logo = 0;
-    this->_first_part = this->_ctrl->_driver->getTexture("../assets/menu/first_part.jpg");
-    this->_second_part = this->_ctrl->_driver->getTexture("../assets/menu/second_part.jpg");
-    this->_third_part = this->_ctrl->_driver->getTexture("../assets/menu/third_part.jpg");
-    this->_fourth_part = this->_ctrl->_driver->getTexture("../assets/menu/fourth_part.jpg");
+    this->_first_part = this->_ctrl->_driver->getTexture(FIRST_PART);
+    this->_second_part = this->_ctrl->_driver->getTexture(SECOND_PART);
+    this->_third_part = this->_ctrl->_driver->getTexture(THIRD_PART);
+    this->_fourth_part = this->_ctrl->_driver->getTexture(FOURTH_PART);
     this->start = std::chrono::steady_clock::now();
 }
 

@@ -10,6 +10,20 @@
 #include "Sound.hpp"
 #include "Player.hpp"
 
+#define BACKGROUND_SS "../assets/menu/fd_select.jpg"
+#define FIRST_SKIN_SS "../assets/menu/white.jpg"
+#define SECOND_SKIN_SS "../assets/menu/green.jpg"
+#define THIRD_SKIN_SS "../assets/menu/black.png"
+#define FOURTH_SKIN_SS "../assets/menu/blue.jpg"
+#define BUTTON_SOUND_SS "../assets/audio/sound_button.wav"
+#define BUTTON_GO_SS "../assets/menu/go.png"
+#define BUTTON_GO_DARK_SS "../assets/menu/go_fonce.png"
+#define BUTTON_BACK_SS "../assets/menu/fleche.png"
+#define BUTTON_BACK_DARK_SS "../assets/menu/fleche_fonce.png"
+
+
+
+
 class SelectSkin : public AScene {
     public:
         SelectSkin(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);

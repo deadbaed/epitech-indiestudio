@@ -10,6 +10,15 @@
 #include "Music.hpp"
 #include "Sound.hpp"
 
+#define BACKGROUND_S "../assets/settings/fond_settings.jpg"
+#define BUTTON_PLUS_S "../assets/settings/volume_up.jpg"
+#define BUTTON_PLUS_BIG_S "../assets/settings/volume_up_big.jpg"
+#define BUTTON_MINUS_S "../assets/settings/volume_down.jpg"
+#define BUTTON_MINUS_BIG_S "../assets/settings/volume_down_big.jpg"
+#define BUTTON_BACK_S "../assets/settings/home_p.jpg"
+#define BUTTON_BACK_DARK_S "../assets/settings/home_fonce.jpg"
+#define BUTTON_SOUND_S "../assets/audio/sound_button.wav"
+
 using namespace irr;
 using namespace core;
 using namespace scene;

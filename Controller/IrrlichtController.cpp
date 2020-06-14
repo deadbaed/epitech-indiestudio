@@ -31,7 +31,10 @@ void IrrlichtController::Init(irr::video::E_DRIVER_TYPE driver_type, int width, 
     _context.volume_sound = LoadSound();
     this->_music = std::make_shared<Music>(_context);
     this->_receiver = new MyEventReceiver(_context);
-
+    _context.nb_player = 0;
+    _context.skin_player_one = 1;
+    _context.skin_player_two = 2;
+    _context.winner = 1;
     _device->setEventReceiver(_receiver);
 }
 

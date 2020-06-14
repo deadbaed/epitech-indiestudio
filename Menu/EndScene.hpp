@@ -20,6 +20,7 @@ private:
     std::unique_ptr<Button> _restart;
     std::unique_ptr<Button> _exit;
     std::unique_ptr<Sound> _buttonSound;
+    ITexture *_background;
 };
 
 

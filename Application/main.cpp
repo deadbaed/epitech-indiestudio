@@ -15,12 +15,15 @@
 #include "ChoosePlayers.hpp"
 #include "PauseMenu.hpp"
 #include "PauseSettings.hpp"
+#include "SelectSkin.hpp"
+#include "SelectSkins.hpp"
+#include "EndScene.hpp"
 
 /* Win32: Remove the console application */
-#ifdef _IRR_WINDOWS_
-#pragma comment(lib, "Irrlicht.lib")
-#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
-#endif
+//#ifdef _IRR_WINDOWS_
+//#pragma comment(lib, "Irrlicht.lib")
+//#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
+//#endif
 
 int main(void) {
     std::shared_ptr<IrrlichtController> c = std::make_shared<IrrlichtController>();
@@ -31,9 +34,12 @@ int main(void) {
     std::shared_ptr<Menu> menu = std::make_shared<Menu>(c, "menuScene");
     std::shared_ptr<Settings> set = std::make_shared<Settings>(c, "settingsScene");
     std::shared_ptr<ChoosePlayers> chooseP = std::make_shared<ChoosePlayers>(c, "chooseplayersScene");
+    std::shared_ptr<SelectSkin> selectSkin = std::make_shared<SelectSkin>(c, "skinScene");
+    std::shared_ptr<SelectSkins> selectSkins = std::make_shared<SelectSkins>(c, "skinsScene");
     std::shared_ptr<Introduction> intro = std::make_shared<Introduction>(c, "introScene");
     std::shared_ptr<PauseMenu> pause = std::make_shared<PauseMenu>(c, "pauseScene");
     std::shared_ptr<PauseSettings> pauseSettings = std::make_shared<PauseSettings>(c, "pauseSettingsScene");
+    std::shared_ptr<EndScene> endScene = std::make_shared<EndScene>(c, "endScene");
 
     SceneManager m(c);
     m.AddScene(testScene);
@@ -43,8 +49,10 @@ int main(void) {
     m.AddScene(intro);
     m.AddScene(pause);
     m.AddScene(pauseSettings);
+    m.AddScene(selectSkin);
+    m.AddScene(selectSkins);
+    m.AddScene(endScene);
     m.LoadScene("introScene");
-
     while (c->isRunning())
         m.Update();
 

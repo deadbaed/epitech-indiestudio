@@ -11,13 +11,13 @@ PauseSettings::PauseSettings(const std::shared_ptr<IrrlichtController> &ctrl, co
 
 void PauseSettings::Init(void)
 {
-    this->_background = this->_ctrl->_driver->getTexture(("../assets/settings/fd_settings_pause.jpg"));
-    this->_buttonPlus = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 2) + 50, (HEIGHT / 2) - 100), GUI_ID_PLUS_BUTTON, "../assets/settings/volume_up.jpg", "../assets/settings/volume_up_big.jpg");
-    this->_buttonMinus = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 2) - 150, (HEIGHT / 2) - 100), GUI_ID_MINUS_BUTTON, "../assets/settings/volume_down.jpg", "../assets/settings/volume_down_big.jpg");
-    this->_buttonPlusSound = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 2) + 50, (HEIGHT / 2) + 100), GUI_ID_PLUS_BUTTON_SOUND, "../assets/settings/volume_up.jpg", "../assets/settings/volume_up_big.jpg");
-    this->_buttonMinusSound = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 2) - 150, (HEIGHT / 2) + 100), GUI_ID_MINUS_BUTTON_SOUND, "../assets/settings/volume_down.jpg", "../assets/settings/volume_down_big.jpg");
-    this->_buttonBack = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 - 200, HEIGHT / 2 + 230), GUI_ID_BACK_BUTTON_SETTINGS, "../assets/settings/back.jpg", "../assets/settings/back_fonce.jpg");
-    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, "../assets/audio/sound_button.wav");
+    this->_background = this->_ctrl->_driver->getTexture(BACKGROUND_PS);
+    this->_buttonPlus = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 2) + 50, (HEIGHT / 2) - 100), GUI_ID_PLUS_BUTTON, BUTTON_PLUS_PS, BUTTON_PLUS_BIG_PS);
+    this->_buttonMinus = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 2) - 150, (HEIGHT / 2) - 100), GUI_ID_MINUS_BUTTON, BUTTON_MINUS_PS, BUTTON_MINUS_BIG_PS);
+    this->_buttonPlusSound = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 2) + 50, (HEIGHT / 2) + 100), GUI_ID_PLUS_BUTTON_SOUND, BUTTON_PLUS_PS, BUTTON_PLUS_BIG_PS);
+    this->_buttonMinusSound = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 2) - 150, (HEIGHT / 2) + 100), GUI_ID_MINUS_BUTTON_SOUND, BUTTON_MINUS_PS, BUTTON_MINUS_BIG_PS);
+    this->_buttonBack = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 - 200, HEIGHT / 2 + 230), GUI_ID_BACK_BUTTON_SETTINGS, BUTTON_BACK_PS, BUTTON_BACK_DARK_PS);
+    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, BUTTON_SOUND_PS);
 }
 
 void PauseSettings::Update(void)

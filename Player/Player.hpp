@@ -56,13 +56,13 @@ class Player : public GameObject {
         void Update(std::vector<std::shared_ptr<IGameObject>> &obj);
         void Delete();
         const IGameObject::type_e GetType(void);
+        void setPosition(irr::core::vector3df const position);
 
     private:
         void animationWin(void);
         void animationPose(void);
         void animationDead(void);
         void updateAnimations(void);
-        void setPosition(irr::core::vector3df const position);
         void setRotation(irr::core::vector3df const rotation);
         bool calculateCollision(void);
         void poseBomb();

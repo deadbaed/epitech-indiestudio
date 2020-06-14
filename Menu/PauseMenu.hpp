@@ -10,6 +10,15 @@
 #include "Music.hpp"
 #include "Sound.hpp"
 
+#define BACKGROUND_PM "../assets/pause/fd_pause.jpg"
+#define RESUME_PM "../assets/pause/resume.jpg"
+#define RESUME_DARK_PM "../assets/pause/resume_fonce.jpg"
+#define OPTION_PM "../assets/pause/settings_pause.jpg"
+#define OPTION_DARK_PM "../assets/pause/settings_pause_fonce.jpg"
+#define EXIT_PM "../assets/pause/exit_pause.jpg"
+#define EXIT_DARK_PM "../assets/pause/exit_pause_fonce.jpg"
+#define BUTTON_SOUND_PM "../assets/audio/sound_button.wav"
+
 using namespace irr;
 using namespace core;
 using namespace scene;

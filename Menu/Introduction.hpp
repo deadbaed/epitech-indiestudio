@@ -10,6 +10,13 @@
 #include <ctime>
 #include <chrono>
 
+#define WELCOME "../assets/menu/back_intro_welcome.jpg"
+#define SPACE "../assets/menu/back_intro_space.jpg"
+#define FIRST_PART "../assets/menu/first_part.jpg"
+#define SECOND_PART "../assets/menu/second_part.jpg"
+#define THIRD_PART "../assets/menu/third_part.jpg"
+#define FOURTH_PART "../assets/menu/fourth_part.jpg"
+
 class Introduction : public AScene {
     public:
         Introduction(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);

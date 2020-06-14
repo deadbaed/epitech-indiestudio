@@ -21,10 +21,10 @@
 #include <exception>
 
 /* Win32: Remove the console application */
-//#ifdef _IRR_WINDOWS_
-//#pragma comment(lib, "Irrlicht.lib")
-//#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
-//#endif
+#ifdef _IRR_WINDOWS_
+#pragma comment(lib, "Irrlicht.lib")
+#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
+#endif
 
 int main(void) {
 

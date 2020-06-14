@@ -35,18 +35,7 @@ void EndScene::Init(void)
 }
 void EndScene::Update(void)
 {
-    int idx = 0;
-
     _ctrl->_driver->beginScene(true, true, SColor(100, 150, 150, 150));
-    for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
-        if (i->get()->GetStatus() == IGameObject::status_e::DELETED)
-            _obj_list.erase(i);
-    }
-
-    for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
-        i->get()->Update(_obj_list);
-    }
-
     if (this->_exit->updateButton(this->_ctrl->_context))
         this->_buttonSound->Play();
     if (this->_restart->updateButton(this->_ctrl->_context))
@@ -56,9 +45,9 @@ void EndScene::Update(void)
 void EndScene::Render(void)
 {
     _ctrl->_driver->draw2DImage(_background, core::position2d<s32>(0,0), core::rect<s32>(0,0,1280,720), 0, video::SColor(255,255,255,255), true);
-    for (auto i = _obj_list.begin(); i != _obj_list.end(); i++)
-        if (i->get()->GetStatus() != IGameObject::status_e::DELETED)
-            i->get()->Render();
+//    for (auto i = _obj_list.begin(); i != _obj_list.end(); i++)
+//        if (i->get()->GetStatus() != IGameObject::status_e::DELETED)
+//            i->get()->Render();
     _ctrl->_scene_mgr->drawAll();
     this->_ctrl->_env->drawAll();
 }

@@ -44,18 +44,7 @@ void SelectSkins::Update(void)
 {
     SelectPlayerOne();
     SelectPlayerTwo();
-    int idx = 0;
-
     _ctrl->_driver->beginScene(true, true, SColor(100, 150, 150, 150));
-   /* for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
-        if (i->get()->GetStatus() == IGameObject::status_e::DELETED)
-            _obj_list.erase(i);
-    }
-
-    for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
-        i->get()->Update(_obj_list);
-    }*/
-
     if (this->_first_skin_one->updateButton(this->_ctrl->_context))
         this->_buttonSound->Play();
     if (this->_second_skin_one->updateButton(this->_ctrl->_context))

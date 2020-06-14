@@ -1,6 +1,16 @@
 # indie studio
 
-epitech second year project
+bomberman clone, epitech 2nd year project
+
+## install
+
+supported operating systems:
+
+- Ubuntu 20.04
+- Fedora 32
+- Windows 10
+
+[Download it now!](https://github.com/x4m3/epitech-indiestudio/releases/tag/1.0.0)
 
 ## how to play
 
@@ -45,10 +55,12 @@ you can also build these libraries from source
 
 64 bit only, using cmake
 
+replace `$BUILD_TYPE` with either `Debug` or `Release`
+
 ### linux
 
 - `mkdir build && cd build`
-- `cmake ..`
+- `cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE`
 - `make`
 
 ### windows
@@ -56,5 +68,5 @@ you can also build these libraries from source
 tested with Visual Studio 16 (2019)
 
 - `mkdir build && cd build`
-- `cmake ..`
+- `cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE`
 - open the visual studio solution (.sln) and build the target `bomberman` 

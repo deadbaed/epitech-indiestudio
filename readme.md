@@ -2,6 +2,24 @@
 
 epitech second year project
 
+## how to play
+
+### Player 1
+
+- `z`: Go up
+- `q`: Go left
+- `s`: Go down
+- `d`: Go right
+- `e`: Place bomb
+
+### Player 2
+
+- `o`: Go up
+- `k`: Go left
+- `l`: Go down
+- `m`: Go right
+- `p`: Place bomb
+
 ## authors
 
 - Baptiste Mottin

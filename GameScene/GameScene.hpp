@@ -20,12 +20,15 @@ class GameScene : public AScene {
     public:
         GameScene(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
         void Init(void);
-        ~GameScene();
+        void Update(void);
+    ~GameScene();
     protected:
     private:
         bool map_set;
         bool player_one_set;
         bool player_two_set;
+        bool end;
+        int _winner;
         void addPowerUp(unsigned int prob);
         std::shared_ptr<IGameObject> initPowerUp(irr::core::vector3df pos, const std::string name);
 };

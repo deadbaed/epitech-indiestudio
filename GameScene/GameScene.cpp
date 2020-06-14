@@ -51,6 +51,8 @@ void GameScene::Init(void)
         this->player_one_set = false;
         this->map_set = false;
         this->player_two_set = false;
+        this->end = false;
+        this->_winner = 1;
     }
     for (auto i = _obj_list.cbegin(); i != _obj_list.cend(); i++) {
         if (i->get()->GetType() == IGameObject::type_e::BORDER) {
@@ -110,5 +112,45 @@ void GameScene::Init(void)
         p2->SetPosition(irr::core::vector3df(48, 0, 48));
         p2->Init();
         AddGameObject(p2);
+    }
+}
+
+void GameScene::Update(void)
+{
+    int idx = 0;
+    int players = 0;
+
+    _ctrl->_driver->beginScene(true, true, SColor(100, 150, 150, 150));
+    for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
+        if (i->get()->GetStatus() == IGameObject::status_e::DELETED) {
+            i->get()->Delete();
+            _obj_list.erase(i);
+        }
+        if (i == _obj_list.end())
+            break;
+    }
+
+    for (auto i = _obj_list.cbegin(); i != _obj_list.cend(); i++) {
+        if (i->get()->GetType() == IGameObject::type_e::PLAYER) {
+            players++;
+            if (i->get()->GetId() == "p1")
+                _winner = 1;
+            else
+                _winner = 2;
+        }
+    }
+
+    if (players == 1) {
+        this->_ctrl->_context.winner = _winner;
+        this->_ctrl->_context.sceneName = "endScene";
+    }
+
+    if (this->_ctrl->_receiver->IsKeyDown(irr::KEY_ESCAPE)) {
+        this->_ctrl->_context.sceneName = "pauseScene";
+    }
+
+    for (auto i = _obj_list.begin(); i != _obj_list.end(); i++) {
+        if (i->get()->GetStatus() != IGameObject::status_e::DELETED)
+            i->get()->Update(_obj_list);
     }
 }

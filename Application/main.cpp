@@ -18,6 +18,7 @@
 #include "SelectSkin.hpp"
 #include "SelectSkins.hpp"
 #include "EndScene.hpp"
+#include <exception>
 
 /* Win32: Remove the console application */
 //#ifdef _IRR_WINDOWS_

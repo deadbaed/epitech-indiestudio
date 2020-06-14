@@ -27,11 +27,11 @@ class StorageError : public Error
         virtual ~StorageError() throw(){}
 };
 
-class MenuError : public Error
+class ButtonError : public Error
 {
     public:
-        MenuError(const std::string &msg);
-        virtual ~MenuError() throw(){}
+        ButtonError(const std::string &msg);
+        virtual ~ButtonError() throw(){}
 };
 
 class MusicError : public Error

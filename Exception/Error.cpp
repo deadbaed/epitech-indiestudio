@@ -22,7 +22,7 @@ StorageError::StorageError(const std::string &msg = "") : Error(msg)
 
 }
 
-MenuError::MenuError(const std::string &msg = "") : Error(msg)
+ButtonError::ButtonError(const std::string &msg = "") : Error(msg)
 {
 
 }

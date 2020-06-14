@@ -62,11 +62,8 @@ target_link_libraries(${PROJECT_NAME} menu)
 target_link_libraries(${PROJECT_NAME} settings)
 target_link_libraries(${PROJECT_NAME} player)
 target_link_libraries(${PROJECT_NAME} storage)
-<<<<<<< HEAD
 target_link_libraries(${PROJECT_NAME} ai)
-=======
 target_link_libraries(${PROJECT_NAME} power_up)
->>>>>>> PowerUp
 
 # define the external libraries to use
 target_link_libraries(${PROJECT_NAME} ${Irrlicht_LIBRARIES})

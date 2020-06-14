@@ -12,7 +12,7 @@ EndScene::EndScene(const std::shared_ptr<IrrlichtController> &ctrl, const std::s
 
 void EndScene::Init(void)
 {
-    this->_background = this->_ctrl->_driver->getTexture(("../assets/end/bgend.jpg"));
+    this->_background = this->_ctrl->_driver->getTexture(BACKGROUND_END);
     _ctrl->_scene_mgr->addCameraSceneNode(0, vector3df(0, 0 , 0), vector3df(0, 0, 1));
     irr::scene::ICameraSceneNode *camera = _ctrl->_scene_mgr->getActiveCamera();
     std::shared_ptr<Player> p = std::make_shared<Player>(_ctrl, "p1", (Player::BomberType)_ctrl->_context.skin_player_one, Player::LEFT);
@@ -27,10 +27,10 @@ void EndScene::Init(void)
         p2->setPosition(irr::core::vector3df(1, -3, 9));
         p->setPosition(irr::core::vector3df(-6, -3, 14));
     }
-    this->_ctrl->_music->Play("../assets/audio/music_game.ogg");
-    this->_restart = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 - 600, HEIGHT / 2 - 300), GUI_ID_RESUME_BUTTON_PAUSED, "../assets/end/restart.png", "../assets/end/restart_fonce.png");
-    this->_exit = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 + 200, HEIGHT / 2 - 300), GUI_ID_EXIT_BUTTON_PAUSED, "../assets/end/menu.png", "../assets/end/menu_fonce.png");
-    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, "../assets/audio/sound_button.wav");
+    this->_ctrl->_music->Play(MUSIC_END);
+    this->_restart = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 - 600, HEIGHT / 2 - 300), GUI_ID_RESUME_BUTTON_PAUSED, RESTART, RESTART_DARK);
+    this->_exit = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 + 200, HEIGHT / 2 - 300), GUI_ID_EXIT_BUTTON_PAUSED, EXIT_END, EXIT_END_DARK);
+    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, BUTTON_SOUND_END);
 }
 void EndScene::Update(void)
 {

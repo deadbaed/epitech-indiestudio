@@ -17,6 +17,8 @@
 #include "GameObject.hpp"
 #include "IScene.hpp"
 
+#define FD_GAME_ASSET "map/fd_fight.jpg"
+
 class AScene : public IScene {
     public:
         AScene(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
@@ -35,6 +37,7 @@ class AScene : public IScene {
         const std::string _id;
         const std::shared_ptr<IrrlichtController> &_ctrl;
         irr::video::SColor _background_color = irr::video::SColor(0, 0, 0, 0);
+        ITexture *_background;
 };
 
 #endif /* !ASCENE_HPP_ */

@@ -6,11 +6,12 @@
 */
 
 #include "AScene.hpp"
+#include "AssetSelector.hpp"
 #include <iostream>
 
 AScene::AScene(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : _id(name), _ctrl(ctrl)
 {
-
+    this->_background = this->_ctrl->_driver->getTexture(AssetSelector(FD_GAME_ASSET).c_str());
 }
 
 AScene::~AScene()
@@ -69,6 +70,7 @@ void AScene::Update(void)
 
 void AScene::Render(void)
 {
+    _ctrl->_driver->draw2DImage(_background, core::position2d<s32>(0,0), core::rect<s32>(0,0,1280,720), 0, video::SColor(255,255,255,255), true);
     for (auto i = _obj_list.begin(); i != _obj_list.end(); i++)
         if (i->get()->GetStatus() != IGameObject::status_e::DELETED)
             i->get()->Render();

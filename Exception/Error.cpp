@@ -21,3 +21,18 @@ StorageError::StorageError(const std::string &msg = "") : Error(msg)
 {
 
 }
+
+ButtonError::ButtonError(const std::string &msg = "") : Error(msg)
+{
+
+}
+
+MusicError::MusicError(const std::string &msg = "") : Error(msg)
+{
+
+}
+
+SoundError::SoundError(const std::string &msg = "") : Error(msg)
+{
+
+}

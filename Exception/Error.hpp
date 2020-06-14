@@ -27,4 +27,26 @@ class StorageError : public Error
         virtual ~StorageError() throw(){}
 };
 
+class ButtonError : public Error
+{
+    public:
+        ButtonError(const std::string &msg);
+        virtual ~ButtonError() throw(){}
+};
+
+class MusicError : public Error
+{
+public:
+    MusicError(const std::string &msg);
+    virtual ~MusicError() throw(){}
+};
+
+class SoundError : public Error
+{
+public:
+    SoundError(const std::string &msg);
+    virtual ~SoundError() throw(){}
+};
+
+
 #endif /* !EXCEPTION_HPP_ */

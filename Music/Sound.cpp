@@ -3,10 +3,13 @@
 //
 
 #include "Sound.hpp"
+#include "Error.hpp"
 
 Sound::Sound(SAppContext &context, const std::string path) : _context(context)
 {
-    this->_buffer.loadFromFile(path);
+    ;
+    if (!this->_buffer.loadFromFile(path))
+        throw MusicError("Can't open sound file");
     this->_sound.setBuffer(this->_buffer);
     this->_sound.setVolume(_context.volume_sound);
 }

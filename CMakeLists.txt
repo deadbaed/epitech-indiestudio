@@ -41,6 +41,8 @@ add_subdirectory(Settings)
 add_subdirectory(Storage)
 add_subdirectory(Exception)
 add_subdirectory(Ai)
+add_subdirectory(PowerUp)
+add_subdirectory(AssetSelector)
 
 # define sources to use
 set(SRCS Application/main.cpp CPack/win32.rc)

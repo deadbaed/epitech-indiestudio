@@ -6,6 +6,7 @@
 */
 
 #include "Bomb.hpp"
+#include "AssetSelector.hpp"
 #include <memory>
 
 Bomb::Bomb(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : GameObject(ctrl, irr::core::vector3df(1, 1, 1), name)
@@ -23,12 +24,12 @@ Bomb::Bomb(const std::shared_ptr<IrrlichtController> &ctrl, const std::string na
 
 void Bomb::Init()
 {
-    _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(BOMB_PATH));
+    _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(AssetSelector(BOMB_PATH).c_str()));
     if (_node) {
         _node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
         _node->setMD2Animation(scene::EMAT_STAND);
     }
-    _node->setScale(irr::core::vector3df(3.3, 3.3, 3.3));
+    _node->setScale(irr::core::vector3df((float)3.3, (float)3.3, (float)3.3));
     this->start = std::chrono::steady_clock::now();
     this->_particles->Init();
 }
@@ -149,7 +150,8 @@ void Bomb::Delete()
    /* this->_upperExplosion->clear();
     this->_downExplosion->clear();
     this->_leftExplosion->clear();
-    this->_rightExplosion->clear();*/
+    this->_rightExplosion->clear();
+    //_status = DELETED;
     //this->_node->remove();
 }
 

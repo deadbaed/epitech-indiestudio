@@ -10,14 +10,14 @@
 #include "Music.hpp"
 #include "Sound.hpp"
 
-#define BACKGROUND_PS "../assets/settings/fd_settings_pause.jpg"
-#define BUTTON_PLUS_PS "../assets/settings/volume_up.jpg"
-#define BUTTON_PLUS_BIG_PS "../assets/settings/volume_up_big.jpg"
-#define BUTTON_MINUS_PS "../assets/settings/volume_down.jpg"
-#define BUTTON_MINUS_BIG_PS "../assets/settings/volume_down_big.jpg"
-#define BUTTON_BACK_PS "../assets/settings/back.jpg"
-#define BUTTON_BACK_DARK_PS "../assets/settings/back_fonce.jpg"
-#define BUTTON_SOUND_PS "../assets/audio/sound_button.wav"
+#define BACKGROUND_PS "settings/fd_settings_pause.jpg"
+#define BUTTON_PLUS_PS "settings/volume_up.jpg"
+#define BUTTON_PLUS_BIG_PS "settings/volume_up_big.jpg"
+#define BUTTON_MINUS_PS "settings/volume_down.jpg"
+#define BUTTON_MINUS_BIG_PS "settings/volume_down_big.jpg"
+#define BUTTON_BACK_PS "settings/back.jpg"
+#define BUTTON_BACK_DARK_PS "settings/back_fonce.jpg"
+#define BUTTON_SOUND_PS "audio/sound_button.wav"
 
 using namespace irr;
 using namespace core;

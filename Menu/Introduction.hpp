@@ -10,12 +10,13 @@
 #include <ctime>
 #include <chrono>
 
-#define WELCOME "../assets/menu/back_intro_welcome.jpg"
-#define SPACE "../assets/menu/back_intro_space.jpg"
-#define FIRST_PART "../assets/menu/first_part.jpg"
-#define SECOND_PART "../assets/menu/second_part.jpg"
-#define THIRD_PART "../assets/menu/third_part.jpg"
-#define FOURTH_PART "../assets/menu/fourth_part.jpg"
+#define WELCOME "menu/back_intro_welcome.jpg"
+#define SPACE "menu/back_intro_space.jpg"
+#define FIRST_PART "menu/first_part.jpg"
+#define SECOND_PART "menu/second_part.jpg"
+#define THIRD_PART "menu/third_part.jpg"
+#define FOURTH_PART "menu/fourth_part.jpg"
+#define MENU_INTRO_MUSIC "audio/music_intro.ogg"
 
 class Introduction : public AScene {
     public:

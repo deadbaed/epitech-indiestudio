@@ -13,8 +13,8 @@
 #include "MyEventReceiver.hpp"
 #include "Particles.hpp"
 
-#define BOMB_PATH       "../assets/bomb/bomb.b3d"
-#define PARTICLE_PATH   "../assets/bomb/fire.bmp"
+#define BOMB_PATH       "bomb/bomb.b3d"
+#define PARTICLE_PATH   "bomb/fire.bmp"
 
 /* Explose after.. */
 #define TIME_BOMB   4

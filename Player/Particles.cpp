@@ -6,6 +6,7 @@
 */
 
 #include "Particles.hpp"
+#include "AssetSelector.hpp"
 
 Particles::Particles(const std::shared_ptr<IrrlichtController> &ctrl, ParticleSetting_t settings) : _ctrl(ctrl)
 {
@@ -35,7 +36,7 @@ void Particles::Init()
     this->_paf->drop();
     _particle->setMaterialFlag(video::EMF_LIGHTING, false);
     _particle->setMaterialFlag(video::EMF_ZWRITE_ENABLE, false);
-    _particle->setMaterialTexture(0, this->_ctrl->_driver->getTexture(PARTICLE_PATH));
+    _particle->setMaterialTexture(0, this->_ctrl->_driver->getTexture(AssetSelector(PARTICLE_PATH).c_str()));
     _particle->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR);
 }
 

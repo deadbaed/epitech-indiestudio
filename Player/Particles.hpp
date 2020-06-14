@@ -11,7 +11,7 @@
 #include "GameObject.hpp"
 #include "MyEventReceiver.hpp"
 
-#define PARTICLE_PATH   "../assets/bomb/fire.bmp"
+#define PARTICLE_PATH   "bomb/fire.bmp"
 
 class Particles
 {

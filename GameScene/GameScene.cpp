@@ -125,9 +125,8 @@ void GameScene::Update(void)
         if (i->get()->GetStatus() == IGameObject::status_e::DELETED) {
             i->get()->Delete();
             _obj_list.erase(i);
+            i = _obj_list.begin();
         }
-        if (i == _obj_list.end())
-            break;
     }
 
     for (auto i = _obj_list.cbegin(); i != _obj_list.cend(); i++) {

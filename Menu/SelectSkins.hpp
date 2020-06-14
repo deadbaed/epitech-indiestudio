@@ -10,16 +10,16 @@
 #include "Sound.hpp"
 #include "Player.hpp"
 
-#define BACKGROUND_SSS "../assets/menu/fd_select.jpg"
-#define FIRST_SKIN_SSS "../assets/menu/white.jpg"
-#define SECOND_SKIN_SSS "../assets/menu/green.jpg"
-#define THIRD_SKIN_SSS "../assets/menu/blue.jpg"
-#define FOURTH_SKIN_SSS "../assets/menu/black.png"
-#define BUTTON_SOUND_SSS "../assets/audio/sound_button.wav"
-#define BUTTON_GO_SSS "../assets/menu/go.png"
-#define BUTTON_GO_DARK_SSS "../assets/menu/go_fonce.png"
-#define BUTTON_BACK_SSS "../assets/menu/fleche.png"
-#define BUTTON_BACK_DARK_SSS "../assets/menu/fleche_fonce.png"
+#define BACKGROUND_SSS "menu/fd_select.jpg"
+#define FIRST_SKIN_SSS "menu/white.jpg"
+#define SECOND_SKIN_SSS "menu/green.jpg"
+#define THIRD_SKIN_SSS "menu/blue.jpg"
+#define FOURTH_SKIN_SSS "menu/black.png"
+#define BUTTON_SOUND_SSS "audio/sound_button.wav"
+#define BUTTON_GO_SSS "menu/go.png"
+#define BUTTON_GO_DARK_SSS "menu/go_fonce.png"
+#define BUTTON_BACK_SSS "menu/fleche.png"
+#define BUTTON_BACK_DARK_SSS "menu/fleche_fonce.png"
 
 
 

@@ -3,6 +3,7 @@
 //
 
 #include "Menu.hpp"
+#include "AssetSelector.hpp"
 
 Menu::Menu(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : AScene(ctrl, name)
 {
@@ -11,11 +12,11 @@ Menu::Menu(const std::shared_ptr<IrrlichtController> &ctrl, const std::string na
 
 void Menu::Init(void)
 {
-    this->_buttonSettings = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(427, HEIGHT), vector2d<int>(0, 0), GUI_ID_SETTINGS_BUTTON, BUTTON_SETTINGS_GREY_M, BUTTON_SETTINGS_M);
-    this->_buttonPlay = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(427, HEIGHT), vector2d<int>(427, 0), GUI_ID_PLAY_BUTTON, PLAY_GREY_M, PLAY_M);
-    this->_buttonExit = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(427, HEIGHT), vector2d<int>(854, 0), GUI_ID_EXIT_BUTTON, EXIT_GREY_M, EXIT_M);
-    this->_ctrl->_music->Play(MUSIC_M);
-    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, BUTTON_SOUND_M);
+    this->_buttonSettings = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(427, HEIGHT), vector2d<int>(0, 0), GUI_ID_SETTINGS_BUTTON, AssetSelector(BUTTON_SETTINGS_GREY_M), AssetSelector(BUTTON_SETTINGS_M));
+    this->_buttonPlay = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(427, HEIGHT), vector2d<int>(427, 0), GUI_ID_PLAY_BUTTON, AssetSelector(PLAY_GREY_M), AssetSelector(PLAY_M));
+    this->_buttonExit = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(427, HEIGHT), vector2d<int>(854, 0), GUI_ID_EXIT_BUTTON, AssetSelector(EXIT_GREY_M), AssetSelector(EXIT_M));
+    this->_ctrl->_music->Play(AssetSelector(MUSIC_M));
+    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, AssetSelector(BUTTON_SOUND_M));
 }
 
 void Menu::Update(void)

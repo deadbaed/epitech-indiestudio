@@ -3,7 +3,7 @@
 //
 
 #include "Introduction.hpp"
-
+#include "AssetSelector.hpp"
 #include <iostream>
 
 Introduction::Introduction(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : AScene(ctrl, name)
@@ -14,13 +14,13 @@ Introduction::Introduction(const std::shared_ptr<IrrlichtController> &ctrl, cons
 void Introduction::Init(void)
 {
     this->_select = 0;
-    this->_image_welcome = this->_ctrl->_driver->getTexture(WELCOME);
-    this->_image_space = this->_ctrl->_driver->getTexture(SPACE);
+    this->_image_welcome = this->_ctrl->_driver->getTexture(AssetSelector(WELCOME).c_str());
+    this->_image_space = this->_ctrl->_driver->getTexture(AssetSelector(SPACE).c_str());
     this->_logo = 0;
-    this->_first_part = this->_ctrl->_driver->getTexture(FIRST_PART);
-    this->_second_part = this->_ctrl->_driver->getTexture(SECOND_PART);
-    this->_third_part = this->_ctrl->_driver->getTexture(THIRD_PART);
-    this->_fourth_part = this->_ctrl->_driver->getTexture(FOURTH_PART);
+    this->_first_part = this->_ctrl->_driver->getTexture(AssetSelector(FIRST_PART).c_str());
+    this->_second_part = this->_ctrl->_driver->getTexture(AssetSelector(SECOND_PART).c_str());
+    this->_third_part = this->_ctrl->_driver->getTexture(AssetSelector(THIRD_PART).c_str());
+    this->_fourth_part = this->_ctrl->_driver->getTexture(AssetSelector(FOURTH_PART).c_str());
     this->start = std::chrono::steady_clock::now();
 }
 
@@ -38,7 +38,7 @@ void Introduction::Update(void)
             this->_logo = 3;
         if (this->elapsed_seconds.count() > 5) {
             this->_select = 1;
-            this->_ctrl->_music->Play("../assets/audio/music_intro.ogg");
+            this->_ctrl->_music->Play(AssetSelector(MENU_INTRO_MUSIC));
         }
     }
     if (this->elapsed_seconds.count() > 1.5 && (this->_select == 1 || this->_select == 2)) {

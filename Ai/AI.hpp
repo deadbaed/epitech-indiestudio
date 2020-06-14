@@ -24,10 +24,10 @@
 #define DEAD_END    250
 
 /* Path for models */
-#define WHITE_PATH  "../assets/players/white.b3d"
-#define BLUE_PATH   "../assets/players/blue.b3d"
-#define GREEN_PATH  "../assets/players/green.b3d"
-#define BLACK_PATH  "../assets/players/black.b3d"
+#define WHITE_PATH  "players/white.b3d"
+#define BLUE_PATH   "players/blue.b3d"
+#define GREEN_PATH  "players/green.b3d"
+#define BLACK_PATH  "players/black.b3d"
 
 /* Key configuration */
 #define LEFT_KEY    "ZQSDE"

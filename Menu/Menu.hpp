@@ -9,14 +9,14 @@
 #include "Button.hpp"
 #include "Sound.hpp"
 
-#define BUTTON_SETTINGS_M  "../assets/menu/left_button.jpg"
-#define BUTTON_SETTINGS_GREY_M "../assets/menu/left_grey_button.jpg"
-#define PLAY_M "../assets/menu/middle_button.jpg"
-#define PLAY_GREY_M "../assets/menu/middle_grey_button.jpg"
-#define MUSIC_M "../assets/audio/menu_music.ogg"
-#define EXIT_M "../assets/menu/right_button.jpg"
-#define EXIT_GREY_M "../assets/menu/right_grey_button.jpg"
-#define BUTTON_SOUND_M "../assets/audio/sound_button.wav"
+#define BUTTON_SETTINGS_M  "menu/left_button.jpg"
+#define BUTTON_SETTINGS_GREY_M "menu/left_grey_button.jpg"
+#define PLAY_M "menu/middle_button.jpg"
+#define PLAY_GREY_M "menu/middle_grey_button.jpg"
+#define MUSIC_M "audio/menu_music.ogg"
+#define EXIT_M "menu/right_button.jpg"
+#define EXIT_GREY_M "menu/right_grey_button.jpg"
+#define BUTTON_SOUND_M "audio/sound_button.wav"
 
 class Menu : public AScene {
     public:

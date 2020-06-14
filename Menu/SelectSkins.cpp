@@ -3,6 +3,7 @@
 //
 
 #include "SelectSkins.hpp"
+#include "AssetSelector.hpp"
 
 SelectSkins::SelectSkins(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : AScene(ctrl, name)
 {
@@ -10,18 +11,18 @@ SelectSkins::SelectSkins(const std::shared_ptr<IrrlichtController> &ctrl, const 
 
 void SelectSkins::Init(void)
 {
-    this->_background = this->_ctrl->_driver->getTexture(BACKGROUND_SSS);
-    this->_first_skin_one = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>((WIDTH / 4) - 155, HEIGHT - 110), GUI_ID_SKIN_WHITE_BUTTON, FIRST_SKIN_SSS, FIRST_SKIN_SSS);
-    this->_second_skin_one = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>((WIDTH / 4) - 75, HEIGHT - 110), GUI_ID_SKIN_GREEN_BUTTON, SECOND_SKIN_SSS, SECOND_SKIN_SSS);
-    this->_third_skin_one = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>((WIDTH / 4) + 5, HEIGHT - 110), GUI_ID_SKIN_BLUE_BUTTON, THIRD_SKIN_SSS, THIRD_SKIN_SSS);
-    this->_fourth_skin_one = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>((WIDTH / 4) + 85, HEIGHT - 110), GUI_ID_SKIN_BLACK_BUTTON, FOURTH_SKIN_SSS, FOURTH_SKIN_SSS);
-    this->_first_skin_two = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>(WIDTH - (WIDTH / 4) - 75, HEIGHT - 110), GUI_ID_SKINS_WHITE_BUTTON, FIRST_SKIN_SSS, FIRST_SKIN_SSS);
-    this->_second_skin_two = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>(WIDTH - (WIDTH / 4) - 155, HEIGHT - 110), GUI_ID_SKINS_GREEN_BUTTON, SECOND_SKIN_SSS, SECOND_SKIN_SSS);
-    this->_third_skin_two = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>(WIDTH - (WIDTH / 4) + 5, HEIGHT - 110), GUI_ID_SKINS_BLUE_BUTTON, THIRD_SKIN_SSS, THIRD_SKIN_SSS);
-    this->_fourth_skin_two = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>(WIDTH - (WIDTH / 4) + 85, HEIGHT - 110), GUI_ID_SKINS_BLACK_BUTTON, FOURTH_SKIN_SSS, FOURTH_SKIN_SSS);
+    this->_background = this->_ctrl->_driver->getTexture(AssetSelector(BACKGROUND_SSS).c_str());
+    this->_first_skin_one = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>((WIDTH / 4) - 155, HEIGHT - 110), GUI_ID_SKIN_WHITE_BUTTON, AssetSelector(FIRST_SKIN_SSS), AssetSelector(FIRST_SKIN_SSS));
+    this->_second_skin_one = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>((WIDTH / 4) - 75, HEIGHT - 110), GUI_ID_SKIN_GREEN_BUTTON, AssetSelector(SECOND_SKIN_SSS), AssetSelector(SECOND_SKIN_SSS));
+    this->_third_skin_one = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>((WIDTH / 4) + 5, HEIGHT - 110), GUI_ID_SKIN_BLUE_BUTTON, AssetSelector(THIRD_SKIN_SSS), AssetSelector(THIRD_SKIN_SSS));
+    this->_fourth_skin_one = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>((WIDTH / 4) + 85, HEIGHT - 110), GUI_ID_SKIN_BLACK_BUTTON, AssetSelector(FOURTH_SKIN_SSS), AssetSelector(FOURTH_SKIN_SSS));
+    this->_first_skin_two = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>(WIDTH - (WIDTH / 4) - 75, HEIGHT - 110), GUI_ID_SKINS_WHITE_BUTTON, AssetSelector(FIRST_SKIN_SSS), AssetSelector(FIRST_SKIN_SSS));
+    this->_second_skin_two = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>(WIDTH - (WIDTH / 4) - 155, HEIGHT - 110), GUI_ID_SKINS_GREEN_BUTTON, AssetSelector(SECOND_SKIN_SSS), AssetSelector(SECOND_SKIN_SSS));
+    this->_third_skin_two = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>(WIDTH - (WIDTH / 4) + 5, HEIGHT - 110), GUI_ID_SKINS_BLUE_BUTTON, AssetSelector(THIRD_SKIN_SSS), AssetSelector(THIRD_SKIN_SSS));
+    this->_fourth_skin_two = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(70, 70), vector2d<int>(WIDTH - (WIDTH / 4) + 85, HEIGHT - 110), GUI_ID_SKINS_BLACK_BUTTON, AssetSelector(FOURTH_SKIN_SSS), AssetSelector(FOURTH_SKIN_SSS));
     this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, BUTTON_SOUND_SSS);
-    this->_buttonGo = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(150, 150), vector2d<int>((WIDTH / 2) - 75, HEIGHT - 160), GUI_ID_GO_BUTTON, BUTTON_GO_SSS, BUTTON_GO_DARK_SSS);
-    this->_buttonBack = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(150, 150), vector2d<int>((WIDTH / 2) - 550, (HEIGHT / 2) - 300), GUI_ID_PLAY_BUTTON, BUTTON_BACK_SSS, BUTTON_BACK_DARK_SSS);
+    this->_buttonGo = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(150, 150), vector2d<int>((WIDTH / 2) - 75, HEIGHT - 160), GUI_ID_GO_BUTTON, AssetSelector(BUTTON_GO_SSS), AssetSelector(BUTTON_GO_DARK_SSS));
+    this->_buttonBack = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(150, 150), vector2d<int>((WIDTH / 2) - 550, (HEIGHT / 2) - 300), GUI_ID_PLAY_BUTTON, AssetSelector(BUTTON_BACK_SSS), AssetSelector(BUTTON_BACK_DARK_SSS));
 
     this->_current_skin1 = 0;
     this->_current_skin2 = 0;

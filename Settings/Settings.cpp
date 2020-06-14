@@ -3,6 +3,7 @@
 //
 
 #include "Settings.hpp"
+#include "AssetSelector.hpp"
 
 Settings::Settings(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : AScene(ctrl, name)
 {
@@ -11,13 +12,13 @@ Settings::Settings(const std::shared_ptr<IrrlichtController> &ctrl, const std::s
 
 void Settings::Init(void)
 {
-    this->_background = this->_ctrl->_driver->getTexture(BACKGROUND_S);
-    this->_buttonPlus = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 4) + 70, (HEIGHT / 3) + 150), GUI_ID_PLUS_BUTTON, BUTTON_PLUS_S, BUTTON_PLUS_BIG_S);
-    this->_buttonMinus = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 4) - 130, (HEIGHT / 3) + 150), GUI_ID_MINUS_BUTTON, BUTTON_MINUS_S, BUTTON_MINUS_BIG_S);
-    this->_buttonPlusSound = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 4) + 70, (HEIGHT / 3) + 350), GUI_ID_PLUS_BUTTON_SOUND, BUTTON_PLUS_S, BUTTON_PLUS_BIG_S);
-    this->_buttonMinusSound = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 4) - 130, (HEIGHT / 3) + 350), GUI_ID_MINUS_BUTTON_SOUND, BUTTON_MINUS_S, BUTTON_MINUS_BIG_S);
-    this->_buttonBack = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(1280, 100), vector2d<int>(0, 0), GUI_ID_BACK_BUTTON, BUTTON_BACK_S, BUTTON_BACK_DARK_S);
-    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, BUTTON_SOUND_S);
+    this->_background = this->_ctrl->_driver->getTexture(AssetSelector(BACKGROUND_S).c_str());
+    this->_buttonPlus = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 4) + 70, (HEIGHT / 3) + 150), GUI_ID_PLUS_BUTTON, AssetSelector(BUTTON_PLUS_S), AssetSelector(BUTTON_PLUS_BIG_S));
+    this->_buttonMinus = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 4) - 130, (HEIGHT / 3) + 150), GUI_ID_MINUS_BUTTON, AssetSelector(BUTTON_MINUS_S), AssetSelector(BUTTON_MINUS_BIG_S));
+    this->_buttonPlusSound = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 4) + 70, (HEIGHT / 3) + 350), GUI_ID_PLUS_BUTTON_SOUND, AssetSelector(BUTTON_PLUS_S), AssetSelector(BUTTON_PLUS_BIG_S));
+    this->_buttonMinusSound = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(100, 100), vector2d<int>((WIDTH / 4) - 130, (HEIGHT / 3) + 350), GUI_ID_MINUS_BUTTON_SOUND, AssetSelector(BUTTON_MINUS_S), AssetSelector(BUTTON_MINUS_BIG_S));
+    this->_buttonBack = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(1280, 100), vector2d<int>(0, 0), GUI_ID_BACK_BUTTON, AssetSelector(BUTTON_BACK_S), AssetSelector(BUTTON_BACK_DARK_S));
+    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, AssetSelector(BUTTON_SOUND_S));
 }
 
 void Settings::Update(void)

@@ -3,6 +3,7 @@
 //
 
 #include "PauseMenu.hpp"
+#include "AssetSelector.hpp"
 
 PauseMenu::PauseMenu(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name) : AScene(ctrl, name)
 {
@@ -11,11 +12,11 @@ PauseMenu::PauseMenu(const std::shared_ptr<IrrlichtController> &ctrl, const std:
 
 void PauseMenu::Init(void)
 {
-    this->_background = this->_ctrl->_driver->getTexture(BACKGROUND_PM);
-    this->_resume = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 - 200, HEIGHT / 2 - 120), GUI_ID_RESUME_BUTTON_PAUSED, RESUME_PM, RESUME_DARK_PM);
-    this->_option = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH/ 2 - 200, HEIGHT / 2), GUI_ID_OPTION_BUTTON_PAUSED, OPTION_PM, OPTION_DARK_PM);
-    this->_exit = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 - 200, HEIGHT / 2 + 120), GUI_ID_EXIT_BUTTON_PAUSED, EXIT_PM, EXIT_DARK_PM);
-    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, BUTTON_SOUND_PM);
+    this->_background = this->_ctrl->_driver->getTexture(AssetSelector(BACKGROUND_PM).c_str());
+    this->_resume = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 - 200, HEIGHT / 2 - 120), GUI_ID_RESUME_BUTTON_PAUSED, AssetSelector(RESUME_PM), AssetSelector(RESUME_DARK_PM));
+    this->_option = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH/ 2 - 200, HEIGHT / 2), GUI_ID_OPTION_BUTTON_PAUSED, AssetSelector(OPTION_PM), AssetSelector(OPTION_DARK_PM));
+    this->_exit = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 - 200, HEIGHT / 2 + 120), GUI_ID_EXIT_BUTTON_PAUSED, AssetSelector(EXIT_PM), AssetSelector(EXIT_DARK_PM));
+    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, AssetSelector(BUTTON_SOUND_PM));
 }
 
 void PauseMenu::Update(void)

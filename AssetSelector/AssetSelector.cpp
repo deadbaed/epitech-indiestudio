@@ -15,10 +15,6 @@ fs::path AssetSelector(const std::string &asset) {
         AssetPath = "/usr/share/IndieStudio/assets";
 #endif
 
-#if defined(ASSET_SELECTOR_RELEASE) && defined(_WIN32)
-    /* win32 implementation will go here */
-#endif
-
     if (AssetPath.empty()) {
         /* look for the assets folder in current directory */
         AssetPath = fs::current_path() /= "assets";
@@ -26,6 +22,11 @@ fs::path AssetSelector(const std::string &asset) {
         if (!fs::exists(AssetPath)) {
             /* try the parent directory */
             AssetPath = fs::current_path().parent_path() /= "assets";
+
+            if (!fs::exists(AssetPath)) {
+                /* try the parent directory of the parent directory */
+                AssetPath = fs::current_path().parent_path().parent_path() /= "assets";
+            }
         }
     }
 

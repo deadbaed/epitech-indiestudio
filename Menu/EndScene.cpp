@@ -28,10 +28,10 @@ void EndScene::Init(void)
         p2->setPosition(irr::core::vector3df(1, -3, 9));
         p->setPosition(irr::core::vector3df(-6, -3, 14));
     }
-    this->_ctrl->_music->Play(AssetSelector(MUSIC_END));
-    this->_restart = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 - 600, HEIGHT / 2 - 300), GUI_ID_RESUME_BUTTON_PAUSED, AssetSelector(RESTART), AssetSelector(RESTART_DARK));
-    this->_exit = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 + 200, HEIGHT / 2 - 300), GUI_ID_EXIT_BUTTON_PAUSED, AssetSelector(EXIT_END), AssetSelector(EXIT_END_DARK));
-    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, AssetSelector(BUTTON_SOUND_END));
+    this->_ctrl->_music->Play(AssetSelector(MUSIC_END).string());
+    this->_restart = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 - 600, HEIGHT / 2 - 300), GUI_ID_RESUME_BUTTON_PAUSED, AssetSelector(RESTART).string(), AssetSelector(RESTART_DARK).string());
+    this->_exit = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(400, 100), vector2d<int>(WIDTH / 2 + 200, HEIGHT / 2 - 300), GUI_ID_EXIT_BUTTON_PAUSED, AssetSelector(EXIT_END).string(), AssetSelector(EXIT_END_DARK).string());
+    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, AssetSelector(BUTTON_SOUND_END).string());
 }
 void EndScene::Update(void)
 {

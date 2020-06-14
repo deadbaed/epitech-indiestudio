@@ -11,10 +11,10 @@ ChoosePlayers::ChoosePlayers(const std::shared_ptr<IrrlichtController> &ctrl, co
 
 void ChoosePlayers::Init(void)
 {
-    this->_buttonOnePlayer = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(640, HEIGHT - 100), vector2d<int>(0, 100), GUI_ID_ONE_PLAYER_BUTTON, AssetSelector(ONE_PLAYER_GREY_C), AssetSelector(ONE_PLAYER_C));
-    this->_buttonTwoPlayers = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(640, HEIGHT - 100), vector2d<int>(640, 100), GUI_ID_TWO_PLAYERS_BUTTON, AssetSelector(TWO_PLAYERS_GREY_C), AssetSelector(TWO_PLAYERS_C));
-    this->_buttonBack = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(1280, 100), vector2d<int>(0, 0), GUI_ID_BACK_BUTTON, AssetSelector(BUTTON_BACK_GREY_C), AssetSelector(BUTTON_BACK_C));
-    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, AssetSelector(BUTTON_SOUND_C));
+    this->_buttonOnePlayer = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(640, HEIGHT - 100), vector2d<int>(0, 100), GUI_ID_ONE_PLAYER_BUTTON, AssetSelector(ONE_PLAYER_GREY_C).string(), AssetSelector(ONE_PLAYER_C).string());
+    this->_buttonTwoPlayers = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(640, HEIGHT - 100), vector2d<int>(640, 100), GUI_ID_TWO_PLAYERS_BUTTON, AssetSelector(TWO_PLAYERS_GREY_C).string(), AssetSelector(TWO_PLAYERS_C).string());
+    this->_buttonBack = std::make_unique<Button>(this->_ctrl->_device, vector2d<int>(1280, 100), vector2d<int>(0, 0), GUI_ID_BACK_BUTTON, AssetSelector(BUTTON_BACK_GREY_C).string(), AssetSelector(BUTTON_BACK_C).string());
+    this->_buttonSound = std::make_unique<Sound>(this->_ctrl->_context, AssetSelector(BUTTON_SOUND_C).string());
 }
 
 void ChoosePlayers::Update(void)

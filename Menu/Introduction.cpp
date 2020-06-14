@@ -38,7 +38,7 @@ void Introduction::Update(void)
             this->_logo = 3;
         if (this->elapsed_seconds.count() > 5) {
             this->_select = 1;
-            this->_ctrl->_music->Play(AssetSelector(MENU_INTRO_MUSIC));
+            this->_ctrl->_music->Play(AssetSelector(MENU_INTRO_MUSIC).string());
         }
     }
     if (this->elapsed_seconds.count() > 1.5 && (this->_select == 1 || this->_select == 2)) {

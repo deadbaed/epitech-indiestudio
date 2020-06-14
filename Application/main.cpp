@@ -18,7 +18,6 @@
 #include "SelectSkin.hpp"
 #include "SelectSkins.hpp"
 #include "EndScene.hpp"
-#include "AssetSelector.hpp"
 
 /* Win32: Remove the console application */
 //#ifdef _IRR_WINDOWS_
@@ -27,9 +26,6 @@
 //#endif
 
 int main(void) {
-
-    std::cout << AssetSelector("test/folder/file.png") << std::endl;
-
     std::shared_ptr<IrrlichtController> c = std::make_shared<IrrlichtController>();
     c->Init(irr::video::E_DRIVER_TYPE::EDT_OPENGL, WIDTH, HEIGHT);
     c->_device->setWindowCaption(L"Indie Studio");

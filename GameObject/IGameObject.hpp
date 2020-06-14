@@ -21,7 +21,9 @@ class IGameObject {
         WALL,
         DESTRUCTABLE_WALL,
         GROUND,
-        BONUS
+        BONUS,
+        PWU_SKATE,
+        PWU_WALL_PASS
     };
     enum status_e {
         OK = 0,

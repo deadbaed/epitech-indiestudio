@@ -76,7 +76,7 @@ void Player::Update(std::vector<std::shared_ptr<IGameObject>> &obj)
     this->_old = this->_now;
     this->_obj = &obj;
 
-    if (!_dead) {
+    if (!_dead && !_pose) {
         if (this->_conf == KeyConfig::LEFT) {
             core::vector3df nodePosition = this->GetPosition();
 

@@ -167,3 +167,7 @@ void GameScene::Update(void)
             i->get()->Update(_obj_list);
     }
 }
+
+void GameScene::Clear(void)
+{
+}

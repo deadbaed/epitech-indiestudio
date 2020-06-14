@@ -100,16 +100,6 @@ bool Bomb::calculateCollision(irr::core::vector3df position)
             }
         }
 
-        if (i->get()->GetId() != _id && i->get()->GetType() == IGameObject::type_e::BOMB) {
-            //std::unique_ptr<Collider> temp = std::make_unique<Collider>(position, 50, 50, 50);
-            //if (tmp->Collide(*i->get()->GetCollider())) {
-                std::cout << "Bomb" << std::endl;
-                //Bomb *bomb = dynamic_cast<Bomb*>(i->get());
-                //auto bomb = std::dynamic_pointer_cast<Bomb>(i.base());
-                //bomb->explosion();
-            //}
-        }
-
         if (i->get()->GetId() != _id && i->get()->GetType() != IGameObject::type_e::PLAYER && i->get()->GetType() != IGameObject::type_e::DESTRUCTABLE_WALL && i->get()->GetType() != IGameObject::type_e::GROUND) {
             if (tmp->Collide(*i->get()->GetCollider())) {
                 ret = true;
@@ -136,7 +126,6 @@ void Bomb::explosion()
 
 void Bomb::Delete()
 {
-    //std::cout << "ok" << std::endl;
     this->_particles->Delete();
     this->_upperExplosion->Delete();
     this->_downExplosion->Delete();
@@ -145,15 +134,7 @@ void Bomb::Delete()
     if (this->_node) {
         this->_node->remove();
         this->_node = NULL;
-        //this->_node->setVisible(false);
     }
-   /* this->_upperExplosion->clear();
-    this->_downExplosion->clear();
-    this->_leftExplosion->clear();
-    this->_rightExplosion->clear();
-    //_status = DELETED;
-    //this->_node->remove();
-*/
 }
 
 void Bomb::setPosition(irr::core::vector3df const position)

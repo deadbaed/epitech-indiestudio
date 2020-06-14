@@ -23,6 +23,7 @@ class GameScene : public AScene {
         GameScene(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
         void Init(void);
         void Update(void);
+        void Clear();
     ~GameScene();
     protected:
     private:

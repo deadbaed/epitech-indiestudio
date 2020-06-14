@@ -46,7 +46,8 @@ Particles::~Particles()
 
 void Particles::clear()
 {
-    this->_particle->clearParticles();
+    if (_particle)
+        this->_particle->clearParticles();
 }
 
 void Particles::setPosition(irr::core::vector3df position)
@@ -54,16 +55,10 @@ void Particles::setPosition(irr::core::vector3df position)
     this->_particle->setPosition(position);
 }
 
-void Particles::Delete() {
-    //this->clear();
-    //this->_particle->removeAllAffectors();
-    //this->_particle->removeAll();
-    //this->_particle->removeAll();
-//    std::cout << "Particles" << std::endl;
+void Particles::Delete()
+{
     if (this->_particle) {
         this->_particle->remove();
         this->_particle = NULL;
-        //this->_particle->remove();
-        //this->_particle->drop();
     }
 }

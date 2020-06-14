@@ -15,8 +15,8 @@ void EndScene::Init(void)
     this->_background = this->_ctrl->_driver->getTexture(BACKGROUND_END);
     _ctrl->_scene_mgr->addCameraSceneNode(0, vector3df(0, 0 , 0), vector3df(0, 0, 1));
     irr::scene::ICameraSceneNode *camera = _ctrl->_scene_mgr->getActiveCamera();
-    std::shared_ptr<Player> p = std::make_shared<Player>(_ctrl, "p1", (Player::BomberType)_ctrl->_context.skin_player_one, Player::LEFT);
-    std::shared_ptr<Player> p2 = std::make_shared<Player>(_ctrl, "p2", (Player::BomberType)_ctrl->_context.skin_player_two, Player::RIGHT);
+    std::shared_ptr<Player> p = std::make_shared<Player>(_ctrl, "p1", (Player::BomberType)_ctrl->_context.skin_player_one, Player::MENU);
+    std::shared_ptr<Player> p2 = std::make_shared<Player>(_ctrl, "p2", (Player::BomberType)_ctrl->_context.skin_player_two, Player::MENU);
     p->Init();
     p2->Init();
     if (_ctrl->_context.winner == 1) {

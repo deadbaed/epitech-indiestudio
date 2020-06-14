@@ -46,7 +46,8 @@ class Player : public GameObject {
         };
         enum KeyConfig {
             LEFT = 1,
-            RIGHT = 2
+            RIGHT = 2,
+            MENU = 3
         };
         Player(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name);
         Player(const std::shared_ptr<IrrlichtController> &ctrl, const std::string name, BomberType type, KeyConfig conf);

@@ -23,10 +23,10 @@ void SelectSkin::Init(void)
     this->_current_skin = 0;
     _ctrl->_scene_mgr->addCameraSceneNode(0, vector3df(0, 0 , 0), vector3df(0, 0, 1));
     irr::scene::ICameraSceneNode *camera = _ctrl->_scene_mgr->getActiveCamera();
-    p1 = std::make_unique<Player>(_ctrl, "p1", Player::WHITE, Player::LEFT);
-    p2 = std::make_unique<Player>(_ctrl, "p2", Player::GREEN, Player::LEFT);
-    p3 = std::make_unique<Player>(_ctrl, "p3", Player::BLUE, Player::LEFT);
-    p4 = std::make_unique<Player>(_ctrl, "p4", Player::BLACK, Player::LEFT);
+    p1 = std::make_unique<Player>(_ctrl, "p1", Player::WHITE, Player::MENU);
+    p2 = std::make_unique<Player>(_ctrl, "p2", Player::GREEN, Player::MENU);
+    p3 = std::make_unique<Player>(_ctrl, "p3", Player::BLUE, Player::MENU);
+    p4 = std::make_unique<Player>(_ctrl, "p4", Player::BLACK, Player::MENU);
     p1->Init();
     p2->Init();
     p3->Init();

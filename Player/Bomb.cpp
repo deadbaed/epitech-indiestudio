@@ -153,6 +153,7 @@ void Bomb::Delete()
     this->_rightExplosion->clear();
     //_status = DELETED;
     //this->_node->remove();
+*/
 }
 
 void Bomb::setPosition(irr::core::vector3df const position)

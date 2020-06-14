@@ -9,8 +9,12 @@
 #define BLOCK_HPP_
 
 #include "GameObject.hpp"
-
+#include "AssetSelector.hpp"
 #include <iostream>
+
+#define BLOCK_PATH "../assets/map/wall_2.obj"
+#define WALL_PATH  "../assets/map/wall_1.obj"
+#define GROUND_PATH "../assets/map/floor.obj"
 
 class BlockMap : public GameObject {
     public:

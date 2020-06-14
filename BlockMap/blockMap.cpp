@@ -23,16 +23,16 @@ void BlockMap::Init(IAnimatedMesh* &mesh)
 
 void BlockMap::Init()
 {
-    std::string path = "../assets/wall_2.obj";
+    std::string path = AssetSelector(GROUND_PATH);
 
     if (GetType() == IGameObject::type_e::GROUND)
-        path = "../assets/floor.obj";
+        path = AssetSelector(GROUND_PATH);
     if (GetType() == IGameObject::type_e::DESTRUCTABLE_WALL)
-        path = "../assets/wall_2.obj";
+        path = AssetSelector(BLOCK_PATH);
     if (GetType() == IGameObject::type_e::WALL)
-        path = "../assets/wall_1.obj";
+        path = AssetSelector(WALL_PATH);
     if (GetType() == IGameObject::type_e::BORDER)
-        path = "../assets/wall_1.obj";
+        path = AssetSelector(WALL_PATH);
     _node = _ctrl->_scene_mgr->addAnimatedMeshSceneNode(_ctrl->_scene_mgr->getMesh(path.c_str()));
     _node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
     _node->setMD2Animation(scene::EMAT_STAND);
